@@ -1,0 +1,68 @@
+STEP 1 HARNESS  (fake data, no environment is called)
+original: C:\DeepakNitrate\Production\Analysis\step1\dg_js_quoteProduct_main_dnl.ORIGINAL-v1.0.0.34.js
+step1   : C:\DeepakNitrate\Production\Analysis\step1\dg_js_quoteProduct_main_dnl.STEP1.js
+
+SAME                  S1 existing line, non-contract, division 30, price list type 140110001 (the common case)
+      requests: original 5 (5 sync)  ->  step1 2 (2 sync)
+      original requests:
+         /api/data/v9.2/quotes(11111111-0000-0000-0000-000000000000)?$select=effectiveto,dg_division,dg_salesoragnizationsingle   [sync]
+         /api/data/v9.2/quotes(11111111-0000-0000-0000-000000000000)?$select=_customerid_value   [sync]
+         /api/data/v9.2/quotes(11111111-0000-0000-0000-000000000000)?$select=dg_isitacontract   [sync]
+         /api/data/v9.2/pricelevels(33333333-0000-0000-0000-000000000000)?$select=dg_pricelisttype   [sync]
+         /api/data/v9.2/quotes(11111111-0000-0000-0000-000000000000)?$select=dg_customstatus   [sync]
+      step1 requests:
+         /api/data/v9.2/quotes(11111111-0000-0000-0000-000000000000)?$select=_customerid_value,effectiveto,dg_division,dg_salesoragnizationsingle,dg_isitacontract,dg_customstatus   [sync]
+         /api/data/v9.2/pricelevels(33333333-0000-0000-0000-000000000000)?$select=dg_pricelisttype   [sync]
+      effects (original):
+         UpdateQuoteProductSalesOrd: (none)
+         OldQuoteProduct: ctrl dg_oldquoteproduct.addPreSearch(oldquote)
+         ShowHideOnFSBI: ctrl dg_voc.setVisible(false)
+         OnLoadQuoteStatus: (none)
+
+SAME                  S2 existing line, contract quote (dg_isitacontract = 140110000)
+      requests: original 4 (4 sync)  ->  step1 1 (1 sync)
+
+SAME                  S3 new line: sales organisation, division and effective-to are empty
+      requests: original 5 (5 sync)  ->  step1 2 (2 sync)
+
+SAME                  S4 new line, quote has NO effective-to date (existing behaviour: 1 Jan 1970 is written)
+      requests: original 5 (5 sync)  ->  step1 2 (2 sync)
+
+SAME                  S5 quote status on the line differs from the quote (3 versus 5)
+      requests: original 5 (5 sync)  ->  step1 2 (2 sync)
+
+SAME                  S6 quote status on the line is empty
+      requests: original 5 (5 sync)  ->  step1 2 (2 sync)
+
+SAME                  S7 division 40, non-contract, price list type 140110001
+      requests: original 5 (5 sync)  ->  step1 2 (2 sync)
+
+SAME                  S8 division 20 (solvent), non-contract
+      requests: original 4 (4 sync)  ->  step1 1 (1 sync)
+
+SAME                  S9 the server answers 500 for the quote (read fails)
+      requests: original 5 (5 sync)  ->  step1 5 (5 sync)
+
+SAME                  S10 network error on send (exception)
+      requests: original 4 (4 sync)  ->  step1 4 (4 sync)
+      note: both versions let the error escape to the form, as in production today
+
+SAME                  S11 quote lookup is empty
+      requests: original 0 (0 sync)  ->  step1 0 (0 sync)
+      note: both versions fail the same way (TypeError), as in production today
+
+SAME                  S12 product lookup is empty
+      requests: original 4 (4 sync)  ->  step1 2 (2 sync)
+      note: both versions fail the same way (TypeError), as in production today
+
+SAME                  S13 two loads in a row; the quote status changes between them (refresh after save)
+      requests: original 10 (10 sync)  ->  step1 4 (4 sync)
+
+DIFFERENT (expected)  S14 only OnLoadQuoteStatus runs twice within 10 s, quote status changes between (form without the first handler)
+      requests: original 2 (2 sync)  ->  step1 1 (1 sync)
+      note: EXPECTED DIFFERENCE: STEP1 may show the previous value for up to DNL_QUOTE_CACHE_TTL_MS when the first handler is not registered
+      DIFF load2 OnLoadQuoteStatus
+      original: {"effects":["attr dg_quotestatus.setValue(9)"],"error":null}
+      step1   : {"effects":[],"error":null}
+
+SUMMARY: identical 13, expected differences 1, UNEXPECTED differences 0

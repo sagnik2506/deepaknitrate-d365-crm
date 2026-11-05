@@ -1,0 +1,245 @@
+--- ORIGINAL v1.0.0.34 (production = UAT)
++++ STEP1
+@@ -1,6 +1,63 @@
++/* =====================================================================================================
++   STEP 1 REFACTOR (DRAFT FOR UAT) of dg_js/quoteProduct/main/dnl
++   Base file : production = UAT copy, 184,264 bytes, sha256 starts 31a31837f15c
++               (layer ProductionDeployment_Patch_23c258e6 v1.0.0.34). Untouched copy: *.ORIGINAL-v1.0.0.34.js
++   Search for "STEP1-CHANGE" to find every change. Everything else is the original, line for line.
++
++   WHAT CHANGED
++   1. NEW dnlGetQuoteData(): one shared (synchronous) read of the parent quote with the 6 columns the four functions need.
++   2. OldQuoteProduct, UpdateQuoteProductSalesOrd, ShowHideOnFSBI, OnLoadQuoteStatus use it instead of making one request each.
++   RESULT: 4 blocking requests to the same quote become 1 (3 round trips saved on every form open).
++
++   WHAT DID NOT CHANGE
++   - Function names, parameters and the form registrations (no form has to be changed or shipped with this file).
++   - The order in which the effects happen (all work is still done in the same place, in the same order).
++   - The price list request inside ShowHideOnFSBI and all other requests in the file (planned for later steps).
++
++   WHY THE READ IS NOT ASYNCHRONOUS YET
++   On the DNL and DCTL forms UpdateQuoteProductSalesOrd is the FIRST OnLoad handler and about 49 handlers run after it, many of them
++   reading dg_division and dg_salesorganization. ShowHideOnFSBI runs before ShowHideFormulaPricing and ppandfs, which also show/hide
++   dg_voc. Making these reads asynchronous would change the order of effects. A safe asynchronous design needs one OnLoad
++   entry point that runs the functions in order (a form change), which is a later step.
++   ===================================================================================================== */
+ var productid = "";
+ var account = "";
+ var oldQuote = "";
++
++// STEP1-CHANGE-START  (NEW CODE: shared reader for the parent quote)
++// Before step 1, four OnLoad functions (OldQuoteProduct, UpdateQuoteProductSalesOrd, ShowHideOnFSBI, OnLoadQuoteStatus) each made their own
++// SYNCHRONOUS request to the same quote. They now share ONE request. It is still synchronous (see the notes inside each function).
++//  - dnlGetQuoteData(quoteId)        returns the cached quote data if it is for the same quote and younger than DNL_QUOTE_CACHE_TTL_MS
++//  - dnlGetQuoteData(quoteId, true)  always reads fresh (used by UpdateQuoteProductSalesOrd, the first handler of every load)
++// Returns null when the read fails. A failed read is never cached.
++// The cache is also protected by the time limit, so a later form refresh or a form without the first handler never sees old data.
++var DNL_QUOTE_CACHE_TTL_MS = 10000;
++var DNL_QUOTE_SELECT = "_customerid_value,effectiveto,dg_division,dg_salesoragnizationsingle,dg_isitacontract,dg_customstatus";
++var _dnlQuoteCache = { id: null, ts: 0, data: null };
++function dnlGetQuoteData(quoteId, forceRefresh) {
++    var now = new Date().getTime();
++    if (!forceRefresh && _dnlQuoteCache.data && _dnlQuoteCache.id === quoteId && (now - _dnlQuoteCache.ts) < DNL_QUOTE_CACHE_TTL_MS) {
++        return _dnlQuoteCache.data;
++    }
++    var data = null;
++    // No try/catch on purpose: like the original code, a network error is NOT swallowed here (it escapes to the form as before).
++    var req = new XMLHttpRequest();
++    req.open("GET", Xrm.Utility.getGlobalContext().getClientUrl() + "/api/data/v9.2/quotes(" + quoteId + ")?$select=" + DNL_QUOTE_SELECT, false);
++    req.setRequestHeader("OData-MaxVersion", "4.0");
++    req.setRequestHeader("OData-Version", "4.0");
++    req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
++    req.setRequestHeader("Accept", "application/json");
++    req.send();
++    if (req.status === 200) {
++        data = JSON.parse(req.responseText);
++    } else {
++        console.log(req.responseText);   // the original logged the response text the same way
++    }
++    _dnlQuoteCache = data ? { id: quoteId, ts: now, data: data } : { id: null, ts: 0, data: null };
++    return data;
++}
++// STEP1-CHANGE-END
++
+ function OldQuoteProduct(executionContext) {
+     //debugger;
+     var formContext = executionContext.getFormContext();
+@@ -8,31 +65,17 @@
+     var quoteprodid = quoteprod[0].id.replace("{", "").replace("}", "");
+     var product = formContext.getAttribute("productid").getValue();
+     productid = product[0].id.replace("{", "").replace("}", "");
+-    var req = new XMLHttpRequest();
+-    req.open("GET", Xrm.Utility.getGlobalContext().getClientUrl() + "/api/data/v9.2/quotes(" + quoteprodid + ")?$select=_customerid_value", false);
+-    req.setRequestHeader("OData-MaxVersion", "4.0");
+-    req.setRequestHeader("OData-Version", "4.0");
+-    req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+-    req.setRequestHeader("Accept", "application/json");
+-    req.setRequestHeader("Prefer", "odata.include-annotations=*");
+-    req.onreadystatechange = function () {
+-        if (this.readyState === 4) {
+-            req.onreadystatechange = null;
+-            if (this.status === 200) {
+-                var result = JSON.parse(this.response);
+-                console.log(result);
+-                // Columns
+-                var quoteid = result["quoteid"]; // Guid
+-                var customerid = result["_customerid_value"]; // Customer
+-                account = customerid;
+-                var customerid_formatted = result["_customerid_value@OData.Community.Display.V1.FormattedValue"];
+-                var customerid_lookuplogicalname = result["_customerid_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+-            } else {
+-                console.log(this.responseText);
+-            }
+-        }
+-    };
+-    req.send();
++    // STEP1-CHANGE-START
++    // ORIGINAL (v1.0.0.34 lines 11-35): a synchronous XMLHttpRequest to quotes(<id>)?$select=_customerid_value,
++    //   whose callback stored the customer id in the global variable "account".
++    // NOW: the customer id comes from the shared quote read (dnlGetQuoteData). Same global variable, same value.
++    // NOTE: the original code is kept above and below this block unchanged (including the TypeError it throws when
++    //   "quoteid" or "productid" is empty). Behaviour is meant to be identical.
++    var quoteData = dnlGetQuoteData(quoteprodid);
++    if (quoteData) {
++        account = quoteData["_customerid_value"];
++    }
++    // STEP1-CHANGE-END
+ 
+     //old quote
+ 
+@@ -175,36 +218,22 @@
+     var division;
+     var salesorg;
+     ///fetch quote fields
+-    var req = new XMLHttpRequest();
+-    req.open("GET", Xrm.Utility.getGlobalContext().getClientUrl() + "/api/data/v9.2/quotes(" + quoteid + ")?$select=effectiveto,dg_division,dg_salesoragnizationsingle", false);
+-    req.setRequestHeader("OData-MaxVersion", "4.0");
+-    req.setRequestHeader("OData-Version", "4.0");
+-    req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+-    req.setRequestHeader("Accept", "application/json");
+-    req.setRequestHeader("Prefer", "odata.include-annotations=*");
+-    req.onreadystatechange = function () {
+-        if (this.readyState === 4) {
+-            req.onreadystatechange = null;
+-            if (this.status === 200) {
+-                var result = JSON.parse(this.response);
+-                console.log(result);
+-                // Columns
+-                var quoteid = result["quoteid"]; // Guid
+-                var dg_division = result["dg_division"]; // Choice
+-                division = dg_division;
+-                var effectiveto = result["effectiveto"]; // Date Time
+-                date = effectiveto;
+-                var effectiveto_formatted = result["effectiveto@OData.Community.Display.V1.FormattedValue"];
+-                var dg_division_formatted = result["dg_division@OData.Community.Display.V1.FormattedValue"];
+-                var dg_salesoragnizationsingle = result["dg_salesoragnizationsingle"]; // Choice
+-                salesorg = dg_salesoragnizationsingle;
+-                var dg_salesoragnizationsingle_formatted = result["dg_salesoragnizationsingle@OData.Community.Display.V1.FormattedValue"];
+-            } else {
+-                console.log(this.responseText);
+-            }
+-        }
+-    };
+-    req.send();
++    // STEP1-CHANGE-START
++    // ORIGINAL (v1.0.0.34 lines 178-207): a synchronous XMLHttpRequest to
++    //   quotes(<id>)?$select=effectiveto,dg_division,dg_salesoragnizationsingle, whose callback set "division", "date" and "salesorg".
++    // NOW: same three values from the shared quote read. This is the FIRST OnLoad handler on both the DNL and DCTL forms, so it asks for a
++    //   FRESH read (second argument true) and the other three functions reuse it (one request instead of four).
++    // WHY IT IS STILL SYNCHRONOUS: about 49 handlers run after this one and read dg_division / dg_salesorganization.
++    //   If these fields were filled later (asynchronously) those handlers would see empty values on new lines.
++    // The code below this block (setting the 3 fields when empty) is the ORIGINAL code and is unchanged, including
++    //   new Date(null) = 1 Jan 1970 when the quote has no effective-to date (existing behaviour, flagged for the business).
++    var quoteData = dnlGetQuoteData(quoteid, true);
++    if (quoteData) {
++        division = quoteData["dg_division"];
++        date = quoteData["effectiveto"];
++        salesorg = quoteData["dg_salesoragnizationsingle"];
++    }
++    // STEP1-CHANGE-END
+     if (formContext.getAttribute("dg_salesorganization").getValue() == null) {
+         formContext.getAttribute("dg_salesorganization").setValue(salesorg);
+     }
+@@ -496,30 +525,17 @@
+     if (quote != null) {
+         quoteid = quote.replace('{', '').replace('}', '');
+         //fetch contract type
+-        var req = new XMLHttpRequest();
+-        req.open("GET", Xrm.Utility.getGlobalContext().getClientUrl() + "/api/data/v9.2/quotes(" + quoteid + ")?$select=dg_isitacontract", false);
+-        req.setRequestHeader("OData-MaxVersion", "4.0");
+-        req.setRequestHeader("OData-Version", "4.0");
+-        req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+-        req.setRequestHeader("Accept", "application/json");
+-        req.setRequestHeader("Prefer", "odata.include-annotations=*");
+-        req.onreadystatechange = function () {
+-            if (this.readyState === 4) {
+-                req.onreadystatechange = null;
+-                if (this.status === 200) {
+-                    var result = JSON.parse(this.response);
+-                    console.log(result);
+-                    // Columns
+-                    var quoteid = result["quoteid"]; // Guid
+-                    var dg_isitacontract = result["dg_isitacontract"]; // Choice
+-                    contract = dg_isitacontract;
+-                    var dg_isitacontract_formatted = result["dg_isitacontract@OData.Community.Display.V1.FormattedValue"];
+-                } else {
+-                    console.log(this.responseText);
+-                }
+-            }
+-        };
+-        req.send();
++        // STEP1-CHANGE-START
++        // ORIGINAL (v1.0.0.34 lines 499-522): a synchronous XMLHttpRequest to quotes(<id>)?$select=dg_isitacontract,
++        //   whose callback set the variable "contract".
++        // NOW: "contract" comes from the shared quote read. The SECOND request in this function (price list type) is NOT changed in step 1.
++        // ORDER NOTE: this handler runs BEFORE ShowHideFormulaPricing and ppandfs/ppandfsDCTL, which also show/hide dg_voc.
++        //   That is why the read stays synchronous: an asynchronous version would hide dg_voc AFTER those handlers and could change the result.
++        var quoteData = dnlGetQuoteData(quoteid);
++        if (quoteData) {
++            contract = quoteData["dg_isitacontract"];
++        }
++        // STEP1-CHANGE-END
+ 
+         //check for domestic
+         if (contract != 140110000) {
+@@ -1788,30 +1804,16 @@
+     var quoteStatus = formcontext.getAttribute("dg_quotestatus").getValue();
+     if (quote != null) {
+         var quoteId = quote[0].id.replace("{", "").replace("}", "");
+-        var req = new XMLHttpRequest();
+-        req.open("GET", Xrm.Utility.getGlobalContext().getClientUrl() + "/api/data/v9.2/quotes(" + quoteId + ")?$select=dg_customstatus", false);
+-        req.setRequestHeader("OData-MaxVersion", "4.0");
+-        req.setRequestHeader("OData-Version", "4.0");
+-        req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+-        req.setRequestHeader("Accept", "application/json");
+-        req.setRequestHeader("Prefer", "odata.include-annotations=*");
+-        req.onreadystatechange = function () {
+-            if (this.readyState === 4) {
+-                req.onreadystatechange = null;
+-                if (this.status === 200) {
+-                    var result = JSON.parse(this.response);
+-                    console.log(result);
+-                    // Columns
+-                    var quoteid = result["quoteid"]; // Guid
+-                    var dg_customstatus = result["dg_customstatus"]; // Choice
+-                    status = dg_customstatus;
+-                    var dg_customstatus_formatted = result["dg_customstatus@OData.Community.Display.V1.FormattedValue"];
+-                } else {
+-                    console.log(this.responseText);
+-                }
+-            }
+-        };
+-        req.send();
++        // STEP1-CHANGE-START
++        // ORIGINAL (v1.0.0.34 lines 1791-1814): a synchronous XMLHttpRequest to quotes(<id>)?$select=dg_customstatus,
++        //   whose callback set the variable "status".
++        // NOW: "status" comes from the shared quote read. The code below (copying it into dg_quotestatus) is the ORIGINAL and is unchanged,
++        //   including: if the read fails, "status" stays null and a non-empty dg_quotestatus is overwritten with null (existing behaviour, flagged).
++        var quoteData = dnlGetQuoteData(quoteId);
++        if (quoteData) {
++            status = quoteData["dg_customstatus"];
++        }
++        // STEP1-CHANGE-END
+         if (quoteStatus == null) {
+             formcontext.getAttribute("dg_quotestatus").setValue(status);
+         }

@@ -1,0 +1,22 @@
+# Never commit data, exports or secrets
+*.csv
+*.xlsx
+*.xls
+*.zip
+*.pdf
+*.docx
+*.pfx
+*.snk
+*.env
+.env*
+*secret*
+*password*
+*token*
+bin/
+obj/
+packages/
+node_modules/
+.vs/
+column-check-results/
+layer-results/
+compare-results/
