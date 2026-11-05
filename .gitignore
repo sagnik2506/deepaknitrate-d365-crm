@@ -1,6 +1,5 @@
-# Never commit data, exports or secrets
+# Never commit data, exports or secrets. Excel (.xlsx) is allowed ONLY for reviewed decision workbooks (names and counts, no record data).
 *.csv
-*.xlsx
 *.xls
 *.zip
 *.pdf

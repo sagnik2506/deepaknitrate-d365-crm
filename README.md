@@ -11,7 +11,7 @@ Customizations, analysis and tooling for the Deepak Nitrate Dynamics 365 CE (Dat
 | `tools/` | Local helpers: read-only PowerShell checks (`tools/scripts/`), SQL (`tools/sql/`), the old-versus-new test harness and the build script for a change. See `tools/scripts/README.md` |
 
 ## Rules for this repository
-1. **No data.** Never commit CSV exports, record data, user lists, tokens, passwords or client secrets. `.gitignore` blocks common cases.
+1. **No data.** Never commit CSV exports, record data, user lists, tokens, passwords or client secrets. `.gitignore` blocks common cases. Excel files are allowed only for reviewed decision workbooks (component names and counts, no record data), for example `analysis/solutions-and-layers/Production-Layer-Decisions.xlsx`.
 2. **No personal details.** Do not put names or email addresses of people in notes.
 3. **Files are stored exactly as written** (`.gitattributes` turns line-ending conversion off) so a committed file keeps the same hash as the file in production.
 4. **Each change is its own commit** (for example "Step 2: shared price list read") and has a `changes/<step>/` folder with the diff, a README and test cases.
