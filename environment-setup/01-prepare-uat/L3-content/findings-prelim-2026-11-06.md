@@ -18,3 +18,14 @@ Source: production run B (21:43 to 21:50 IST, 206 GET requests, 0 errors, 1,421 
 
 ## Effect on D01
 UAT is not a faithful copy of production code. Rating moves from "go with fixes" to "decision needed". Options: (1) keep UAT and align the differing scripts and plugins with production; (2) create the environments from a minimal copy of production (no business data, but copies configuration; needs approval); (3) hybrid: production-based for AMS, UAT-based for CR-DEV. Next: verify the forms and views noise, find the direction of each script and plugin difference.
+
+## Sample check (6 Nov 2026, 22:0x IST; read-only, 11 items from each of UAT and production, saved locally only)
+- Forms (4 sampled, 159 flagged): the only differences are environment-specific security role ids inside display conditions and the display order number. Noise, not real changes.
+- Views (3 sampled, 387 flagged): the only difference is the table object type code in the grid element (for example 10841 against 11121). Noise.
+  Effect: the forms and views counts above are heavily over-stated. A normalised re-hash (roles ids, order numbers and object type codes stripped) is needed to get the real numbers.
+- Scripts (4 sampled, direction found):
+  - dg_JS/quote/main.js: UAT has 252 extra lines and 6 functions production lacks (HideTab, ShowTab, ShowTabDNL, ShowTabOnAdmin, LockUnlockFormquote, MSMEindicator); production has 25 lines UAT lacks. UAT is ahead.
+  - dg_JS/salescontract/main.js: UAT has 99 extra lines and the function AMSFeilds. UAT is ahead.
+  - dg_QuoteProduct/main/dpl: UAT has 38 extra lines and the function setDescriptionDPL. UAT is ahead.
+  - dg_cancel: mixed. Production has a remarks-empty check and a debugger line; UAT sets dg_orderschedulecancelflag and has the check removed. Different versions, not a simple ahead or behind.
+- Meaning: UAT holds undeployed (or never released) script changes. Taking UAT as the base would carry those into both new environments, so AMS would no longer reflect what is live.
