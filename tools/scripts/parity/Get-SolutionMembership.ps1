@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  L2: which components does each customer solution carry? READ-ONLY (GET only, no record data).
+  L2: which components does each customer solution carry? READ-ONLY (GET only; no business records; configuration content fingerprinted only).
 .DESCRIPTION
   For every customer solution (or only those named in -SolutionNamesFile) reads the solution's component list
   (type, object id, root component behaviour) and writes membership.csv. Resumes from a checkpoint.

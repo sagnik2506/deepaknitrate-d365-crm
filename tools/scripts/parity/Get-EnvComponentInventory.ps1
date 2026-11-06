@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  L1: names of the customer components in one environment, by type. READ-ONLY (GET only, no record data).
+  L1: names of the customer components in one environment, by type. READ-ONLY (GET only; no business records; configuration content fingerprinted only).
 .DESCRIPTION
   Uses membership.csv (from Get-SolutionMembership.ps1) to know which components belong to customer solutions, then reads the
   NAMES of those components (lists only, no content). Tables and columns are matched by name later because their internal ids

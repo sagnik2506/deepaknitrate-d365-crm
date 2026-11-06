@@ -1,5 +1,5 @@
 # Parity scripts (tested on UAT)
-Read-only comparison of the customer components of two environments. GET requests only; no record data; pause after every request; stop file; time limit; token renewal; retry on 429.
+Read-only comparison of the customer components of two environments. GET requests only; no business records read (configuration content is read, only fingerprints saved); pause after every request; stop file; time limit; token renewal; retry on 429.
 
 | Script | Run | Does |
 |---|---|---|

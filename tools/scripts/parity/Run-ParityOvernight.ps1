@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  Runs the parity scripts as two timed runs with automatic checks. READ-ONLY (GET only, no record data).
+  Runs the parity scripts as two timed runs with automatic checks. READ-ONLY (GET only; no business records; configuration content fingerprinted only).
 .DESCRIPTION
   Run A (at -StartA, IST): Get-SolutionMembership.ps1, then Get-EnvComponentInventory.ps1.
   Run B (at -StartB, IST): Get-ComponentContentHashes.ps1 for forms, views, web resources, then plugin assemblies and workflows.
@@ -160,4 +160,4 @@ if ((Count-Throttle '') -gt 20) { $problems.Add('too many service-protection wai
 $extraB = @{ Hashed = $hc; Minutes = [math]::Round(((Get-Date) - $startedB).TotalMinutes, 1) }
 if ($problems.Count -eq 0) { Write-Status 'B' 'Success' 'all checks passed' $extraB; Log ("RUN B: SUCCESS in {0} minutes. {1}" -f $extraB.Minutes, (($hc.GetEnumerator() | ForEach-Object { "$($_.Key)=$($_.Value)" }) -join '; ')) }
 else { $st = if (Test-Path $StopFile) { 'Stopped' } else { 'Failed' }; Write-Status 'B' $st ($problems -join '; ') $extraB; Log ("RUN B: " + $st.ToUpper() + " - " + ($problems -join '; ')) }
-Log ("Runner finished. Gate requests: {0}. Nothing was changed in the environment. No record data was read." -f $script:P.Requests)
+Log ("Runner finished. Gate requests: {0}. Nothing was changed in the environment. No business records were read." -f $script:P.Requests)

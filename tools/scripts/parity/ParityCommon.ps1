@@ -1,5 +1,5 @@
 # Shared helpers for the parity scripts. Dot-source it:  . "$PSScriptRoot\ParityCommon.ps1"
-# SAFETY: GET requests only. No record data is read. Pause after every request. 429 is retried with the wait the server asks for.
+# SAFETY: GET requests only. No business records are read; configuration content is read but only fingerprints are saved. Pause after every request. 429 is retried with the wait the server asks for.
 # A stop file or a time limit ends the run. Nothing is created, changed or deleted in any environment.
 $ErrorActionPreference = 'Stop'
 $script:P = @{}
@@ -52,6 +52,6 @@ function Get-Sha([byte[]]$Bytes) { $sha = [Security.Cryptography.SHA256]::Create
 function Get-ShaText([string]$Text) { if ($null -eq $Text) { return '' }; $n = ($Text -replace "`r`n", "`n" -replace '^﻿', '').TrimEnd(); return Get-Sha ([Text.Encoding]::UTF8.GetBytes($n)) }
 function Write-ParitySummary([string]$What) {
   $mins = [math]::Round(((Get-Date) - $script:P.Started).TotalMinutes, 1)
-  Write-Host ("[{0}] {1}: {2} read requests, {3} errors, {4} minutes. Nothing was changed in the environment. No record data was read." -f $script:P.Name, $What, $script:P.Requests, $script:P.Errors, $mins)
+  Write-Host ("[{0}] {1}: {2} read requests, {3} errors, {4} minutes. Nothing was changed in the environment. No business records were read." -f $script:P.Name, $What, $script:P.Requests, $script:P.Errors, $mins)
 }
 $script:TypeNames = @{ 1 = 'Table'; 2 = 'Column'; 9 = 'OptionSet'; 10 = 'Relationship'; 20 = 'Role'; 26 = 'View'; 29 = 'Workflow'; 60 = 'Form'; 61 = 'WebResource'; 62 = 'SiteMap'; 80 = 'ModelApp'; 91 = 'PluginAssembly'; 92 = 'PluginStep' }

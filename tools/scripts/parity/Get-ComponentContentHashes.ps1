@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  L3: content hashes of the customer components in one environment. READ-ONLY (GET only, no record data).
+  L3: content hashes of the customer components in one environment. READ-ONLY (GET only; no business records; configuration content fingerprinted only).
 .DESCRIPTION
   Reads the CONTENT of forms (form XML), views (fetch and layout XML), web resources, plugin assemblies and workflows/flows for the
   components named in membership.csv, and writes Type, Id, Name, Bytes and two hashes (raw and normalised for text) to hashes-<Type>.csv.
