@@ -47,7 +47,8 @@ Option B, with these conditions:
 | 1 | Active debugger statements in 33 of 43 compared production scripts | Hygiene fix through the AMS environment |
 | 2 | 5 open solutions: Crca6de, ENT_AutonumberingSetup, OOBProcessesDeactivation (PREPROD), LCAssembly (PREPROD is one version behind: 1.0.0.1 against 1.0.0.2), Utility (deepakgroupdevdnl) | Compare contents, name an owner |
 | 3 | HotFixCommissionMasterTable (pwc, managed, 60 components) | Ask pwc for the source or import managed 1.0.0.15 |
-| 4 | 26 solutions missing from UAT | Decide per solution: accept, import or rebuild (offline classification of the 78 shared solutions with different components still to do) |
+| 4 | 26 solutions missing from UAT | Decide per solution: accept, import or rebuild |
+| 4b | 78 shared solutions with different components: about 7 have real differences (ENT_SchemaBaseSolution, ENT_ConfigBaseSolution and its patch 621d4865, DNL_Base_Entities, DNL_FEB_2025, DCTL_Entities_Solution, HotFixCommissionMasterTable), 3 differ only in grouping, and the rest are id noise | See section 9 |
 | 5 | dg_Order/shortclose uses dg_reasonforshortclose in UAT and dg_reasonforshortclosing in production; dg_createorderlineinsap returns true in UAT, false in production; dg_cancel remarks check differs | Check which is correct |
 | 6 | msdyn_CSIntelligence import stuck since 13 Oct 2026 in production | Not ours, ask an admin to look |
 | 7 | Business units, roles, connection references | Not part of a solution; set up per environment |
@@ -63,10 +64,22 @@ Option B, with these conditions:
 | Align UAT to production afterwards (so UAT can test what AMS builds) | 2 to 4 weeks, can be phased | UAT results do not reflect production |
 
 ## 7. Not checked
-Local option sets on columns; component types not listed in B8 (such as reports, charts, process stages, ribbons); the nature of the 235 views with differences other than columns and filters; the 78 shared solutions with different components (not yet classified); layering of production beyond the 24 Quote Product and Order Product components checked earlier; whether plugin binaries differ in logic (only version and dates compared); capacity, API entitlement and the admin center health score. Task 2 (Currency Field Assessment) needs a production usage run of the money fields and finance and integration input on who reads the _base columns.
+Local option sets on columns; component types not listed in B8 (such as reports, charts, process stages, ribbons); the nature of the 235 views with differences other than columns and filters; the metadata components inside the 78 shared solutions (columns, relationships and similar), whose ids differ per environment and cannot be matched by name from the saved data; layering of production beyond the 24 Quote Product and Order Product components checked earlier; whether plugin binaries differ in logic (only version and dates compared); capacity, API entitlement and the admin center health score. Task 2 (Currency Field Assessment) needs a production usage run of the money fields and finance and integration input on who reads the _base columns.
 
 ## 8. Decisions needed
 1. Is a minimal copy of production acceptable (configuration and schema, no business records)?
 2. Option B, A or C?
 3. Who owns the triage of UAT's unreleased work?
 4. Who approaches pwc for the HotFixCommissionMasterTable source?
+
+## 9. The 78 shared solutions with different components (classified 6 Nov 2026)
+Method: components were matched by id for types whose ids are the same in both environments (forms, views, flows and business rules, plugin steps, web resources) and by name where the name was available. Application modules, site maps, option sets, roles and plugin assemblies have different ids in each environment even when the name is the same, so they show up as one missing and one extra with the same count; this is noise, not a real difference.
+- About 70 of the 78 differ only through that id noise (for example the DNL_Production_Deployment_Patch_* and ProductionDeployment_Patch_* solutions: one app module or site map each).
+- About 7 have real differences in components that can be matched:
+  - ENT_SchemaBaseSolution: 39 flows and business rules missing from UAT; UAT has 39 forms and 37 views that production does not.
+  - ENT_ConfigBaseSolution and its patch 621d4865: 4 plugin steps and 1 plugin assembly missing from UAT.
+  - DNL_Base_Entities: UAT has 79 views and 14 forms that production does not.
+  - DNL_FEB_2025 (5 views) and DCTL_Entities_Solution (5 views): UAT extras.
+  - HotFixCommissionMasterTable: 2 flows, 1 view and 2 apps missing from UAT.
+- 3 differ only in grouping (DNL_Production_Deployment_Patch_7278da41, _7fb05e4f, _a873f0a6): the component exists in both environments, in a different solution.
+- Not resolvable from the saved data: columns, relationships and other metadata inside the large solutions (DNL_Base_Entities, ENT_SchemaBaseSolution, Production_Deployment_JUNE2026). Their ids differ per environment, so these large counts are mostly noise but could hide real differences. The component-level comparison by name (section 2) is the reliable view for columns.
