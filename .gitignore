@@ -1,9 +1,10 @@
-# Never commit data, exports or secrets. Excel (.xlsx) is allowed ONLY for reviewed decision workbooks (names and counts, no record data).
+# Never commit data, exports or secrets. Excel (.xlsx) is allowed ONLY for reviewed decision workbooks (names and counts, no record data). Word (.docx) is allowed ONLY under environment-setup/ (reports, no record data).
 *.csv
 *.xls
 *.zip
 *.pdf
 *.docx
+!environment-setup/**/*.docx
 *.pfx
 *.snk
 *.env
