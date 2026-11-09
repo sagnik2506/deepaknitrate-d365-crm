@@ -83,3 +83,10 @@ Method: components were matched by id for types whose ids are the same in both e
   - HotFixCommissionMasterTable: 2 flows, 1 view and 2 apps missing from UAT.
 - 3 differ only in grouping (DNL_Production_Deployment_Patch_7278da41, _7fb05e4f, _a873f0a6): the component exists in both environments, in a different solution.
 - Not resolvable from the saved data: columns, relationships and other metadata inside the large solutions (DNL_Base_Entities, ENT_SchemaBaseSolution, Production_Deployment_JUNE2026). Their ids differ per environment, so these large counts are mostly noise but could hide real differences. The component-level comparison by name (section 2) is the reliable view for columns.
+
+## 10. Correction (9 Nov 2026): most production solutions are managed
+Reading the solution list again for the baseline workbook: **277 of the 281 production solutions are managed**. Only Crca6de, OOBProcessesDeactivation, ENT_AutonumberingSetup and LCAssembly are unmanaged. UAT holds 249 of them unmanaged.
+This was understated above (it named only Utility and HotFixCommissionMasterTable as managed). Consequences:
+- A managed solution cannot be exported again from production, so production is not a source of solution files. Content must come from an unmanaged source of the same version (SIT, dev, PREPROD, dev DNL) or from a component-level copy by API.
+- Option B (minimal copy of production) would give AMS and CR-DEV 277 managed solutions that cannot be edited. The recommendation in section 4 therefore needs to be reviewed with the platform admin before it is relied on. Option A (UAT aligned to production, unmanaged) matches how the solutions are authored today, at a higher effort.
+- The workbook UAT-Baseline-Plan-2026-11-09.xlsx follows the route that changes UAT in place and uses the corrected sources.
