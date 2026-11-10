@@ -91,7 +91,9 @@ for t, spec in (('Forms', 'Id'), ('Views', 'Id'), ('WebResources', 'Name'), ('Pl
     if ra is None or rb is None: continue
     a = {(x[spec].lower() if spec == 'Id' else x[spec]): x for x in ra}; b = {(x[spec].lower() if spec == 'Id' else x[spec]): x for x in rb}
     both = set(a) & set(b); oa, ob = set(a) - set(b), set(b) - set(a)
-    same = [k for k in both if a[k]['ShaNorm'] == b[k]['ShaNorm']]; dif = [k for k in both if a[k]['ShaNorm'] != b[k]['ShaNorm']]
+    # when both sides carry ShaEnv (hashes taken with -Normalise) use it: it ignores ids and codes that always differ between environments
+    sh = (lambda r: r['ShaEnv']) if (a and b and all('ShaEnv' in r for r in list(a.values())[:1] + list(b.values())[:1])) else (lambda r: r['ShaNorm'])
+    same = [k for k in both if sh(a[k]) == sh(b[k])]; dif = [k for k in both if sh(a[k]) != sh(b[k])]
     summary['L3'][t] = dict(A=len(a), B=len(b), identical=len(same), different=len(dif), onlyA=len(oa), onlyB=len(ob))
     md.append('| %s | %d | %d | %d | %d | %d | %d |' % (t, len(a), len(b), len(same), len(dif), len(oa), len(ob)))
     if dif: details += lines('%s with different content' % t, ['%s (%s: %s bytes, %s: %s bytes)' % (a[k]['Name'], nameA, a[k]['Bytes'], nameB, b[k]['Bytes']) for k in dif])

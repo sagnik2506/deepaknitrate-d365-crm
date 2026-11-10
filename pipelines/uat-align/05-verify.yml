@@ -1,0 +1,146 @@
+# 05  Verify UAT-ALIGN against production (steps I1 to I4). READ ONLY apart from the optional publish.
+# 1. PublishAll        : (optional) publish all customizations in UAT-ALIGN so the reads see the published state (needs approval).
+# 2. ProductionSnapshot: reads production with the three layers (about 25 minutes, paced). Skipped when a snapshot from an earlier run is reused.
+# 3. AlignSnapshot     : reads UAT-ALIGN the same way.
+# 4. Compare           : compare_parity.py (UAT-ALIGN against production) and the ACCEPTANCE GATE (pipelines/config/acceptance.json). The run fails when the criteria are not met.
+# Content hashes are taken with -Normalise, so values that always differ between environments (role ids in forms, object type codes in views, GUIDs) do not count as differences.
+# Not included yet: the column property, business unit, role, other-type and option set value reads (B6 to B9) and Solution Checker. See pipelines/README.md.
+name: verify-uat-align-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+parameters:
+- name: publishFirst
+  displayName: Publish all customizations in UAT-ALIGN first
+  type: boolean
+  default: true
+- name: reuseProductionRunId
+  displayName: Reuse the production snapshot of this earlier run of this pipeline (0 = read production now)
+  type: number
+  default: 0
+- name: thisPipelineId
+  displayName: Pipeline id of this pipeline (needed when reusing a snapshot)
+  type: number
+  default: 0
+
+pool:
+  vmImage: windows-latest
+
+stages:
+- ${{ if eq(parameters.publishFirst, true) }}:
+  - stage: PublishAll
+    displayName: Publish all customizations in UAT-ALIGN
+    jobs:
+    - deployment: publish
+      environment: uat-align-write
+      variables:
+      - group: uat-align-secrets
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: ../templates/setup.yml
+            - template: ../templates/pwsh.yml
+              parameters:
+                displayName: Publish all customizations
+                script: |
+                  . .\tools\scripts\pipeline\Common.ps1
+                  Invoke-Dv -Key ALIGN -Path 'PublishAllXml' -Method POST -Body @{} | Out-Null
+                  Write-Log 'published all customizations in UAT-ALIGN'
+
+- ${{ if eq(parameters.reuseProductionRunId, 0) }}:
+  - stage: ProductionSnapshot
+    displayName: Read production (read only)
+    ${{ if eq(parameters.publishFirst, true) }}:
+      dependsOn: PublishAll
+    jobs:
+    - job: prod
+      timeoutInMinutes: 240
+      variables:
+      - group: prod-readonly-secrets
+      steps:
+      - template: ../templates/setup.yml
+        parameters:
+          azLogin: true
+      - template: ../templates/parity-read.yml
+        parameters:
+          envKey: PROD
+          label: PROD
+          outDir: $(Build.ArtifactStagingDirectory)\prod
+          delayMs: 1000
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: $(Build.ArtifactStagingDirectory)\prod
+          artifact: production-snapshot
+
+- stage: AlignSnapshot
+  displayName: Read UAT-ALIGN
+  ${{ if eq(parameters.publishFirst, true) }}:
+    dependsOn: PublishAll
+  jobs:
+  - job: align
+    timeoutInMinutes: 240
+    variables:
+    - group: uat-align-secrets
+    steps:
+    - template: ../templates/setup.yml
+      parameters:
+        azLogin: true
+    - template: ../templates/parity-read.yml
+      parameters:
+        envKey: ALIGN
+        label: ALIGN
+        outDir: $(Build.ArtifactStagingDirectory)\align
+        delayMs: 500
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: $(Build.ArtifactStagingDirectory)\align
+        artifact: align-snapshot
+
+- stage: Compare
+  displayName: Compare and accept
+  ${{ if eq(parameters.reuseProductionRunId, 0) }}:
+    dependsOn:
+    - ProductionSnapshot
+    - AlignSnapshot
+  ${{ else }}:
+    dependsOn: AlignSnapshot
+  jobs:
+  - job: compare
+    steps:
+    - template: ../templates/setup.yml
+      parameters:
+        usePython: true
+    - ${{ if eq(parameters.reuseProductionRunId, 0) }}:
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          artifactName: production-snapshot
+          targetPath: $(Pipeline.Workspace)\prod
+    - ${{ else }}:
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          buildType: specific
+          project: $(System.TeamProjectId)
+          definition: ${{ parameters.thisPipelineId }}
+          buildVersionToDownload: specific
+          pipelineId: ${{ parameters.reuseProductionRunId }}
+          artifactName: production-snapshot
+          targetPath: $(Pipeline.Workspace)\prod
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        artifactName: align-snapshot
+        targetPath: $(Pipeline.Workspace)\align
+    - script: python tools/scripts/parity/compare_parity.py "$(Pipeline.Workspace)\align" ALIGN "$(Pipeline.Workspace)\prod" PROD "$(Build.ArtifactStagingDirectory)\compare"
+      displayName: Compare UAT-ALIGN (A) with production (B)
+    - template: ../templates/pwsh.yml
+      parameters:
+        displayName: Acceptance gate (step I4)
+        script: |
+          & pwsh -NoProfile -File .\tools\scripts\pipeline\Invoke-Acceptance.ps1 -SummaryFile "$(Build.ArtifactStagingDirectory)\compare\summary.json" -ReportFile "$(Build.ArtifactStagingDirectory)\compare\acceptance-report.md"
+          exit $LASTEXITCODE
+    - task: PublishPipelineArtifact@1
+      condition: always()
+      inputs:
+        targetPath: $(Build.ArtifactStagingDirectory)\compare
+        artifact: comparison-and-acceptance

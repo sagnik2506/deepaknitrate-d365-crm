@@ -1,0 +1,432 @@
+{
+  "_comment": "Flows and business rules whose active or draft state differs (Forms-Views-Flows sheet). State 0 = draft, 1 = activated. The F6 stage sets the production state for business rules and classic workflows; cloud flows are skipped unless asked.",
+  "items": [
+    {
+      "id": "022555db-0f2c-f011-8c4d-000d3a0ab060",
+      "name": "Copy of - Quote expired Report",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "038f1e63-b74e-f111-bec7-6045bdce1a27",
+      "name": "DNL - Order Auto Closing Notification",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "046c69b0-949d-ee11-a569-002248d668b9",
+      "name": "Account Approvals",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "085e98c5-f54f-f011-877b-000d3a0ab060",
+      "name": "Service Call | SLA DNL 3",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "0b514783-1f48-f011-877a-000d3af2671d",
+      "name": "Service Call | Email on case rejection",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "1021df53-95fd-ef11-bae3-000d3af269fb",
+      "name": "Email from Costing Owner to salesperson || Quote",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "12eae81d-034c-f011-877a-000d3a0ab060",
+      "name": "Service Call | Email on task rejection",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "14b7ca16-1f3d-4690-a4e4-8d0ba4c0711b",
+      "name": "Service Call | Case",
+      "table": "dg_servicecall",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "15fecd29-0695-ef11-8a68-000d3ac9b389",
+      "name": "On Account Creation Integrating Contacts with SAP",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "1a88fca3-7440-f011-8779-000d3af266e0",
+      "name": "Cancel Sample Order Schedule",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "1f1b5728-0690-41a8-b1bb-174e58fa69fe",
+      "name": "Finance Team Sending Email",
+      "table": "salesorder",
+      "uatState": 1,
+      "prodState": 0
+    },
+    {
+      "id": "20c1ff1d-369d-ef11-8a69-000d3ac9b389",
+      "name": "Contact Integration on Status Change",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "21325913-9de2-4c33-9637-31e1e26d91de",
+      "name": "Email | Change of owner in Lead",
+      "table": "lead",
+      "uatState": 1,
+      "prodState": 0
+    },
+    {
+      "id": "29fa6842-f82a-f011-8c4d-000d3af269fb",
+      "name": "Copy of - Order - Auto Closed Report CC",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "3ac81dd3-0003-f011-bae3-000d3af266e0",
+      "name": "Service Call | Mail on case assignment DNL",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "3f89a172-5eae-f011-bbd3-002248d5e935",
+      "name": "Report - Quote Won / Loss",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "40bf2106-44f8-f011-8406-6045bdce1a27",
+      "name": "Credit Limit DCTL Approval Mail",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "41e4d392-522f-f011-8c4d-000d3af269fb",
+      "name": "Order Schedule | Child Flow | Weekly email",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "42f17b40-96b0-f011-bbd3-002248d6064f",
+      "name": "Customer Visit Daily Report - DNL",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "451663c2-187f-405c-b75d-51711e0fd9f4",
+      "name": "Assign_Lead_To_Queue_when_created_via_website",
+      "table": "lead",
+      "uatState": 1,
+      "prodState": 0
+    },
+    {
+      "id": "47488508-7408-f011-bae3-000d3af266e0",
+      "name": "Service call | SLA case reopen",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "4a4c48d4-4d06-f011-bae2-000d3af269fb",
+      "name": "Service Call | SLA breach",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "4acc1ed8-fac8-ef11-a72e-000d3ac9a59d",
+      "name": "Price List Expiry Notification",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "537c34b3-9692-ef11-8a6a-000d3ac9ab0c",
+      "name": "Integrating Contacts with SAP",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "5631211e-a0bf-ef11-a72e-002248d60018",
+      "name": "Container Type - Domestic",
+      "table": "salesorder",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "60b789e0-c0ab-4150-8248-5db5e756293d",
+      "name": "Service Call | On Stage Change | Update Owner | CCM Team",
+      "table": "dg_servicecall",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "6548046a-3601-4969-96b6-c3a8b3689b42",
+      "name": "route to leads created from email queue",
+      "table": "lead",
+      "uatState": 1,
+      "prodState": 0
+    },
+    {
+      "id": "656d7991-c0d1-f011-8544-000d3ac9c4d1",
+      "name": "DCTL_Order Schedule IntegrationCRM_to_SAP",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "66e2f2c0-5e2a-f011-8c4d-000d3af269fb",
+      "name": "Competitor Sampling || Send Email to QC",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "679ee3a1-d1a8-ef11-a72d-000d3ac9ed9e",
+      "name": "Integrating Location with SAP",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "6d8700fa-7805-f011-bae2-000d3af266e0",
+      "name": "Service call | SLA Notifications DNL",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "6f734885-b58a-ee11-8179-002248d668b9",
+      "name": "Credit Limit Approval Mail",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "708d97e7-d74e-f111-bec7-6045bdce1a17",
+      "name": "DCTL - Order Auto Closing Notification",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "726fe380-ac30-f011-8c4d-000d3af266e0",
+      "name": "Copy of - Customer Management - Account inactivity Report",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "7429bc22-774f-f111-bec7-6045bdce1ac7",
+      "name": "DNL - Auto Closing Order",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "79e48ba1-3b06-f011-bae2-000d3af269fb",
+      "name": "Service Call | SLA Logic DNL",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "7a36b6b2-a421-f011-9989-000d3a0a5bf9",
+      "name": "Order Schedule | Scheduled email weekly",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "7d56a3fb-ed2e-f011-8c4d-000d3af269fb",
+      "name": "Customer Management - Account inactivity Report",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "8658bab8-64a2-ef11-a72d-000d3ac9ecfa",
+      "name": "Plan Initation |Send For MHOD Apporvall",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "88ebb6ca-eea7-ef11-a72d-002248d64f78",
+      "name": "Opportunity Clone",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "8ed7a9de-08bd-ef11-a72e-000d3ac9a59d",
+      "name": "Account Company Code Extension",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "8edf8b0a-c34d-f011-877b-002248d63fd6",
+      "name": "Service Call | SLA Logic DNL 2",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "91524320-b3a0-ee11-a569-002248d5d779",
+      "name": "Service Call | Add to Queue | Int-Auto",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "97e5f70b-6b2a-f011-8c4d-000d3af269fb",
+      "name": "Copy of - Order - Auto Closed Report",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "a645aad9-96e4-ef11-be21-002248d61038",
+      "name": "Copy 0602 of - OS(B) - Order Schedule IntegrationCRM_to_SAP",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "a918603e-79e4-ef11-be21-000d3a0a5df2",
+      "name": "Copy of 0602- OS (A)- Order Schedule IntegrationCRM_to_SAP",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "aee44ce6-8d44-f011-8779-000d3af269fb",
+      "name": "Sample Request || Email from QC to SP",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "bccddd92-359c-ef11-8a6a-000d3ac9ab0c",
+      "name": "DNL - Sales Contract Approval Mail",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "bf9d3c79-4d10-f011-998a-000d3af266e0",
+      "name": "Service call | mail on task due date breach",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "c1b2dc91-4bc0-ef11-a72e-002248d61038",
+      "name": "Reset Cancelled Invoice Details on new Invoice Creation",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "c1f5f7ce-2799-f011-b41b-000d3af299e3",
+      "name": "Sampling Email to QC",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "d46e0e9a-614f-f111-bec7-6045bdce1ac7",
+      "name": "DCTL - Auto Closing Order",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "d7992f76-773c-f011-b4cb-000d3a0ab060",
+      "name": "Competitor Sampling || Send Email to Salesperson",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "de6fc2c0-9230-4c37-b5e6-cbea40e59908",
+      "name": "Service Call | On Stage Change | Update Owner | Sales Team",
+      "table": "dg_servicecall",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "e24c8be7-3120-f011-9989-000d3af269fb",
+      "name": "Quote expiry Report",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "e44cbfe2-45d3-ef11-a72e-002248d61038",
+      "name": "DNL- Order Schedule Sent to SAP Mail",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "eb388c79-2027-f011-8c4d-000d3af269fb",
+      "name": "Copy of - Order - Auto Close Report",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "eed94d74-9020-4e32-b5ad-c4750eda4558",
+      "name": "Send email for integration log",
+      "table": "dg_integrationlog",
+      "uatState": 1,
+      "prodState": 0
+    },
+    {
+      "id": "fb5f4099-5868-ef11-a671-002248d614f0",
+      "name": "Plan Initation |Send For PH Apporval",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "fd22f6db-f370-f011-bec1-000d3af269fb",
+      "name": "Share PO Attachment to Sharepoint Link",
+      "table": "none",
+      "uatState": 0,
+      "prodState": 1
+    },
+    {
+      "id": "ffd7178d-9445-4043-b167-6c7b6c834bc5",
+      "name": "Service Call | On Stage Change | Update Owner | Department Team",
+      "table": "dg_servicecall",
+      "uatState": 0,
+      "prodState": 1
+    }
+  ]
+}

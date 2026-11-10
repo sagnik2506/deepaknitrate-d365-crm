@@ -11,9 +11,19 @@
 param(
   [Parameter(Mandatory)][string]$EnvUrl, [Parameter(Mandatory)][string]$Name, [Parameter(Mandatory)][string]$MembershipCsv,
   [string]$OutDir = '.\parity-out', [string[]]$Types = @('Forms', 'Views', 'WebResources', 'PluginAssemblies', 'Workflows'),
-  [int]$DelayMs = 1000, [int]$MaxMinutes = 60, [string]$StopFile = '.\STOP-PARITY.txt', [int]$MaxItems = 0
+  [int]$DelayMs = 1000, [int]$MaxMinutes = 60, [string]$StopFile = '.\STOP-PARITY.txt', [int]$MaxItems = 0,
+  [switch]$Normalise   # adds a ShaEnv column: a hash that ignores values that always differ between environments (role ids and order in forms, object type codes in views, all GUIDs). Use on a fresh -OutDir.
 )
 . "$PSScriptRoot\ParityCommon.ps1"
+function Get-EnvNormSha([string]$Type, [string]$Text) {
+  if ($null -eq $Text) { return '' }
+  $t = $Text
+  if ($Type -eq 'Forms') { $t = $t -replace '<Role Id="[^"]*"\s*/>', '' -replace '(DisplayConditions[^>]*?) Order="\d+"', '$1' }
+  elseif ($Type -eq 'Views') { $t = $t -replace 'object="\d+"', 'object=""' }
+  $t = [regex]::Replace($t, '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}', 'GUID')
+  $t = ($t -replace '\s+', ' ').Trim()
+  return Get-Sha ([Text.Encoding]::UTF8.GetBytes($t))
+}
 New-Item -ItemType Directory -Force $OutDir | Out-Null
 Initialize-Parity -EnvUrl $EnvUrl -Name $Name -DelayMs $DelayMs -MaxMinutes $MaxMinutes -StopFile $StopFile
 $Types = @($Types | ForEach-Object { $_ -split ',' } | ForEach-Object { $_.Trim() } | Where-Object { $_ })
@@ -46,12 +56,14 @@ foreach ($t in $Types) {
         $txt = ($s.Content -split ',' | ForEach-Object { [string]$r.$_ }) -join "`n"
         $b = [Text.Encoding]::UTF8.GetBytes($txt); $len = $b.Length; $raw = Get-Sha $b; $norm = Get-ShaText $txt
       }
-      [pscustomobject]@{ Type = $t; Id = $r.($s.Id); Name = $r.($s.Name); Bytes = $len; Sha = $raw; ShaNorm = $norm }
+      $o = [ordered]@{ Type = $t; Id = $r.($s.Id); Name = $r.($s.Name); Bytes = $len; Sha = $raw; ShaNorm = $norm }
+      if ($Normalise) { $o['ShaEnv'] = $(if ($s.Kind -eq 'text') { Get-EnvNormSha $t $txt } else { $norm }) }
+      [pscustomobject]$o
     }
     if ($out2) { $out2 | Export-Csv $out -NoTypeInformation -Append }
     # ids that came back empty (deleted since listing) are still marked done by a zero-length row
     $got = @($rows | ForEach-Object { $_.($s.Id).ToLower() }); $miss = @($chunk | Where-Object { $got -notcontains $_ })
-    if ($miss) { $miss | ForEach-Object { [pscustomobject]@{ Type = $t; Id = $_; Name = '(not found)'; Bytes = 0; Sha = ''; ShaNorm = '' } } | Export-Csv $out -NoTypeInformation -Append }
+    if ($miss) { $miss | ForEach-Object { $o = [ordered]@{ Type = $t; Id = $_; Name = '(not found)'; Bytes = 0; Sha = ''; ShaNorm = '' }; if ($Normalise) { $o['ShaEnv'] = '' }; [pscustomobject]$o } | Export-Csv $out -NoTypeInformation -Append }
     $nDone += $chunk.Count; if (($nDone % 100) -lt $s.Chunk) { Write-Host "  [$Name] $t : $nDone of $($todo.Count)" }
   }
 }

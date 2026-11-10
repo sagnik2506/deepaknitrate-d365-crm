@@ -1,0 +1,4 @@
+{
+  "_comment": "Names the team approved after triage (step C2): \"Use production\" items. Empty means the F2 stage changes nothing. For web resources missing in UAT-ALIGN add \"solution\" so the new resource is added to the right solution.",
+  "approved": []
+}

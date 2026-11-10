@@ -1,0 +1,129 @@
+# 02  Collect the sources (steps D2, D3, D5, D7). READ ONLY on every environment it touches.
+# 1. WatchProduction : read-only check that production did not change since the baseline (stops the run when it did, unless told not to).
+# 2. ExportSources   : exports the 31 missing solutions (Part B) from PREPROD, production (LCAssembly only), dev DNL, dev and SIT and checks each zip version.
+# 3. CheckSources    : step D5. Compares the component counts of each source solution with production (read-only reads of the source environments and production).
+# 4. ProductionFiles : step D7. Downloads the production web resources and plugin assemblies that differ or are missing (GET only).
+# Artifacts: sources (zips), source-check (D5 report), prod-components (files used by the align pipeline), prod-membership.
+name: collect-sources-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+parameters:
+- name: stopIfProductionChanged
+  type: boolean
+  default: true
+- name: includePartC
+  displayName: Also export Part C (solutions with differences that have a matching source) for step F1
+  type: boolean
+  default: false
+
+pool:
+  vmImage: windows-latest
+
+stages:
+- stage: WatchProduction
+  displayName: Production watch
+  jobs:
+  - job: watch
+    variables:
+    - group: prod-readonly-secrets
+    steps:
+    - template: ../templates/setup.yml
+    - template: ../templates/pwsh.yml
+      parameters:
+        displayName: Watch production
+        script: |
+          $flag = if ('${{ parameters.stopIfProductionChanged }}' -eq 'True') { '-FailOnChange' } else { '' }
+          & pwsh -NoProfile -File .\tools\scripts\pipeline\Watch-Production.ps1 -OutDir "$(Build.ArtifactStagingDirectory)\watch" $flag
+          exit $LASTEXITCODE
+
+- stage: ExportSources
+  displayName: Export the 31 missing solutions
+  dependsOn: WatchProduction
+  jobs:
+  - job: export
+    timeoutInMinutes: 360
+    variables:
+    - group: uat-align-secrets
+    steps:
+    - template: ../templates/setup.yml
+    - template: ../templates/pwsh.yml
+      parameters:
+        displayName: Export Part B
+        script: |
+          & pwsh -NoProfile -File .\tools\scripts\pipeline\Export-Solutions.ps1 -Part B -OutDir "$(Build.ArtifactStagingDirectory)\sources"
+          exit $LASTEXITCODE
+    - ${{ if eq(parameters.includePartC, true) }}:
+      - template: ../templates/pwsh.yml
+        parameters:
+          displayName: Export Part C
+          script: |
+            & pwsh -NoProfile -File .\tools\scripts\pipeline\Export-Solutions.ps1 -Part C -OutDir "$(Build.ArtifactStagingDirectory)\sources-c"
+            exit $LASTEXITCODE
+    - task: PublishPipelineArtifact@1
+      condition: always()
+      inputs:
+        targetPath: $(Build.ArtifactStagingDirectory)
+        artifact: sources
+
+- stage: CheckSources
+  displayName: D5 check of the sources
+  dependsOn: ExportSources
+  jobs:
+  - job: check
+    timeoutInMinutes: 240
+    variables:
+    - group: uat-align-secrets
+    steps:
+    - template: ../templates/setup.yml
+      parameters:
+        azLogin: true
+        usePython: true
+    - template: ../templates/pwsh.yml
+      parameters:
+        displayName: Read the membership of production, then of each source environment, and compare counts
+        script: |
+          . .\tools\scripts\pipeline\Common.ps1
+          $root = "$(Build.ArtifactStagingDirectory)\check"; New-Item -ItemType Directory -Force $root | Out-Null
+          $p = '.\tools\scripts\parity'
+          $order = (Get-PipelineConfig 'export-order.json').items | Where-Object { $_.part -eq 'B' -and $_.source }
+          # production membership for all baseline names (read only, paced)
+          $allNames = Join-Path $root 'all-names.txt'; (Get-PipelineConfig 'production-baseline.json').solutions | ForEach-Object { $_.name } | Set-Content $allNames -Encoding utf8
+          & pwsh -NoProfile -File "$p\Get-SolutionMembership.ps1" -EnvUrl (Get-EnvUrl 'PROD') -Name PROD -SolutionNamesFile $allNames -OutDir "$root\PROD" -DelayMs 1000 -MaxMinutes 90 -StopFile "$root\STOP.txt" -Fresh
+          if ($LASTEXITCODE -ne 0) { throw 'production membership failed' }
+          $bad = 0
+          foreach ($g in ($order | Group-Object source)) {
+              if ($g.Name -eq 'PROD') { continue }
+              $names = Join-Path $root "$($g.Name)-names.txt"; $g.Group | ForEach-Object { $_.solution } | Set-Content $names -Encoding utf8
+              & pwsh -NoProfile -File "$p\Get-SolutionMembership.ps1" -EnvUrl (Get-EnvUrl $g.Name) -Name $g.Name -SolutionNamesFile $names -OutDir "$root\$($g.Name)" -DelayMs 500 -MaxMinutes 60 -StopFile "$root\STOP.txt" -Fresh
+              if ($LASTEXITCODE -ne 0) { throw "membership read failed for $($g.Name)" }
+              python .\tools\scripts\pipeline\compare_membership_counts.py "$root\$($g.Name)\membership.csv" "$root\PROD\membership.csv" "$root\source-check-$($g.Name).md" $names
+              if ($LASTEXITCODE -ne 0) { $bad++; Add-AdoWarning "D5: some solutions from $($g.Name) do not match production counts (see source-check-$($g.Name).md)" }
+          }
+          if ($bad -gt 0) { exit 1 }
+    - task: PublishPipelineArtifact@1
+      condition: always()
+      inputs:
+        targetPath: $(Build.ArtifactStagingDirectory)\check
+        artifact: source-check
+
+- stage: ProductionFiles
+  displayName: D7 download production components
+  dependsOn: WatchProduction
+  jobs:
+  - job: download
+    variables:
+    - group: prod-readonly-secrets
+    steps:
+    - template: ../templates/setup.yml
+    - template: ../templates/pwsh.yml
+      parameters:
+        displayName: Download web resources and plugin assemblies (GET only)
+        script: |
+          & pwsh -NoProfile -File .\tools\scripts\pipeline\Get-ProductionComponents.ps1 -OutDir "$(Build.ArtifactStagingDirectory)\prod-components"
+          exit $LASTEXITCODE
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: $(Build.ArtifactStagingDirectory)\prod-components
+        artifact: prod-components

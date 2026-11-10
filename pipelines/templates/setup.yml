@@ -1,0 +1,32 @@
+# Common start of every job: check out the repo, install the Power Platform CLI, optionally Python and an Azure CLI sign-in with the service principal.
+parameters:
+- name: azLogin          # the parity scripts get their tokens from the Azure CLI
+  type: boolean
+  default: false
+- name: usePython        # compare_parity.py and the source check need Python 3
+  type: boolean
+  default: false
+- name: persistCredentials   # needed only when the job pushes to git
+  type: boolean
+  default: false
+
+steps:
+- checkout: self
+  clean: true
+  persistCredentials: ${{ parameters.persistCredentials }}
+- task: PowerPlatformToolInstaller@2
+  displayName: Install the Power Platform CLI
+  inputs:
+    DefaultVersion: true
+- ${{ if eq(parameters.usePython, true) }}:
+  - task: UsePythonVersion@0
+    displayName: Use Python 3
+    inputs:
+      versionSpec: '3.11'
+- ${{ if eq(parameters.azLogin, true) }}:
+  - template: pwsh.yml
+    parameters:
+      displayName: Sign the Azure CLI in with the service principal
+      script: |
+        az login --service-principal -u $env:PP_APP_ID -p $env:PP_CLIENT_SECRET --tenant $env:PP_TENANT_ID --allow-no-subscriptions --output none
+        if ($LASTEXITCODE -ne 0) { throw 'az login failed' }

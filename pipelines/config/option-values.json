@@ -1,0 +1,96 @@
+{
+  "_comment": "From the OptionSets sheet. The F9 stage adds Only in PROD values. Values Only in UAT are removed only when the stage is run with the remove option and a signed Drop decision.",
+  "items": [
+    {
+      "optionSet": "dg_baseoficis",
+      "value": 140110000,
+      "uatLabel": "",
+      "prodLabel": "Low CFR India",
+      "status": "Only in PROD"
+    },
+    {
+      "optionSet": "dg_baseoficis",
+      "value": 140110001,
+      "uatLabel": "",
+      "prodLabel": "Mid CFR India",
+      "status": "Only in PROD"
+    },
+    {
+      "optionSet": "dg_baseoficis",
+      "value": 140110002,
+      "uatLabel": "",
+      "prodLabel": "High CFR India",
+      "status": "Only in PROD"
+    },
+    {
+      "optionSet": "dg_capatype",
+      "value": 140110003,
+      "uatLabel": "Follow Up",
+      "prodLabel": "",
+      "status": "Only in UAT"
+    },
+    {
+      "optionSet": "dg_capatype",
+      "value": 140110004,
+      "uatLabel": "Trial",
+      "prodLabel": "",
+      "status": "Only in UAT"
+    },
+    {
+      "optionSet": "dg_capatype",
+      "value": 140110005,
+      "uatLabel": "Sample",
+      "prodLabel": "",
+      "status": "Only in UAT"
+    },
+    {
+      "optionSet": "dg_capatype",
+      "value": 140110006,
+      "uatLabel": "New Product Development",
+      "prodLabel": "",
+      "status": "Only in UAT"
+    },
+    {
+      "optionSet": "dg_capatype",
+      "value": 140110007,
+      "uatLabel": "Sales",
+      "prodLabel": "",
+      "status": "Only in UAT"
+    },
+    {
+      "optionSet": "dg_capatype",
+      "value": 140110008,
+      "uatLabel": "Collection",
+      "prodLabel": "",
+      "status": "Only in UAT"
+    },
+    {
+      "optionSet": "dg_ordertype",
+      "value": 140110011,
+      "uatLabel": "US Trade Order",
+      "prodLabel": "",
+      "status": "Only in UAT"
+    },
+    {
+      "optionSet": "dg_salesdistrict",
+      "value": 15,
+      "uatLabel": "West Gujarat",
+      "prodLabel": "",
+      "status": "Only in UAT"
+    },
+    {
+      "optionSet": "dg_salesoffice",
+      "value": 5,
+      "uatLabel": "China Sales Office",
+      "prodLabel": "",
+      "status": "Only in UAT"
+    },
+    {
+      "optionSet": "dg_salesoffice",
+      "value": 6,
+      "uatLabel": "Others",
+      "prodLabel": "",
+      "status": "Only in UAT"
+    }
+  ]
+}

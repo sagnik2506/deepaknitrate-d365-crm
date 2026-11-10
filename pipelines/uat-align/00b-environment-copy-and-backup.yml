@@ -1,0 +1,192 @@
+# 00b  Create the working copy UAT-ALIGN, take backups, prove the copy, make it safe (steps A6 and B1).
+# Manual run only. Choose one action per run:
+#   createAndCopy  : guard, approval, create an empty sandbox, copy UAT into it (full copy).
+#   backup         : manual backup of UAT-ALIGN with a label (UAT-ALIGN-before-E3, UAT-ALIGN-before-F, UAT-ALIGN-baseline-<date>).
+#   proveAndSafe   : after the copy, set the URL of UAT-ALIGN in pipelines/config/environments.json, then run this to compare UAT-ALIGN with UAT and turn off every cloud flow.
+# SAFETY: the guard refuses any target that is not named UAT-ALIGN or that equals a known environment. Delete and reset are deliberately NOT in this pipeline.
+# The admin tasks (Create, Copy, Backup Environment) come from the Power Platform Build Tools and need a service connection with a tenant-level Power Platform admin role.
+# Check the exact task inputs against the Build Tools version installed in your organisation: they were written from the documentation and have not been run.
+name: align-environment-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+parameters:
+- name: action
+  displayName: What to do
+  type: string
+  default: createAndCopy
+  values:
+  - createAndCopy
+  - backup
+  - proveAndSafe
+- name: targetName
+  displayName: Name of the working copy (must be UAT-ALIGN)
+  type: string
+  default: UAT-ALIGN
+- name: copyType
+  displayName: Copy type
+  type: string
+  default: FullCopy
+  values:
+  - FullCopy
+  - MinimalCopy
+- name: region
+  displayName: Region of the new environment
+  type: string
+  default: india
+- name: securityGroupId
+  displayName: Security group id that limits access to UAT-ALIGN (optional)
+  type: string
+  default: ' '
+- name: backupLabel
+  displayName: Backup label
+  type: string
+  default: UAT-ALIGN-before-E3
+- name: makeSafe
+  displayName: Turn off cloud flows in UAT-ALIGN (proveAndSafe)
+  type: boolean
+  default: true
+
+pool:
+  vmImage: windows-latest
+
+variables:
+- group: uat-align-secrets          # PP_TENANT_ID, PP_APP_ID, PP_CLIENT_SECRET (write-capable service principal, added as application user in UAT-ALIGN)
+- group: uat-align-admin-settings   # AdminServiceConnection (name of the Power Platform service connection with the admin role), UatUrl
+
+stages:
+- stage: Guard
+  displayName: Guard
+  jobs:
+  - job: guard
+    steps:
+    - template: ../templates/setup.yml
+    - template: ../templates/pwsh.yml
+      parameters:
+        displayName: Refuse any target that is not UAT-ALIGN
+        script: |
+          & pwsh -NoProfile -File .\tools\scripts\pipeline\Test-TargetGuard.ps1 -TargetName '${{ parameters.targetName }}'
+          exit $LASTEXITCODE
+
+- ${{ if eq(parameters.action, 'createAndCopy') }}:
+  - stage: CreateAndCopy
+    displayName: Create UAT-ALIGN and copy UAT into it
+    dependsOn: Guard
+    jobs:
+    - deployment: createAndCopy
+      displayName: Create and copy (needs approval)
+      environment: uat-align-admin        # configure required approvers on this Azure DevOps environment
+      timeoutInMinutes: 480
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: PowerPlatformToolInstaller@2
+              inputs:
+                DefaultVersion: true
+            - task: PowerPlatformCreateEnvironment@2
+              name: createEnv
+              displayName: Create the empty sandbox
+              inputs:
+                authenticationType: PowerPlatformSPN
+                PowerPlatformSPN: $(AdminServiceConnection)
+                DisplayName: ${{ parameters.targetName }}
+                EnvironmentType: Sandbox
+                LocationName: ${{ parameters.region }}
+                CurrencyName: INR
+                LanguageName: English
+                DomainName: uatalign
+            - task: PowerPlatformCopyEnvironment@2
+              displayName: Copy UAT into UAT-ALIGN
+              inputs:
+                authenticationType: PowerPlatformSPN
+                PowerPlatformSPN: $(AdminServiceConnection)
+                SourceEnvironmentUrl: $(UatUrl)
+                TargetEnvironmentUrl: $(BuildTools.EnvironmentUrl)
+                CopyType: ${{ parameters.copyType }}
+                OverrideFriendlyName: true
+                FriendlyName: ${{ parameters.targetName }}
+            - script: echo "Record the URL of UAT-ALIGN in pipelines/config/environments.json (key ALIGN). URL is $(BuildTools.EnvironmentUrl)"
+              displayName: Remember the new URL
+
+- ${{ if eq(parameters.action, 'backup') }}:
+  - stage: Backup
+    displayName: Back up UAT-ALIGN
+    dependsOn: Guard
+    jobs:
+    - deployment: backup
+      displayName: Manual backup (needs approval)
+      environment: uat-align-admin
+      timeoutInMinutes: 120
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: PowerPlatformToolInstaller@2
+              inputs:
+                DefaultVersion: true
+            - task: PowerPlatformBackupEnvironment@2
+              displayName: Backup ${{ parameters.backupLabel }}
+              inputs:
+                authenticationType: PowerPlatformSPN
+                PowerPlatformSPN: $(AdminServiceConnection)
+                EnvironmentUrl: $(AlignUrl)
+                BackupLabel: ${{ parameters.backupLabel }}
+
+- ${{ if eq(parameters.action, 'proveAndSafe') }}:
+  - stage: Prove
+    displayName: Prove the copy against UAT
+    dependsOn: Guard
+    jobs:
+    - job: prove
+      timeoutInMinutes: 240
+      steps:
+      - template: ../templates/setup.yml
+        parameters:
+          azLogin: true
+          usePython: true
+      - template: ../templates/parity-read.yml
+        parameters:
+          envKey: UAT
+          label: UAT
+          outDir: $(Build.ArtifactStagingDirectory)\uat
+          delayMs: 500
+      - template: ../templates/parity-read.yml
+        parameters:
+          envKey: ALIGN
+          label: ALIGN
+          outDir: $(Build.ArtifactStagingDirectory)\align
+          delayMs: 500
+      - script: python tools/scripts/parity/compare_parity.py "$(Build.ArtifactStagingDirectory)\uat" UAT "$(Build.ArtifactStagingDirectory)\align" ALIGN "$(Build.ArtifactStagingDirectory)\compare-uat-align"
+        displayName: Compare UAT with UAT-ALIGN (expect no difference)
+      - task: PublishPipelineArtifact@1
+        condition: always()
+        inputs:
+          targetPath: $(Build.ArtifactStagingDirectory)\compare-uat-align
+          artifact: copy-proof
+
+  - ${{ if eq(parameters.makeSafe, true) }}:
+    - stage: MakeSafe
+      displayName: Turn off cloud flows in UAT-ALIGN
+      dependsOn: Prove
+      jobs:
+      - deployment: makeSafe
+        displayName: Make safe (needs approval)
+        environment: uat-align-write
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+              - template: ../templates/setup.yml
+              - template: ../templates/pwsh.yml
+                parameters:
+                  displayName: Turn off active cloud flows
+                  script: |
+                    & pwsh -NoProfile -File .\tools\scripts\pipeline\Set-SafeMode.ps1 -ReportFile "$(Build.ArtifactStagingDirectory)\safemode-report.csv"
+                    exit $LASTEXITCODE
+              - task: PublishPipelineArtifact@1
+                condition: always()
+                inputs:
+                  targetPath: $(Build.ArtifactStagingDirectory)\safemode-report.csv
+                  artifact: safemode-report

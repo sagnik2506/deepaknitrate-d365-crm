@@ -1,0 +1,31 @@
+# One PowerShell 7 step with the service principal passed as environment variables (secret variables are never available to scripts unless mapped like this).
+# The variable group in use must define PP_TENANT_ID, PP_APP_ID and PP_CLIENT_SECRET (secret).
+parameters:
+- name: displayName
+  type: string
+- name: script
+  type: string
+- name: workingDirectory
+  type: string
+  default: $(Build.SourcesDirectory)
+- name: continueOnError
+  type: boolean
+  default: false
+- name: condition
+  type: string
+  default: succeeded()
+
+steps:
+- task: PowerShell@2
+  displayName: ${{ parameters.displayName }}
+  condition: ${{ parameters.condition }}
+  continueOnError: ${{ parameters.continueOnError }}
+  inputs:
+    targetType: inline
+    pwsh: true
+    workingDirectory: ${{ parameters.workingDirectory }}
+    script: ${{ parameters.script }}
+  env:
+    PP_TENANT_ID: $(PP_TENANT_ID)
+    PP_APP_ID: $(PP_APP_ID)
+    PP_CLIENT_SECRET: $(PP_CLIENT_SECRET)

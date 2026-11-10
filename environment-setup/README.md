@@ -28,3 +28,6 @@ Update the Status column as work moves (Not started, In progress, Done, Blocked)
 - Solution comparison across dev, UAT, SIT, preprod and production: `analysis/environment-sync/`.
 - Layers in production: `analysis/solutions-and-layers/`.
 - Status: `analysis/status/project-summary-2026-11-06.md`.
+
+## Automation
+Azure DevOps pipelines for creating and baselining the working copy of UAT (UAT-ALIGN): see `pipelines/README.md`.

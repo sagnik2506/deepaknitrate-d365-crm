@@ -1,0 +1,317 @@
+{
+  "_comment": "Web resources that differ or are missing (Scripts sheet). Copy a name into approved-web-resources.json to let the F2 stage change it.",
+  "items": [
+    {
+      "name": "dg_BulkApprovalHTML",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_CommissionMasterApproval",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_Enddatepricelistitem",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_LockOrderScheduleApprovalonLoad",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_OnchangeofProductPopulateRevenue",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_Order/shortclose",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_OrderScheduleSampleRequest",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_SampleOrder",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_SampleRequest_Opportunity",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_addCustomViewToFreightMasterLookup",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_cancel",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_createorderlineinsap",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_js_sendQuoteProductforDomesticReport",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_orderapproval/main.js",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_orderapproval/ribbon.js",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_orderscheduleApprovallineReadonly",
+      "in": "In both",
+      "class": "Mixed (both sides have changes)",
+      "suggested": "Review with the owner: which side is correct"
+    },
+    {
+      "name": "dg_Availablequantity",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_DateValidationOnOrder",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_JS/lock/LOCKopp.js",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_JS/lockPT/main.js",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_LockApprovalStatusQuoteLine",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_LockOrderSubGridInOpp",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_LockQuotelineonQuoteActivation",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_OrderMialDNL",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_PhenolQuantitysplittoOrdersLine",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_SAPOrderIDDate",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_SalesOrderAvailablecreditLimit",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_SplitQuantityAlert",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_js/LockQuoteLineOnActivationDnl",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_quotelinerejection",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_salesOrderToleranceAmount",
+      "in": "In both",
+      "class": "Only a debugger line differs",
+      "suggested": "Use production now (UAT has the debugger commented out; clean-up is an AMS task)"
+    },
+    {
+      "name": "dg_HideSplitQuantityButton",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_JS/SCApproval/main.js",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_JS/quote/main.js",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_JS/salescontract/main.js",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_LockOrderScheduleonLoad",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_OrderSchedulequickcreate",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_PricelistItemJS_DNL_Enddate",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_QuoteProduct/main/dpl",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_SalescontractDNL",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_SampleRequestDNL",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_SampleRequestline",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_notifyquoteDNL",
+      "in": "In both",
+      "class": "UAT ahead (new code in UAT)",
+      "suggested": "Review: Release (re-apply later as a patch) or Hold"
+    },
+    {
+      "name": "dg_AutopopulateRBI",
+      "in": "Only in PROD",
+      "class": "Missing in UAT",
+      "suggested": "Create from the production file"
+    },
+    {
+      "name": "dg_ImportDataRun/main",
+      "in": "Only in PROD",
+      "class": "Missing in UAT",
+      "suggested": "Create from the production file"
+    },
+    {
+      "name": "dg_MarketDataRBI",
+      "in": "Only in PROD",
+      "class": "Missing in UAT",
+      "suggested": "Create from the production file"
+    },
+    {
+      "name": "dg_QuoteCreationDate",
+      "in": "Only in PROD",
+      "class": "Missing in UAT",
+      "suggested": "Create from the production file"
+    },
+    {
+      "name": "dg_RetrieveAppID",
+      "in": "Only in PROD",
+      "class": "Missing in UAT",
+      "suggested": "Create from the production file"
+    },
+    {
+      "name": "dg_SetBillingpriceforOrderApproval",
+      "in": "Only in PROD",
+      "class": "Missing in UAT",
+      "suggested": "Create from the production file"
+    },
+    {
+      "name": "dg_js/DecisionDocument/Ribbon",
+      "in": "Only in PROD",
+      "class": "Missing in UAT",
+      "suggested": "Create from the production file"
+    },
+    {
+      "name": "dg_js/DecisionDocumentApprovals/Ribbon",
+      "in": "Only in PROD",
+      "class": "Missing in UAT",
+      "suggested": "Create from the production file"
+    },
+    {
+      "name": "dg_nameAutopulate",
+      "in": "Only in PROD",
+      "class": "Missing in UAT",
+      "suggested": "Create from the production file"
+    }
+  ]
+}

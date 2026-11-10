@@ -1,0 +1,14 @@
+{
+  "_comment": "Solution that carries each web resource that is only in production (Gaps sheet).",
+  "items": {
+    "dg_AutopopulateRBI": "ENT_CodeBaseSolution_Patch_94c07e0e",
+    "dg_ImportDataRun/main": "ENT_SchemaBaseSolution_Patch_0d602da3",
+    "dg_MarketDataRBI": "ENT_CodeBaseSolution_Patch_94c07e0e",
+    "dg_QuoteCreationDate": "Crca6de; ENT_CodeBaseSolution_Patch_c4d6a361",
+    "dg_RetrieveAppID": "ENT_CodeBaseSolution_Patch_c4d6a361",
+    "dg_SetBillingpriceforOrderApproval": "ENT_CodeBaseSolution_Patch_c4d6a361",
+    "dg_js/DecisionDocument/Ribbon": "ENT_CodeBaseSolution_Patch_c4d6a361",
+    "dg_js/DecisionDocumentApprovals/Ribbon": "ENT_CodeBaseSolution_Patch_c4d6a361",
+    "dg_nameAutopulate": "ENT_CodeBaseSolution_Patch_94c07e0e"
+  }
+}

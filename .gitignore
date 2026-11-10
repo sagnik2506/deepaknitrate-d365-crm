@@ -20,3 +20,8 @@ node_modules/
 column-check-results/
 layer-results/
 compare-results/
+
+# Excel lock files
+~$*
+__pycache__/
+*.pyc

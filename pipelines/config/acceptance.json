@@ -1,0 +1,32 @@
+{
+  "_comment": "Acceptance criteria of step I4, applied to the comparison of UAT-ALIGN against production. Edit approvedExtrasOnlyInAlign after the triage (C2) to allow components that exist only in UAT-ALIGN.",
+  "onlyInProductionMustBeZero": [
+    "Table",
+    "Column",
+    "Form",
+    "View",
+    "WebResource",
+    "PluginAssembly",
+    "PluginStep",
+    "Workflow",
+    "Role"
+  ],
+  "differentContentMustBeZero": [
+    "Forms",
+    "Views",
+    "WebResources",
+    "PluginAssemblies",
+    "Workflows"
+  ],
+  "approvedExtrasOnlyInAlign": {
+    "Table": 0,
+    "Column": 0,
+    "Form": 0,
+    "View": 0,
+    "WebResource": 0,
+    "PluginAssembly": 0,
+    "PluginStep": 0,
+    "Workflow": 0,
+    "Role": 0
+  }
+}

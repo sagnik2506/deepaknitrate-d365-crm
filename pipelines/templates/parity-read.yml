@@ -1,0 +1,35 @@
+# Reads one environment with the three comparison layers (solution membership, component names, content hashes) into -outDir. READ-ONLY (GET only).
+# Needs the Azure CLI signed in (setup.yml with azLogin: true). The environment key must exist in pipelines/config/environments.json.
+parameters:
+- name: envKey
+  type: string
+- name: label            # short name used in the log and as the folder name
+  type: string
+- name: outDir
+  type: string
+- name: delayMs
+  type: number
+  default: 1000
+- name: hashTypes
+  type: string
+  default: Forms,Views,WebResources,PluginAssemblies,Workflows
+
+steps:
+- template: pwsh.yml
+  parameters:
+    displayName: Read ${{ parameters.label }} (membership, names, content hashes)
+    script: |
+      . .\tools\scripts\pipeline\Common.ps1
+      $url = Get-EnvUrl '${{ parameters.envKey }}'
+      $out = '${{ parameters.outDir }}'
+      New-Item -ItemType Directory -Force $out | Out-Null
+      $names = Join-Path $out 'solution-names.txt'
+      (Get-PipelineConfig 'production-baseline.json').solutions | ForEach-Object { $_.name } | Set-Content $names -Encoding utf8
+      $p = '.\tools\scripts\parity'
+      $stop = Join-Path $out 'STOP-PARITY.txt'
+      & pwsh -NoProfile -File "$p\Get-SolutionMembership.ps1" -EnvUrl $url -Name '${{ parameters.label }}' -SolutionNamesFile $names -OutDir $out -DelayMs ${{ parameters.delayMs }} -MaxMinutes 90 -StopFile $stop -Fresh
+      if ($LASTEXITCODE -ne 0) { throw 'membership read failed' }
+      & pwsh -NoProfile -File "$p\Get-EnvComponentInventory.ps1" -EnvUrl $url -Name '${{ parameters.label }}' -MembershipCsv "$out\membership.csv" -OutDir $out -DelayMs ${{ parameters.delayMs }} -MaxMinutes 90 -StopFile $stop
+      if ($LASTEXITCODE -ne 0) { throw 'inventory read failed' }
+      & pwsh -NoProfile -File "$p\Get-ComponentContentHashes.ps1" -EnvUrl $url -Name '${{ parameters.label }}' -MembershipCsv "$out\membership.csv" -OutDir $out -Types '${{ parameters.hashTypes }}' -DelayMs ${{ parameters.delayMs }} -MaxMinutes 120 -StopFile $stop -Normalise
+      if ($LASTEXITCODE -ne 0) { throw 'content hash read failed' }

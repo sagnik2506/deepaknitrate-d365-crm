@@ -1,0 +1,48 @@
+# 00a  Production watch (step A5). READ ONLY. Scheduled every day and runnable by hand.
+# Compares the production customer solutions (name, version, managed) with pipelines/config/production-baseline.json and looks for solution imports in the last 26 hours.
+# The run FAILS when production changed, so Azure DevOps notifies you. Update the baseline file by hand after you have reviewed the change.
+# Uses the READ-ONLY service principal group (prod-readonly-secrets). About 6 GET requests, one at a time.
+name: production-watch-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+schedules:
+- cron: '30 0 * * *'          # 00:30 UTC = 06:00 IST
+  displayName: Daily production watch
+  branches:
+    include:
+    - main
+  always: true
+
+parameters:
+- name: failOnChange
+  displayName: Fail the run when production changed
+  type: boolean
+  default: true
+
+pool:
+  vmImage: windows-latest      # use a self-hosted agent if your policy requires one
+
+variables:
+- group: prod-readonly-secrets   # PP_TENANT_ID, PP_APP_ID, PP_CLIENT_SECRET of a service principal with a read-only role in production
+
+jobs:
+- job: watch
+  displayName: Compare production with the baseline
+  timeoutInMinutes: 30
+  steps:
+  - template: ../templates/setup.yml
+  - template: ../templates/pwsh.yml
+    parameters:
+      displayName: Production watch
+      script: |
+        $flag = if ('${{ parameters.failOnChange }}' -eq 'True') { '-FailOnChange' } else { '' }
+        & pwsh -NoProfile -File .\tools\scripts\pipeline\Watch-Production.ps1 -OutDir "$(Build.ArtifactStagingDirectory)\watch" $flag
+        exit $LASTEXITCODE
+  - task: PublishPipelineArtifact@1
+    displayName: Publish the watch report
+    condition: always()
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)\watch
+      artifact: production-watch

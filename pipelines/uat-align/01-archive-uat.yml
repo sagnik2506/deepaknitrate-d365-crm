@@ -1,0 +1,60 @@
+# 01  Archive UAT (steps B2 and B3). READ ONLY on UAT.
+# Exports every solution of UAT that is listed in pipelines/config/export-order.json (Part A, 250 solutions), checks each zip, unpacks them into solutions/uat-archive,
+# commits and tags uat-archive-<build number>, and publishes the manifest. Exports of the large solutions take long: use a self-hosted agent or run in batches with the "only" parameter.
+name: archive-uat-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+parameters:
+- name: only
+  displayName: Optional comma-separated solution names (batch); empty = all of Part A
+  type: string
+  default: ' '
+- name: commitAndPush
+  displayName: Commit the unpacked solutions and push to the branch below
+  type: boolean
+  default: true
+- name: branch
+  displayName: Branch to push to
+  type: string
+  default: uat-alignment
+
+pool:
+  vmImage: windows-latest      # exports of 250 solutions exceed the limits of hosted agents; use a self-hosted agent for the full run
+
+variables:
+- group: uat-align-secrets
+
+stages:
+- stage: Export
+  displayName: Export and unpack UAT
+  jobs:
+  - job: export
+    timeoutInMinutes: 360
+    steps:
+    - template: ../templates/setup.yml
+      parameters:
+        persistCredentials: true
+    - template: ../templates/pwsh.yml
+      parameters:
+        displayName: Export Part A from UAT
+        script: |
+          $only = @('${{ parameters.only }}'.Split(',') | ForEach-Object { $_.Trim() } | Where-Object { $_ })
+          & pwsh -NoProfile -File .\tools\scripts\pipeline\Export-Solutions.ps1 -Part A -OutDir "$(Build.ArtifactStagingDirectory)\uat-zips" -Only $only
+          exit $LASTEXITCODE
+    - template: ../templates/pwsh.yml
+      parameters:
+        displayName: Unpack, check the count, commit and tag
+        script: |
+          $count = if ('${{ parameters.only }}'.Trim()) { 0 } else { 250 }
+          $args = @('-ZipDir', "$(Build.ArtifactStagingDirectory)\uat-zips", '-OutDir', 'solutions\uat-archive', '-ExpectedCount', $count, '-Tag', 'uat-archive-$(Build.BuildNumber)', '-Message', 'Archive UAT solutions $(Build.BuildNumber)', '-Branch', '${{ parameters.branch }}')
+          if ('${{ parameters.commitAndPush }}' -eq 'True') { $args += @('-Commit', '-Push') }
+          & pwsh -NoProfile -File .\tools\scripts\pipeline\Unpack-Archive.ps1 @args
+          exit $LASTEXITCODE
+    - task: PublishPipelineArtifact@1
+      displayName: Publish the manifest
+      condition: always()
+      inputs:
+        targetPath: $(Build.ArtifactStagingDirectory)\uat-zips\manifest.csv
+        artifact: uat-export-manifest

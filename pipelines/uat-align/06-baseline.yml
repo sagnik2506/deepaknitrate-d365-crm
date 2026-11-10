@@ -1,0 +1,72 @@
+# 06  Baseline UAT-ALIGN (step J3). Run only after the sign-off (step I8).
+# Waits for a manual confirmation, exports every customer solution of UAT-ALIGN (unmanaged; managed too when asked), unpacks into solutions/uat-baseline with a manifest
+# (solution, version, SHA-256 of each zip), commits and tags uat-baseline-<build number>. READ ONLY on UAT-ALIGN.
+name: baseline-uat-align-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+parameters:
+- name: alsoManaged
+  displayName: Also export managed zips (for the release process)
+  type: boolean
+  default: false
+- name: branch
+  displayName: Branch to push to
+  type: string
+  default: uat-alignment
+
+pool:
+  vmImage: windows-latest      # a full export needs a self-hosted agent (time limits of hosted agents)
+
+variables:
+- group: uat-align-secrets
+
+stages:
+- stage: SignOff
+  displayName: Sign-off
+  jobs:
+  - job: confirm
+    pool: server
+    steps:
+    - task: ManualValidation@0
+      timeoutInMinutes: 2880
+      inputs:
+        notifyUsers: ''
+        instructions: 'Step I8 is signed (dev lead and release owner), the acceptance gate of pipeline 05 passed, and the backup UAT-ALIGN-baseline-<date> was taken. Resume to export the baseline.'
+        onTimeout: reject
+
+- stage: Export
+  displayName: Export, unpack and tag the baseline
+  dependsOn: SignOff
+  jobs:
+  - job: export
+    timeoutInMinutes: 360
+    steps:
+    - template: ../templates/setup.yml
+      parameters:
+        persistCredentials: true
+    - template: ../templates/pwsh.yml
+      parameters:
+        displayName: Export every customer solution of UAT-ALIGN (unmanaged)
+        script: |
+          & pwsh -NoProfile -File .\tools\scripts\pipeline\Export-Solutions.ps1 -Discover -Source ALIGN -OutDir "$(Build.ArtifactStagingDirectory)\baseline-unmanaged"
+          exit $LASTEXITCODE
+    - ${{ if eq(parameters.alsoManaged, true) }}:
+      - template: ../templates/pwsh.yml
+        parameters:
+          displayName: Export managed zips
+          script: |
+            & pwsh -NoProfile -File .\tools\scripts\pipeline\Export-Solutions.ps1 -Discover -Source ALIGN -Managed -OutDir "$(Build.ArtifactStagingDirectory)\baseline-managed"
+            exit $LASTEXITCODE
+    - template: ../templates/pwsh.yml
+      parameters:
+        displayName: Unpack, commit and tag
+        script: |
+          & pwsh -NoProfile -File .\tools\scripts\pipeline\Unpack-Archive.ps1 -ZipDir "$(Build.ArtifactStagingDirectory)\baseline-unmanaged" -OutDir solutions\uat-baseline -Tag "uat-baseline-$(Build.BuildNumber)" -Message "UAT-ALIGN baseline $(Build.BuildNumber)" -Branch '${{ parameters.branch }}' -Commit -Push
+          exit $LASTEXITCODE
+    - task: PublishPipelineArtifact@1
+      condition: always()
+      inputs:
+        targetPath: $(Build.ArtifactStagingDirectory)
+        artifact: uat-align-baseline

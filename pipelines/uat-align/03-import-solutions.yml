@@ -1,0 +1,107 @@
+# 03  Import the 31 missing solutions into UAT-ALIGN (steps E1 to E6).
+# Takes the zips exported by pipeline 02 (artifact "sources"), imports them one at a time in the order of pipelines/config/import-order.json (Part 1, production install order),
+# stops on the first failure, then reads the membership of the imported solutions in UAT-ALIGN and compares the component counts with production.
+# CHANGES UAT-ALIGN ONLY. Needs approval on the Azure DevOps environment uat-align-write. Take the backup first (pipeline 00b, action backup, label UAT-ALIGN-before-E3).
+name: import-solutions-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+parameters:
+- name: sourcesRunId
+  displayName: Run id of pipeline 02 that produced the sources artifact
+  type: number
+  default: 0
+- name: sourcesPipelineId
+  displayName: Pipeline id of 02-collect-sources
+  type: number
+  default: 0
+- name: backupTaken
+  displayName: I took the backup UAT-ALIGN-before-E3
+  type: boolean
+  default: false
+- name: dryRun
+  displayName: Dry run (only the checks, nothing is imported)
+  type: boolean
+  default: true
+
+pool:
+  vmImage: windows-latest
+
+variables:
+- group: uat-align-secrets
+
+stages:
+- stage: Checks
+  displayName: Before the import
+  jobs:
+  - job: checks
+    steps:
+    - checkout: none
+    - script: |
+        if "${{ parameters.backupTaken }}"=="False" (echo ##vso[task.logissue type=error]Take the backup UAT-ALIGN-before-E3 first (pipeline 00b, action backup) & exit /b 1)
+        if "${{ parameters.sourcesRunId }}"=="0" (echo ##vso[task.logissue type=error]Give the run id of pipeline 02 & exit /b 1)
+      displayName: Backup taken and sources chosen
+
+- stage: Import
+  displayName: Import
+  dependsOn: Checks
+  jobs:
+  - deployment: import
+    displayName: Import into UAT-ALIGN (needs approval)
+    environment: uat-align-write
+    timeoutInMinutes: 480
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: ../templates/setup.yml
+            parameters:
+              azLogin: true
+              usePython: true
+          - task: DownloadPipelineArtifact@2
+            displayName: Download the sources
+            inputs:
+              buildType: specific
+              project: $(System.TeamProjectId)
+              definition: ${{ parameters.sourcesPipelineId }}
+              buildVersionToDownload: specific
+              pipelineId: ${{ parameters.sourcesRunId }}
+              artifactName: sources
+              targetPath: $(Pipeline.Workspace)\sources
+          - template: ../templates/pwsh.yml
+            parameters:
+              displayName: Import Part 1 in order
+              script: |
+                $d = if ('${{ parameters.dryRun }}' -eq 'True') { '-DryRun' } else { '' }
+                & pwsh -NoProfile -File .\tools\scripts\pipeline\Import-Solutions.ps1 -Part 1 -ZipRoot "$(Pipeline.Workspace)\sources" -ResultFile "$(Build.ArtifactStagingDirectory)\import-results.csv" $d
+                exit $LASTEXITCODE
+          - ${{ if eq(parameters.dryRun, false) }}:
+            - task: DownloadPipelineArtifact@2
+              displayName: Download the production membership (from the D5 check)
+              inputs:
+                buildType: specific
+                project: $(System.TeamProjectId)
+                definition: ${{ parameters.sourcesPipelineId }}
+                buildVersionToDownload: specific
+                pipelineId: ${{ parameters.sourcesRunId }}
+                artifactName: source-check
+                targetPath: $(Pipeline.Workspace)\source-check
+            - template: ../templates/pwsh.yml
+              parameters:
+                displayName: Read UAT-ALIGN membership of the imported solutions and compare counts with production
+                script: |
+                  . .\tools\scripts\pipeline\Common.ps1
+                  $root = "$(Build.ArtifactStagingDirectory)\verify"; New-Item -ItemType Directory -Force $root | Out-Null
+                  $p = '.\tools\scripts\parity'
+                  $names = Join-Path $root 'names.txt'
+                  (Get-PipelineConfig 'import-order.json').items | Where-Object { [string]$_.part -eq '1' } | ForEach-Object { $_.solution } | Set-Content $names -Encoding utf8
+                  & pwsh -NoProfile -File "$p\Get-SolutionMembership.ps1" -EnvUrl (Get-EnvUrl 'ALIGN') -Name ALIGN -SolutionNamesFile $names -OutDir "$root\ALIGN" -DelayMs 500 -MaxMinutes 60 -StopFile "$root\STOP.txt" -Fresh
+                  if ($LASTEXITCODE -ne 0) { throw 'membership read failed' }
+                  python .\tools\scripts\pipeline\compare_membership_counts.py "$root\ALIGN\membership.csv" "$(Pipeline.Workspace)\source-check\PROD\membership.csv" "$root\import-check.md" $names
+                  exit $LASTEXITCODE
+          - task: PublishPipelineArtifact@1
+            condition: always()
+            inputs:
+              targetPath: $(Build.ArtifactStagingDirectory)
+              artifact: import-results

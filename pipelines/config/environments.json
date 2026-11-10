@@ -1,0 +1,22 @@
+{
+  "_comment": "Environment keys used by the pipelines. ALIGN is the working copy of UAT: set its URL after you create it. Only keys in writableEnvironments can ever be changed by a pipeline.",
+  "UAT": "https://deepakgroupuat.crm8.dynamics.com",
+  "ALIGN": "<set after UAT-ALIGN is created>",
+  "DEV": "https://deepakgroupdevcrm.crm8.dynamics.com",
+  "SIT": "https://orgb244b2a8.crm8.dynamics.com",
+  "PREPROD": "https://deepakgrouppreprod.crm8.dynamics.com",
+  "DEVDNL": "https://deepakgroupdevdnl.crm8.dynamics.com",
+  "PROD": "https://deepakcrmprod.crm8.dynamics.com",
+  "alignEnvironmentName": "UAT-ALIGN",
+  "writableEnvironments": [
+    "ALIGN"
+  ],
+  "readOnlyEnvironments": [
+    "UAT",
+    "DEV",
+    "SIT",
+    "PREPROD",
+    "DEVDNL",
+    "PROD"
+  ]
+}

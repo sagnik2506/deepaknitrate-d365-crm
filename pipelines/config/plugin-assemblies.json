@@ -1,0 +1,15 @@
+{
+  "_comment": "Plugin assemblies that differ or are only in production (Plugins sheet). Read-only download in the sources pipeline.",
+  "names": [
+    "DN.SourceCodePluginAssemply",
+    "DNL_Project",
+    "DO Cancellation",
+    "DiscountDuplicate",
+    "Lead Duplication",
+    "MultiOrderline_Integration_CRMtoSAP_DCTL",
+    "Multi_OrderLine_Creation",
+    "Quote_Opp_StatusUpdate",
+    "UpdateFields_Opp_Quote",
+    "DG_Websitre_CRM Integration"
+  ]
+}

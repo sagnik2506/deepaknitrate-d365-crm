@@ -1,0 +1,1411 @@
+{
+  "_comment": "Production customer solutions as read on 6 Nov 2026 (run A). The production watch compares against this file. Update it by hand after reviewing a change.",
+  "readOn": "2026-11-06",
+  "solutions": [
+    {
+      "name": "6FebOSSolution",
+      "version": "1.0.0.2",
+      "managed": true
+    },
+    {
+      "name": "Crca6de",
+      "version": "1.0.0.0",
+      "managed": false
+    },
+    {
+      "name": "DCTL_Entities_Solution",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DCTL_Flows_Solution",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DCTL_Prod_Deployment",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DCTL_Prod_Deployment_Patch_12384322",
+      "version": "1.0.0.4",
+      "managed": true
+    },
+    {
+      "name": "DCTL_Prod_Deployment_Patch_7aa2e182",
+      "version": "1.0.0.1",
+      "managed": true
+    },
+    {
+      "name": "DCTL_Prod_Deployment_Patch_ca3c9983",
+      "version": "1.0.0.3",
+      "managed": true
+    },
+    {
+      "name": "DCTL_Production",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DCTL_SecurityRoles_Solution",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_Base_Apps",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_Base_CloudFlows",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_Base_Entities",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_Base_Plugins",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_Base_SecurityRoles",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_Base_WebResources",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_FEB_2025",
+      "version": "1.0.0.49",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_ProductionDeployment_SIT",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_ProductionDeployment_SIT_Patch_073235c8",
+      "version": "1.0.0.2",
+      "managed": true
+    },
+    {
+      "name": "DNL_ProductionDeployment_SIT_Patch_13a96515",
+      "version": "1.0.0.5",
+      "managed": true
+    },
+    {
+      "name": "DNL_ProductionDeployment_SIT_Patch_26946e48",
+      "version": "1.0.0.6",
+      "managed": true
+    },
+    {
+      "name": "DNL_ProductionDeployment_SIT_Patch_3d42d13c",
+      "version": "1.0.0.4",
+      "managed": true
+    },
+    {
+      "name": "DNL_ProductionDeployment_SIT_Patch_9d17cbeb",
+      "version": "1.0.0.1",
+      "managed": true
+    },
+    {
+      "name": "DNL_ProductionDeployment_SIT_Patch_f6b77821",
+      "version": "1.0.0.7",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment",
+      "version": "1.0.0.2",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_02107687",
+      "version": "1.0.4.3",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_0415735f",
+      "version": "1.0.3.61",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_045ccbf3",
+      "version": "1.0.3.54",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_05871c55",
+      "version": "1.0.3.30",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_06b7c194",
+      "version": "1.0.3.80",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_0a35e265",
+      "version": "1.0.5.3",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_0d49c1f3",
+      "version": "1.0.4.6",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_0ddde697",
+      "version": "1.0.3.53",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_0f85687b",
+      "version": "1.0.0.12",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_136b1c2f",
+      "version": "1.0.3.87",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_153289be",
+      "version": "1.0.3.78",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_160060cb",
+      "version": "1.0.4.1",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_1869c346",
+      "version": "1.0.3.76",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_18d218f0",
+      "version": "1.0.3.36",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_19521e63",
+      "version": "1.0.3.58",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_19b80bab",
+      "version": "1.0.3.34",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_2018088a",
+      "version": "1.0.4.19",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_259689d6",
+      "version": "1.0.3.82",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_2600f0b0",
+      "version": "1.0.3.48",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_28d3d102",
+      "version": "1.0.3.56",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_29aeebaa",
+      "version": "1.0.3.45",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_2e38712a",
+      "version": "1.0.5.5",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_2e7499a6",
+      "version": "1.0.5.20",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_2eafd67f",
+      "version": "1.0.3.97",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_2f893e41",
+      "version": "1.0.3.67",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_321c5c1a",
+      "version": "1.0.5.6",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_33821f00",
+      "version": "1.0.3.55",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_36cfa059",
+      "version": "1.0.1.24",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_387793aa",
+      "version": "1.0.5.7",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_39b29893",
+      "version": "1.0.3.49",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_3d818cd7",
+      "version": "1.0.3.43",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_3ec408d9",
+      "version": "1.0.5.15",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_3fb6fa9d",
+      "version": "1.0.3.50",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_3fd6d104",
+      "version": "1.0.3.99",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_4011749a",
+      "version": "1.0.3.81",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_424fd8de",
+      "version": "1.0.4.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_4353e273",
+      "version": "1.0.5.8",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_4374b78e",
+      "version": "1.0.3.83",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_43beb27d",
+      "version": "1.0.5.1",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_49d40eac",
+      "version": "1.0.3.95",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_4f1b15f7",
+      "version": "1.0.3.98",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_4fdc42aa",
+      "version": "1.0.3.77",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_50071178",
+      "version": "1.0.4.26",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_50b2b71f",
+      "version": "1.0.3.29",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_526c1698",
+      "version": "1.0.3.33",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_53b3e516",
+      "version": "1.0.0.4",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_53d56bce",
+      "version": "1.0.5.18",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_556d165d",
+      "version": "1.0.3.96",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_5631470e",
+      "version": "1.0.5.2",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_563c3ed4",
+      "version": "1.0.1.18",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_5692f536",
+      "version": "1.0.1.17",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_5922e89b",
+      "version": "1.0.3.42",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_5ee67b01",
+      "version": "1.0.0.14",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_5f11efd2",
+      "version": "1.0.5.24",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_62f43373",
+      "version": "1.0.3.52",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_6356c582",
+      "version": "1.0.3.92",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_643f55ce",
+      "version": "1.0.4.15",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_65cfad66",
+      "version": "1.0.3.35",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_66e7cce8",
+      "version": "1.0.3.31",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_675e1828",
+      "version": "1.0.4.20",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_6c5076f6",
+      "version": "1.0.3.32",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_6c97eadd",
+      "version": "1.0.3.40",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_6e0698bc",
+      "version": "1.0.3.89",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_7278da41",
+      "version": "1.0.3.65",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_72a2d82c",
+      "version": "1.0.3.66",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_7339415d",
+      "version": "1.0.4.27",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_7a37b5bb",
+      "version": "1.0.5.23",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_7b1509d1",
+      "version": "1.0.3.47",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_7c233ebf",
+      "version": "1.0.5.12",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_7f6884e3",
+      "version": "1.0.1.20",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_7fb05e4f",
+      "version": "1.0.0.11",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_809ab56d",
+      "version": "1.0.0.13",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_810513c8",
+      "version": "1.0.4.9",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_86837c84",
+      "version": "1.0.4.17",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_87e5e8a7",
+      "version": "1.0.3.86",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_8a203678",
+      "version": "1.0.3.75",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_8a53570a",
+      "version": "1.0.3.62",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_8aab47a0",
+      "version": "1.0.3.88",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_8b86a66d",
+      "version": "1.0.4.21",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_8c1f3b85",
+      "version": "1.0.0.6",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_8e254e50",
+      "version": "1.0.3.69",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_8e878f94",
+      "version": "1.0.4.12",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_900351fe",
+      "version": "1.0.1.25",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_9007ab4e",
+      "version": "1.0.3.51",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_91232eeb",
+      "version": "1.0.3.59",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_915bba8a",
+      "version": "1.0.5.11",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_91aadd4e",
+      "version": "1.0.3.93",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_91de9be2",
+      "version": "1.0.5.10",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_96638bb2",
+      "version": "1.0.4.2",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_9695e792",
+      "version": "1.0.5.14",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_97290841",
+      "version": "1.0.3.84",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_98e0c3ef",
+      "version": "1.0.5.16",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_9c2857bb",
+      "version": "1.0.4.10",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_9cd6e5e0",
+      "version": "1.0.3.64",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_a218415e",
+      "version": "1.0.3.39",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_a46bb2ff",
+      "version": "1.0.3.44",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_a70e465a",
+      "version": "1.0.3.90",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_a72ebf00",
+      "version": "1.0.5.21",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_a734b7d3",
+      "version": "1.0.4.5",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_a873f0a6",
+      "version": "1.0.1.21",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_a8831908",
+      "version": "1.0.4.22",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_aaa7cc06",
+      "version": "1.0.5.0",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_abab1a07",
+      "version": "1.0.5.17",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_abbc3ce0",
+      "version": "1.0.5.4",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_ac794440",
+      "version": "1.0.3.27",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_ad2f237c",
+      "version": "1.0.3.38",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_b3059655",
+      "version": "1.0.4.13",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_b3a82a26",
+      "version": "1.0.4.16",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_b6e2882c",
+      "version": "1.0.3.71",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_baff64b8",
+      "version": "1.0.5.22",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_bb0093d2",
+      "version": "1.0.1.19",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_bc12ab75",
+      "version": "1.0.3.94",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_beff8f11",
+      "version": "1.0.5.25",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_c2f2aa07",
+      "version": "1.0.3.26",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_c70bcff7",
+      "version": "1.0.4.11",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_c7107f6c",
+      "version": "1.0.3.70",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_c7783900",
+      "version": "1.0.3.73",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_c92cab22",
+      "version": "1.0.1.22",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_c96e68ee",
+      "version": "1.0.1.23",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_cb8189e4",
+      "version": "1.0.4.14",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_d0bca3b1",
+      "version": "1.0.0.5",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_d3575e4a",
+      "version": "1.0.4.25",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_dab18cb5",
+      "version": "1.0.3.68",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_db334553",
+      "version": "1.0.3.79",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_dbb4cc54",
+      "version": "1.0.3.46",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_de8d155d",
+      "version": "1.0.3.57",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_e120c6fc",
+      "version": "1.0.0.7",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_e4404777",
+      "version": "1.0.3.63",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_e6b73950",
+      "version": "1.0.4.8",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_f08cfb07",
+      "version": "1.0.3.60",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_f0912139",
+      "version": "1.0.3.74",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_f2fa347c",
+      "version": "1.0.3.41",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_f671f3f1",
+      "version": "1.0.4.23",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_fc32e926",
+      "version": "1.0.5.19",
+      "managed": true
+    },
+    {
+      "name": "DNL_Production_Deployment_Patch_fc466cf5",
+      "version": "1.0.4.4",
+      "managed": true
+    },
+    {
+      "name": "DNL_QuiteProduct_Child",
+      "version": "1.0.0.2",
+      "managed": true
+    },
+    {
+      "name": "DPL_APP_HOTFIX",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DPL_APP_HOTFIX_1",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DevOps_Production",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "DynamicsMKT_SendOptimization",
+      "version": "1.1.61220.60",
+      "managed": true
+    },
+    {
+      "name": "ENT_AutonumberingSetup",
+      "version": "1.0.0.0",
+      "managed": false
+    },
+    {
+      "name": "ENT_CodeBaseSolution",
+      "version": "1.5.0.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_CodeBaseSolution_Patch_0d1f475a",
+      "version": "1.5.2.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_CodeBaseSolution_Patch_1c8a3418",
+      "version": "1.5.7.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_CodeBaseSolution_Patch_3c758e4b",
+      "version": "1.5.5.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_CodeBaseSolution_Patch_902500bd",
+      "version": "1.5.36.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_CodeBaseSolution_Patch_94c07e0e",
+      "version": "1.5.35.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_CodeBaseSolution_Patch_a89649d1",
+      "version": "1.5.37.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_CodeBaseSolution_Patch_c4d6a361",
+      "version": "1.5.33.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_CodeBaseSolution_Patch_c703cab0",
+      "version": "1.5.8.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_CodeBaseSolution_Patch_d6ff4081",
+      "version": "1.5.1.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution",
+      "version": "1.6.0.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_0fed5467",
+      "version": "1.6.40.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_38868b77",
+      "version": "1.6.10.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_532d2f11",
+      "version": "1.6.18.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_59168680",
+      "version": "1.6.1.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_5f01b6f8",
+      "version": "1.6.12.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_621d4865",
+      "version": "1.6.3.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_6c409b61",
+      "version": "1.6.44.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_75265258",
+      "version": "1.6.39.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_92df7df2",
+      "version": "1.6.41.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_9c26c904",
+      "version": "1.6.16.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_ab647fe7",
+      "version": "1.6.15.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_b925e0a4",
+      "version": "1.6.14.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_c859185a",
+      "version": "1.6.13.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_cd514675",
+      "version": "1.6.17.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_ConfigBaseSolution_Patch_f47c7557",
+      "version": "1.6.42.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_HotFixes",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution",
+      "version": "1.1.0.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_2665fcfc",
+      "version": "1.1.30.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_620194e9",
+      "version": "1.1.29.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_6e5a0674",
+      "version": "1.1.10.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_759aaa59",
+      "version": "1.1.5.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_796c821f",
+      "version": "1.1.28.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_87fe2206",
+      "version": "1.1.7.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_c148a0a5",
+      "version": "1.1.31.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_c669caec",
+      "version": "1.1.8.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_ceb9b6dd",
+      "version": "1.1.9.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_d4f36f12",
+      "version": "1.1.3.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_d681f4c9",
+      "version": "1.1.6.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_PowerAutomateSolution_Patch_e2bad3ac",
+      "version": "1.1.2.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution",
+      "version": "1.8.0.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_0d602da3",
+      "version": "1.8.47.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_20d6c8be",
+      "version": "1.8.7.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_28e62fb1",
+      "version": "1.8.8.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_2968a31d",
+      "version": "1.8.19.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_30372c1a",
+      "version": "1.8.18.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_4b952498",
+      "version": "1.8.13.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_5f1f2279",
+      "version": "1.8.17.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_6c50eadd",
+      "version": "1.8.14.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_95a66bca",
+      "version": "1.8.50.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_aaf85fee",
+      "version": "1.8.51.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SchemaBaseSolution_Patch_d42e8e47",
+      "version": "1.8.1.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution",
+      "version": "1.2.0.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution_Patch_01f72286",
+      "version": "1.2.7.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution_Patch_111d298d",
+      "version": "1.2.6.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution_Patch_36f9a47b",
+      "version": "1.2.2.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution_Patch_5c72b04a",
+      "version": "1.2.10.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution_Patch_684cdaf5",
+      "version": "1.2.12.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution_Patch_716f80b9",
+      "version": "1.2.8.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution_Patch_805e3f89",
+      "version": "1.2.1.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution_Patch_9ab81bf2",
+      "version": "1.2.9.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution_Patch_abd1bd26",
+      "version": "1.2.3.0",
+      "managed": true
+    },
+    {
+      "name": "ENT_SecurityRoleSolution_Patch_e43d9f7e",
+      "version": "1.2.17.0",
+      "managed": true
+    },
+    {
+      "name": "HotFixCommissionMasterTable",
+      "version": "1.0.0.15",
+      "managed": true
+    },
+    {
+      "name": "LCAssembly",
+      "version": "1.0.0.2",
+      "managed": false
+    },
+    {
+      "name": "OOBProcessesDeactivation",
+      "version": "1.0.0.0",
+      "managed": false
+    },
+    {
+      "name": "OrderField",
+      "version": "1.0.0.1",
+      "managed": true
+    },
+    {
+      "name": "OrderProductField",
+      "version": "1.0.0.1",
+      "managed": true
+    },
+    {
+      "name": "OrderScheduleHotfix",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "Order_ViewApp",
+      "version": "1.0.0.2",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_JUNE",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_14a23066",
+      "version": "1.0.0.33",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_15eed57e",
+      "version": "1.0.0.31",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_164cd16a",
+      "version": "1.0.0.36",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_1c3483bd",
+      "version": "1.0.0.21",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_1e0e975e",
+      "version": "1.0.0.10",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_209d3318",
+      "version": "1.0.0.20",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_23c258e6",
+      "version": "1.0.0.34",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_24df1d26",
+      "version": "1.0.0.15",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_2f615abc",
+      "version": "1.0.0.18",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_3e564b01",
+      "version": "1.0.0.24",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_4901d1be",
+      "version": "1.0.0.7",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_50138d73",
+      "version": "1.0.0.11",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_5601784a",
+      "version": "1.0.0.2",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_6b1b015d",
+      "version": "1.0.0.17",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_6c71baa1",
+      "version": "1.0.0.30",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_7c46da3b",
+      "version": "1.0.0.14",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_879a8ec8",
+      "version": "1.0.0.6",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_8a9e423a",
+      "version": "1.0.0.29",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_8b18996e",
+      "version": "1.0.0.22",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_9157cbd4",
+      "version": "1.0.0.13",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_9352e8d4",
+      "version": "1.0.0.25",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_9f3275ef",
+      "version": "1.0.0.16",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_a09cc2c5",
+      "version": "1.0.0.27",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_a17d2926",
+      "version": "1.0.0.32",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_a540fd89",
+      "version": "1.0.0.26",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_a56bbcf4",
+      "version": "1.0.0.12",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_ac7b5768",
+      "version": "1.0.0.35",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_af92250f",
+      "version": "1.0.0.1",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_b461e4b5",
+      "version": "1.0.0.8",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_c5591480",
+      "version": "1.0.0.3",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_d031435e",
+      "version": "1.0.0.4",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_dfebc89a",
+      "version": "1.0.0.9",
+      "managed": true
+    },
+    {
+      "name": "ProductionDeployment_Patch_e41bbb4a",
+      "version": "1.0.0.28",
+      "managed": true
+    },
+    {
+      "name": "Production_2508",
+      "version": "1.0.0.7",
+      "managed": true
+    },
+    {
+      "name": "Production_25081",
+      "version": "1.0.0.1",
+      "managed": true
+    },
+    {
+      "name": "Production_2608",
+      "version": "1.0.0.3",
+      "managed": true
+    },
+    {
+      "name": "Production_26081",
+      "version": "1.0.0.1",
+      "managed": true
+    },
+    {
+      "name": "Production_Deployment_JUNE2026",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "QuoteClonehide",
+      "version": "1.0.0.2",
+      "managed": true
+    },
+    {
+      "name": "SCButton",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "SalesContractButton",
+      "version": "1.0.0.0",
+      "managed": true
+    },
+    {
+      "name": "Utility",
+      "version": "1.0.0.0",
+      "managed": true
+    }
+  ]
+}
