@@ -1,11 +1,16 @@
-# 04  Align the content of UAT-ALIGN with production (step F). CHANGES UAT-ALIGN ONLY. Each stage needs approval on the environment uat-align-write.
-# Stages that are scripted today (run in this order; every one has a dry run that lists what it would change, and the default is a DRY RUN):
-#   F1  Re-import verified unmanaged sources (Part 2 of the import order)        -> Import-Solutions.ps1 -Part 2
-#   F9  Option set values: add the values that exist only in production          -> Set-OptionSetValues.ps1
-#   F2  Web resources: only the names approved in pipelines/config/approved-web-resources.json -> Update-WebResources.ps1
-#   F6  Business rule and classic workflow states (cloud flows are skipped)      -> Set-FlowStates.ps1
-# NOT scripted yet (do them by hand or add scripts): F3 plugin assemblies and steps, F4 forms, F5 views, F7 column properties, F8 tables, F10 apps and site maps,
-# F11 other component types, F12 connection references and environment variables. See pipelines/README.md.
+# 04  Align the content of UAT-ALIGN with production (step F). CHANGES UAT-ALIGN ONLY. Every stage needs approval on the Azure DevOps Environment uat-align-write.
+# The stages run one after the other in this order (dependencies first); switch on the ones you want. The default is a DRY RUN: each script lists what it would change.
+#   F1  Re-import verified unmanaged sources (Part 2 of the import order)              Import-Solutions.ps1 -Part 2
+#   F9  Option set values: add the values that exist only in production                 Set-OptionSetValues.ps1
+#   F7  Column properties (max length, precision, required) for approved columns        Set-ColumnProperties.ps1
+#   F2  Web resources named in approved-web-resources.json                              Update-WebResources.ps1
+#   F3a Plugin assemblies named in approved-plugin-assemblies.json (update the DLL)     Update-PluginAssemblies.ps1
+#   F3b Plugin steps that exist only in production, ids in approved-plugin-steps.json   Register-PluginSteps.ps1
+#   F4  Forms with ids in approved-forms.json (role ids are translated by role name)    Update-Forms.ps1
+#   F5  Views with ids in approved-views.json (table object type code kept)             Update-Views.ps1
+#   F6  Business rule and classic workflow states (cloud flows are skipped)             Set-FlowStates.ps1
+# Nothing changes unless a name or id is in the matching approved-*.json file in pipelines/config (set after the triage, step C2). Roles must be aligned before F4 (step H2).
+# Still by hand: F8 tables (they arrive with imports), F10 apps and site maps, F11 other component types, F12 connection references and environment variables.
 name: align-content-$(Date:yyyyMMdd)$(Rev:.r)
 
 trigger: none
@@ -24,8 +29,28 @@ parameters:
   displayName: F9 option set values
   type: boolean
   default: false
+- name: runF7
+  displayName: F7 column properties
+  type: boolean
+  default: false
 - name: runF2
   displayName: F2 web resources
+  type: boolean
+  default: false
+- name: runF3a
+  displayName: F3a plugin assemblies
+  type: boolean
+  default: false
+- name: runF3b
+  displayName: F3b plugin steps
+  type: boolean
+  default: false
+- name: runF4
+  displayName: F4 forms
+  type: boolean
+  default: false
+- name: runF5
+  displayName: F5 views
   type: boolean
   default: false
 - name: runF6
@@ -33,7 +58,7 @@ parameters:
   type: boolean
   default: false
 - name: collectRunId
-  displayName: Run id of pipeline 02 (sources and prod-components artifacts)
+  displayName: Run id of pipeline 02 (artifacts sources and prod-components)
   type: number
   default: 0
 - name: collectPipelineId
@@ -63,116 +88,117 @@ stages:
         if "${{ parameters.collectRunId }}"=="0" (echo ##vso[task.logissue type=error]Give the run id of pipeline 02 & exit /b 1)
       displayName: Backup and inputs
 
-- ${{ if eq(parameters.runF1, true) }}:
-  - stage: F1
+- template: ../templates/align-stage.yml
+  parameters:
+    name: F1
     displayName: F1 re-import verified sources
     dependsOn: Checks
-    jobs:
-    - deployment: f1
-      environment: uat-align-write
-      timeoutInMinutes: 480
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - template: ../templates/setup.yml
-            - task: DownloadPipelineArtifact@2
-              inputs:
-                buildType: specific
-                project: $(System.TeamProjectId)
-                definition: ${{ parameters.collectPipelineId }}
-                buildVersionToDownload: specific
-                pipelineId: ${{ parameters.collectRunId }}
-                artifactName: sources
-                targetPath: $(Pipeline.Workspace)\sources
-            - template: ../templates/pwsh.yml
-              parameters:
-                displayName: Import Part 2
-                script: |
-                  $d = if ('${{ parameters.dryRun }}' -eq 'True') { '-DryRun' } else { '' }
-                  & pwsh -NoProfile -File .\tools\scripts\pipeline\Import-Solutions.ps1 -Part 2 -ZipRoot "$(Pipeline.Workspace)\sources" -ResultFile "$(Build.ArtifactStagingDirectory)\f1-results.csv" $d
-                  exit $LASTEXITCODE
+    enabled: ${{ parameters.runF1 }}
+    dryRun: ${{ parameters.dryRun }}
+    downloadArtifact: sources
+    collectPipelineId: ${{ parameters.collectPipelineId }}
+    collectRunId: ${{ parameters.collectRunId }}
+    timeout: 480
+    report: f1-results.csv
+    command: Import-Solutions.ps1 -Part 2 -ZipRoot "$(Pipeline.Workspace)\sources" -ResultFile "$(Build.ArtifactStagingDirectory)\f1-results.csv"
 
-- ${{ if eq(parameters.runF9, true) }}:
-  - stage: F9
+- template: ../templates/align-stage.yml
+  parameters:
+    name: F9
     displayName: F9 option set values
-    dependsOn: Checks
-    jobs:
-    - deployment: f9
-      environment: uat-align-write
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - template: ../templates/setup.yml
-            - template: ../templates/pwsh.yml
-              parameters:
-                displayName: Add the missing option set values
-                script: |
-                  $d = if ('${{ parameters.dryRun }}' -eq 'True') { '-DryRun' } else { '' }
-                  & pwsh -NoProfile -File .\tools\scripts\pipeline\Set-OptionSetValues.ps1 -ReportFile "$(Build.ArtifactStagingDirectory)\f9-report.csv" $d
-                  exit $LASTEXITCODE
-            - task: PublishPipelineArtifact@1
-              condition: always()
-              inputs:
-                targetPath: $(Build.ArtifactStagingDirectory)\f9-report.csv
-                artifact: f9-report
+    dependsOn: F1
+    enabled: ${{ parameters.runF9 }}
+    dryRun: ${{ parameters.dryRun }}
+    collectPipelineId: ${{ parameters.collectPipelineId }}
+    collectRunId: ${{ parameters.collectRunId }}
+    report: f9-report.csv
+    command: Set-OptionSetValues.ps1 -ReportFile "$(Build.ArtifactStagingDirectory)\f9-report.csv"
 
-- ${{ if eq(parameters.runF2, true) }}:
-  - stage: F2
+- template: ../templates/align-stage.yml
+  parameters:
+    name: F7
+    displayName: F7 column properties
+    dependsOn: F9
+    enabled: ${{ parameters.runF7 }}
+    dryRun: ${{ parameters.dryRun }}
+    collectPipelineId: ${{ parameters.collectPipelineId }}
+    collectRunId: ${{ parameters.collectRunId }}
+    report: f7-report.csv
+    command: Set-ColumnProperties.ps1 -ReportFile "$(Build.ArtifactStagingDirectory)\f7-report.csv"
+
+- template: ../templates/align-stage.yml
+  parameters:
+    name: F2
     displayName: F2 web resources
-    dependsOn: Checks
-    jobs:
-    - deployment: f2
-      environment: uat-align-write
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - template: ../templates/setup.yml
-            - task: DownloadPipelineArtifact@2
-              inputs:
-                buildType: specific
-                project: $(System.TeamProjectId)
-                definition: ${{ parameters.collectPipelineId }}
-                buildVersionToDownload: specific
-                pipelineId: ${{ parameters.collectRunId }}
-                artifactName: prod-components
-                targetPath: $(Pipeline.Workspace)\prod-components
-            - template: ../templates/pwsh.yml
-              parameters:
-                displayName: Update the approved web resources
-                script: |
-                  $d = if ('${{ parameters.dryRun }}' -eq 'True') { '-DryRun' } else { '' }
-                  & pwsh -NoProfile -File .\tools\scripts\pipeline\Update-WebResources.ps1 -SourceDir "$(Pipeline.Workspace)\prod-components" -ReportFile "$(Build.ArtifactStagingDirectory)\f2-report.csv" $d
-                  exit $LASTEXITCODE
-            - task: PublishPipelineArtifact@1
-              condition: always()
-              inputs:
-                targetPath: $(Build.ArtifactStagingDirectory)\f2-report.csv
-                artifact: f2-report
+    dependsOn: F7
+    enabled: ${{ parameters.runF2 }}
+    dryRun: ${{ parameters.dryRun }}
+    downloadArtifact: prod-components
+    collectPipelineId: ${{ parameters.collectPipelineId }}
+    collectRunId: ${{ parameters.collectRunId }}
+    report: f2-report.csv
+    command: Update-WebResources.ps1 -SourceDir "$(Pipeline.Workspace)\prod-components" -ReportFile "$(Build.ArtifactStagingDirectory)\f2-report.csv"
 
-- ${{ if eq(parameters.runF6, true) }}:
-  - stage: F6
+- template: ../templates/align-stage.yml
+  parameters:
+    name: F3a
+    displayName: F3a plugin assemblies
+    dependsOn: F2
+    enabled: ${{ parameters.runF3a }}
+    dryRun: ${{ parameters.dryRun }}
+    downloadArtifact: prod-components
+    collectPipelineId: ${{ parameters.collectPipelineId }}
+    collectRunId: ${{ parameters.collectRunId }}
+    report: f3a-report.csv
+    command: Update-PluginAssemblies.ps1 -SourceDir "$(Pipeline.Workspace)\prod-components" -ReportFile "$(Build.ArtifactStagingDirectory)\f3a-report.csv"
+
+- template: ../templates/align-stage.yml
+  parameters:
+    name: F3b
+    displayName: F3b plugin steps
+    dependsOn: F3a
+    enabled: ${{ parameters.runF3b }}
+    dryRun: ${{ parameters.dryRun }}
+    downloadArtifact: prod-components
+    collectPipelineId: ${{ parameters.collectPipelineId }}
+    collectRunId: ${{ parameters.collectRunId }}
+    report: f3b-report.csv
+    command: Register-PluginSteps.ps1 -SourceDir "$(Pipeline.Workspace)\prod-components" -ReportFile "$(Build.ArtifactStagingDirectory)\f3b-report.csv"
+
+- template: ../templates/align-stage.yml
+  parameters:
+    name: F4
+    displayName: F4 forms
+    dependsOn: F3b
+    enabled: ${{ parameters.runF4 }}
+    dryRun: ${{ parameters.dryRun }}
+    downloadArtifact: prod-components
+    collectPipelineId: ${{ parameters.collectPipelineId }}
+    collectRunId: ${{ parameters.collectRunId }}
+    report: f4-report.csv
+    command: Update-Forms.ps1 -SourceDir "$(Pipeline.Workspace)\prod-components" -ReportFile "$(Build.ArtifactStagingDirectory)\f4-report.csv"
+
+- template: ../templates/align-stage.yml
+  parameters:
+    name: F5
+    displayName: F5 views
+    dependsOn: F4
+    enabled: ${{ parameters.runF5 }}
+    dryRun: ${{ parameters.dryRun }}
+    downloadArtifact: prod-components
+    collectPipelineId: ${{ parameters.collectPipelineId }}
+    collectRunId: ${{ parameters.collectRunId }}
+    report: f5-report.csv
+    command: Update-Views.ps1 -SourceDir "$(Pipeline.Workspace)\prod-components" -ReportFile "$(Build.ArtifactStagingDirectory)\f5-report.csv"
+
+- template: ../templates/align-stage.yml
+  parameters:
+    name: F6
     displayName: F6 workflow states
-    dependsOn: Checks
-    jobs:
-    - deployment: f6
-      environment: uat-align-write
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - template: ../templates/setup.yml
-            - template: ../templates/pwsh.yml
-              parameters:
-                displayName: Set business rule and workflow states to the production state
-                script: |
-                  $d = if ('${{ parameters.dryRun }}' -eq 'True') { '-DryRun' } else { '' }
-                  & pwsh -NoProfile -File .\tools\scripts\pipeline\Set-FlowStates.ps1 -ReportFile "$(Build.ArtifactStagingDirectory)\f6-report.csv" $d
-                  exit $LASTEXITCODE
-            - task: PublishPipelineArtifact@1
-              condition: always()
-              inputs:
-                targetPath: $(Build.ArtifactStagingDirectory)\f6-report.csv
-                artifact: f6-report
+    dependsOn: F5
+    enabled: ${{ parameters.runF6 }}
+    dryRun: ${{ parameters.dryRun }}
+    collectPipelineId: ${{ parameters.collectPipelineId }}
+    collectRunId: ${{ parameters.collectRunId }}
+    report: f6-report.csv
+    command: Set-FlowStates.ps1 -ReportFile "$(Build.ArtifactStagingDirectory)\f6-report.csv"

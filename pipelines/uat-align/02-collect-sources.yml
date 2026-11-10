@@ -2,8 +2,8 @@
 # 1. WatchProduction : read-only check that production did not change since the baseline (stops the run when it did, unless told not to).
 # 2. ExportSources   : exports the 31 missing solutions (Part B) from PREPROD, production (LCAssembly only), dev DNL, dev and SIT and checks each zip version.
 # 3. CheckSources    : step D5. Compares the component counts of each source solution with production (read-only reads of the source environments and production).
-# 4. ProductionFiles : step D7. Downloads the production web resources and plugin assemblies that differ or are missing (GET only).
-# Artifacts: sources (zips), source-check (D5 report), prod-components (files used by the align pipeline), prod-membership.
+# 4. ProductionFiles : step D7. Downloads from production (GET only): web resources, plugin assemblies, form XML, view XML, the definition of the plugin steps that exist only in production, and the role names.
+# Artifacts: sources (zips), source-check (D5 report and production membership), prod-components (files used by the align pipeline).
 name: collect-sources-$(Date:yyyyMMdd)$(Rev:.r)
 
 trigger: none
@@ -119,7 +119,7 @@ stages:
     - template: ../templates/setup.yml
     - template: ../templates/pwsh.yml
       parameters:
-        displayName: Download web resources and plugin assemblies (GET only)
+        displayName: Download web resources, plugin assemblies, forms, views, plugin steps and roles (GET only)
         script: |
           & pwsh -NoProfile -File .\tools\scripts\pipeline\Get-ProductionComponents.ps1 -OutDir "$(Build.ArtifactStagingDirectory)\prod-components"
           exit $LASTEXITCODE

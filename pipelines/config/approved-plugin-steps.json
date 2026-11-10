@@ -1,0 +1,4 @@
+{
+  "_comment": "Plugin step ids approved for registration in the F3 stage. Secure configuration cannot be read from production: ask the owner. Empty means nothing changes.",
+  "approved": []
+}

@@ -1,0 +1,3560 @@
+{
+  "_comment": "Forms and views that differ (real differences) or exist only in production. The F4 and F5 stages change only ids listed in approved-forms.json and approved-views.json, and only update forms and views that already exist in UAT-ALIGN; ones that exist only in production must come with their solution or be created by hand.",
+  "items": [
+    {
+      "type": "Form",
+      "id": "0115373e-af48-ee11-be6f-000d3a0a6cc7",
+      "name": "Service call | Case Management Dashboard | HOD",
+      "table": "none",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 4113, PROD 3966 chars",
+      "solutions": "ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "02aa3f91-c4dd-47b2-b17f-5790a8b977dd",
+      "name": "Information",
+      "table": "uom",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 5553, PROD 5541 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "02e7e310-bec8-408a-8558-fceeafba5a86",
+      "name": "Sales Contract Freight_DG",
+      "table": "dg_salescontractfreight",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 6213, PROD 5794 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "03021da9-0446-42b6-bf84-22cc91855ea8",
+      "name": "Commission Master_DG_DNL",
+      "table": "dg_commissionmasterapproval",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 11047, PROD 10034 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "03f74388-4b39-4bf5-9ad1-90b7de9bdefb",
+      "name": "Information",
+      "table": "dg_approvalmatrix",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 8693, PROD 7838 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "05945444-2578-4efe-8591-f8899ea485f0",
+      "name": "Quote_DG_DNL1",
+      "table": "quote",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 126168, PROD 127315 chars",
+      "solutions": "Crca6de; DNL_ProductionDeployment_SIT; DNL_Production_Deployment_Patch_06b7c194; DNL_Production_Deployment_Patch_2018088a; DNL_Production_Deployment_Patch_2e38712a; DNL_Production_Deployment_Patch_39b29893; DNL_Production_Deployment_Patch_50b2b71f; DNL_Production_Deployment_Patch_dab18cb5"
+    },
+    {
+      "type": "Form",
+      "id": "07367bc2-87ec-48f7-953d-fb386df94933",
+      "name": "Distributor Customer_DG_DNL",
+      "table": "dg_distributorcustomer",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 7488, PROD 7481 chars",
+      "solutions": "DNL_Base_Entities; ProductionDeployment_Patch_b461e4b5"
+    },
+    {
+      "type": "Form",
+      "id": "0ad17125-535c-ee11-8df0-002248d5d779",
+      "name": "Account Main Web Form ",
+      "table": "account",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 37553, PROD 36217 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "1269daf1-9350-4545-b3ca-d5fab5232edd",
+      "name": "Information",
+      "table": "dg_marketdata",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 18479, PROD 18060 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "14951b6e-9be5-456b-894b-824be05ce12f",
+      "name": "PriceLevel_1",
+      "table": "pricelevel",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 32883, PROD 32299 chars",
+      "solutions": "Crca6de; ENT_SchemaBaseSolution; ProductionDeployment_Patch_23c258e6"
+    },
+    {
+      "type": "Form",
+      "id": "16654191-19ad-48ca-9e46-c4b4fbdad76f",
+      "name": "Task",
+      "table": "task",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 13321, PROD 12902 chars",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_91aadd4e; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "199c7814-1782-452c-a19b-3620eef87aab",
+      "name": "Letter of Credit_DG_DNL",
+      "table": "dg_letterofcredit",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 24274, PROD 21706 chars",
+      "solutions": "DNL_Production_Deployment_Patch_50b2b71f; DNL_Production_Deployment_Patch_b3a82a26; Production_Deployment_JUNE2026"
+    },
+    {
+      "type": "Form",
+      "id": "1c86fc51-64a1-4ea1-b086-6d193ef71c7c",
+      "name": "Approval Matrix Line Item_DG_DNL",
+      "table": "dg_approvalmatrixlineitem",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 10136, PROD 9570 chars",
+      "solutions": "DNL_Base_Entities; ProductionDeployment_Patch_164cd16a"
+    },
+    {
+      "type": "Form",
+      "id": "1efb07f2-9840-44d2-af55-856ea475dbc6",
+      "name": "dg_Information",
+      "table": "dg_letterofcredit",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 20891, PROD 19023 chars",
+      "solutions": "DNL_Production_Deployment_Patch_91de9be2; Production_Deployment_JUNE2026"
+    },
+    {
+      "type": "Form",
+      "id": "21bb46f3-f17c-40ae-920c-3340dd1bff8f",
+      "name": "Information",
+      "table": "dg_commissionmasterapproval",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 1615, PROD 1601 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "2425b473-2e66-4300-8f14-c18d331e8708",
+      "name": "Quote product_DG_DNL",
+      "table": "quotedetail",
+      "status": "Different",
+      "detail": "handlers only in UAT: getPricelistType, unlockPayemnetTerm; handlers only in PROD: bipriceadder, exportquotechild, partialwon, preventPricePerUnitRecalculation; size UAT 285084, PROD 282621 chars",
+      "solutions": "Crca6de; DNL_Production_Deployment_Patch_045ccbf3; DNL_Production_Deployment_Patch_06b7c194; DNL_Production_Deployment_Patch_2e38712a; DNL_Production_Deployment_Patch_39b29893; DNL_Production_Deployment_Patch_50b2b71f; DNL_Production_Deployment_Patch_5631470e; DNL_Production_Deployment_Patch_91aadd4e ..."
+    },
+    {
+      "type": "Form",
+      "id": "271f3b32-37ba-f011-bbd3-002248d5e935",
+      "name": "Order Product_DG_DCTL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 252607, PROD 252607 chars",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "Form",
+      "id": "28200e97-83ff-4129-8779-0dcd22fbcb2d",
+      "name": "Warehouse_DG_DNL",
+      "table": "dg_warehousepremiummaster",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 12285, PROD 11714 chars",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_556d165d; DNL_Production_Deployment_Patch_91aadd4e"
+    },
+    {
+      "type": "Form",
+      "id": "282201b6-35ba-f011-bbd3-002248d5e935",
+      "name": "Product_DG_DCTL",
+      "table": "product",
+      "status": "Different",
+      "detail": "fields only in UAT: dg_dctlflag; size UAT 54421, PROD 53044 chars",
+      "solutions": "DCTL_SecurityRoles_Solution; DevOps_Production"
+    },
+    {
+      "type": "Form",
+      "id": "289fcc9f-4024-49b9-9379-e84b1ab0a95a",
+      "name": "InsurerMaster_DG_DNL",
+      "table": "dg_bankmasterdnl",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 4226, PROD 3388 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "29185708-993a-ee11-bdf4-002248d5d779",
+      "name": "Material Group_DG",
+      "table": "dg_materialgroup",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 6561, PROD 5419 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "2b565b2c-5f63-ee11-8df0-002248d668b9",
+      "name": "Terms and Condition",
+      "table": "quote",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 2494, PROD 1178 chars",
+      "solutions": "ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "2b572a70-e7d0-f011-8544-002248d5e935",
+      "name": "pricelistitem_DG_DCTL",
+      "table": "productpricelevel",
+      "status": "Different",
+      "detail": "handlers only in UAT: ProductFilter; size UAT 29088, PROD 28614 chars",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "Form",
+      "id": "2bb64321-6da0-4a1a-8466-62b40cc6bc7a",
+      "name": "Information",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "fields only in PROD: dg_street1; size UAT 29002, PROD 29186 chars",
+      "solutions": "DNL_Production_Deployment_Patch_db334553; Production_2508"
+    },
+    {
+      "type": "Form",
+      "id": "2db1e9db-ce2b-4fd4-a217-32f774e45e3f",
+      "name": "Opportunity_DG",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 76570, PROD 75985 chars",
+      "solutions": "DNL_Production_Deployment_Patch_4f1b15f7; DNL_Production_Deployment_Patch_e6b73950; ENT_SchemaBaseSolution; ProductionDeployment_Patch_23c258e6"
+    },
+    {
+      "type": "Form",
+      "id": "2f236a2c-b1b1-4eba-96ed-c3c4f1737ae5",
+      "name": "Customer Visit_DG_DNL",
+      "table": "dg_customervisit",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 31539, PROD 31128 chars",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_39b29893; DNL_Production_Deployment_Patch_50b2b71f; DNL_Production_Deployment_Patch_53d56bce; DNL_Production_Deployment_Patch_7fb05e4f; HotFixCommissionMasterTable"
+    },
+    {
+      "type": "Form",
+      "id": "320c4b77-1377-498b-9eb1-c4fb19cfe26b",
+      "name": "Order_DG_DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 203613, PROD 203090 chars",
+      "solutions": "Crca6de; DNL_FEB_2025; DNL_Production_Deployment_Patch_2e38712a; DNL_Production_Deployment_Patch_2eafd67f; DNL_Production_Deployment_Patch_43beb27d; DNL_Production_Deployment_Patch_50b2b71f; DNL_Production_Deployment_Patch_563c3ed4; DNL_Production_Deployment_Patch_62f43373 ..."
+    },
+    {
+      "type": "Form",
+      "id": "36b8e10b-cd82-497f-a6bc-ee99a4c03805",
+      "name": "New Form",
+      "table": "dg_customerproductdetails",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 4477, PROD 4183 chars",
+      "solutions": "DNL_Production_Deployment_Patch_39b29893; HotFixCommissionMasterTable"
+    },
+    {
+      "type": "Form",
+      "id": "3dd65908-9b61-4ae1-808c-f710a82740a8",
+      "name": "Customer Account Web Form",
+      "table": "account",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 31334, PROD 31330 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "3eb12d11-f830-ee11-bdf4-002248d668b9",
+      "name": "Special Discount_DG",
+      "table": "dg_specialdiscountmaster",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 12528, PROD 11962 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "3f113c04-5a75-450b-a4e8-2af1e6ececd7",
+      "name": "Product_DG_DNL",
+      "table": "product",
+      "status": "Different",
+      "detail": "fields only in PROD: dg_gradespecification, dg_motherproductid, dg_msds, dg_tds; size UAT 52595, PROD 52775 chars",
+      "solutions": "DNL_FEB_2025; DNL_Production_Deployment_Patch_0d49c1f3; DNL_Production_Deployment_Patch_2018088a; DNL_Production_Deployment_Patch_91aadd4e; HotFixCommissionMasterTable"
+    },
+    {
+      "type": "Form",
+      "id": "43ce3703-18a9-49d8-a2d5-21cb03073025",
+      "name": "Quantity Discount_DG_DNL",
+      "table": "dg_quantitydiscountmaster",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 29726, PROD 29160 chars",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_91aadd4e"
+    },
+    {
+      "type": "Form",
+      "id": "49618a8b-2e4c-43d3-9a49-2941e9e65c8b",
+      "name": "Information",
+      "table": "dg_accountapproval",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 8394, PROD 7970 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "4cedbbd7-91c9-4ce6-b61a-e81a4e85bc57",
+      "name": "Quote_DG",
+      "table": "quote",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 95190, PROD 95819 chars",
+      "solutions": "Crca6de; DNL_Production_Deployment_Patch_160060cb; DNL_Production_Deployment_Patch_4f1b15f7; DNL_Production_Deployment_Patch_87e5e8a7; DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3; ENT_SchemaBaseSolution_Patch_30372c1a ..."
+    },
+    {
+      "type": "Form",
+      "id": "4cf39b76-2f33-4b7a-8888-e6d62a5468f3",
+      "name": "Information",
+      "table": "dg_bankmaster",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 4589, PROD 3741 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "52eae747-6ae2-4489-847c-dbf0cb7d2454",
+      "name": "Information",
+      "table": "dg_custompricelistitem",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 11522, PROD 11103 chars",
+      "solutions": "DNL_Production_Deployment_Patch_91aadd4e; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "54076a2d-d043-4a1b-b061-4d06846371a9",
+      "name": "Quote",
+      "table": "quote",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 30021, PROD 30026 chars",
+      "solutions": "ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "541b63d5-33ba-f011-bbd3-002248d6064f",
+      "name": "Credit Management_DG_DCTL",
+      "table": "dg_creditmanagement",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 66000, PROD 65406 chars",
+      "solutions": "DCTL_Entities_Solution; ProductionDeployment"
+    },
+    {
+      "type": "Form",
+      "id": "5631f83d-2368-ee11-9ae7-000d3a0a6cc7",
+      "name": "Sales Contract quick view form 1",
+      "table": "dg_salescontract",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 4384, PROD 3064 chars",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_2e38712a"
+    },
+    {
+      "type": "Form",
+      "id": "58bbc949-88ad-ef11-a72d-002248d60018",
+      "name": "Commission Masters_DG_DNL",
+      "table": "dg_commissionmasters",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 15054, PROD 14460 chars",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025"
+    },
+    {
+      "type": "Form",
+      "id": "59931c9e-c9c2-4b15-9a03-a6c5b8c59ff3",
+      "name": "Credit Management_DG_DNL",
+      "table": "dg_creditmanagement",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 64006, PROD 63400 chars",
+      "solutions": "DNL_Production_Deployment_Patch_06b7c194; DNL_Production_Deployment_Patch_39b29893"
+    },
+    {
+      "type": "Form",
+      "id": "59dfd69f-0a13-4911-b6b0-6f769bba7a9b",
+      "name": "Order Schedule Approvals_DG_DNL",
+      "table": "dg_orderscheduleapprovals",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 10917, PROD 9785 chars",
+      "solutions": "ProductionDeployment_Patch_5601784a"
+    },
+    {
+      "type": "Form",
+      "id": "5c1c0189-3a40-4c50-a93c-ead8ed779842",
+      "name": "Lead_DG_DNL",
+      "table": "lead",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 81157, PROD 79819 chars",
+      "solutions": "DNL_ProductionDeployment_SIT; DNL_Production_Deployment_Patch_39b29893; DNL_Production_Deployment_Patch_50b2b71f"
+    },
+    {
+      "type": "Form",
+      "id": "5c2cd0cc-edf1-43bb-8d4e-abeaebffe956",
+      "name": "DG_Information",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 49029, PROD 48566 chars",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "5dff32de-1f0e-f111-8407-6045bdce1a27",
+      "name": "Service_Call_DG_DCTL",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 59505, PROD 58900 chars",
+      "solutions": "ProductionDeployment_Patch_24df1d26; ProductionDeployment_Patch_2f615abc"
+    },
+    {
+      "type": "Form",
+      "id": "623b13e4-566e-445a-a870-94649de99b1b",
+      "name": "Information",
+      "table": "dg_creditmanagement",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 51858, PROD 51406 chars",
+      "solutions": "DNL_Production_Deployment_Patch_91aadd4e; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_6c50eadd"
+    },
+    {
+      "type": "Form",
+      "id": "62be8c94-35ba-f011-bbd3-002248d6064f",
+      "name": "Material Group_DG_DCTL",
+      "table": "dg_materialgroup",
+      "status": "Different",
+      "detail": "fields only in UAT: dg_dctlflag; size UAT 7413, PROD 7115 chars",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "Form",
+      "id": "661157fe-2fc9-4eaa-835f-5bfa2f7b64f7",
+      "name": "Contact Quick Create",
+      "table": "contact",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 12210, PROD 12210 chars",
+      "solutions": "DCTL_Production; DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "6731f34e-4084-4d55-a093-b72ab3885520",
+      "name": "Order_DG",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "handlers only in PROD: customerPOdatevalidation; size UAT 122722, PROD 122344 chars",
+      "solutions": "Crca6de; DNL_Production_Deployment_Patch_91de9be2; DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3; ENT_SchemaBaseSolution_Patch_30372c1a; ENT_SchemaBaseSolution_Patch_4b952498; ENT_SchemaBaseSolution_Patch_5f1f2279 ..."
+    },
+    {
+      "type": "Form",
+      "id": "67688f3c-95fc-4641-aeba-bb6af658c4ca",
+      "name": "pricelistitem_DG",
+      "table": "productpricelevel",
+      "status": "Different",
+      "detail": "handlers only in UAT: lockenddate; size UAT 24411, PROD 23076 chars",
+      "solutions": "Crca6de; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "6d0da12f-de29-ee11-bdf4-002248d5d779",
+      "name": "Quote Web Form",
+      "table": "quote",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 42828, PROD 42540 chars",
+      "solutions": "ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "6e9a1c27-c09c-461b-8542-9ffef891f7ab",
+      "name": "OpportunityProduct",
+      "table": "opportunityproduct",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 24010, PROD 24010 chars",
+      "solutions": "ENT_SchemaBaseSolution; ProductionDeployment_Patch_23c258e6"
+    },
+    {
+      "type": "Form",
+      "id": "6f260bc7-e229-ee11-bdf4-002248d5d779",
+      "name": "Order Web Form",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 32928, PROD 32305 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "7566c062-fd73-4a3b-b28c-e693628624e0",
+      "name": "Information",
+      "table": "dg_orderproductchild",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 16444, PROD 15596 chars",
+      "solutions": "DNL_Production_Deployment_Patch_675e1828; DNL_Production_Deployment_Patch_aaa7cc06"
+    },
+    {
+      "type": "Form",
+      "id": "778a8824-16ee-4d54-b7cf-a8b74d7261c4",
+      "name": "Order Product_DG_DNL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "handlers only in PROD: hideFormForRoles; libraries only in PROD: dg_DataRestrictiononForm; size UAT 228445, PROD 227772 chars",
+      "solutions": "DNL_FEB_2025; DNL_Production_Deployment_Patch_2018088a; DNL_Production_Deployment_Patch_2e38712a; DNL_Production_Deployment_Patch_2e7499a6; DNL_Production_Deployment_Patch_39b29893; DNL_Production_Deployment_Patch_4fdc42aa; DNL_Production_Deployment_Patch_50071178; DNL_Production_Deployment_Patch_5922e89b ..."
+    },
+    {
+      "type": "Form",
+      "id": "785ec03d-4085-4252-8e4b-05b88a8d6756",
+      "name": "Information",
+      "table": "dg_approvalmatrixlineitem",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 8096, PROD 7672 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "7af6c68c-33ba-f011-bbd3-000d3aca01fc",
+      "name": "Account_DG_DCTL",
+      "table": "account",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 214169, PROD 208765 chars",
+      "solutions": "DCTL_SecurityRoles_Solution; ProductionDeployment_Patch_4901d1be; Production_Deployment_JUNE2026"
+    },
+    {
+      "type": "Form",
+      "id": "7baf023a-ac48-ee11-be6f-002248d668b9",
+      "name": "Service call | Case Management Dashboard",
+      "table": "none",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 8962, PROD 6012 chars",
+      "solutions": "ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "7ee1985e-f930-ee11-bdf4-002248d668b9",
+      "name": "Location Discount_DG",
+      "table": "dg_locationdiscount",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 13124, PROD 12558 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "803e01d2-dcd3-4db6-9098-a0b875bb8fe2",
+      "name": "Warehouse DG",
+      "table": "dg_warehousepremiummaster",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 10897, PROD 10478 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "81b0906d-5f8c-435f-b025-32e1cae90113",
+      "name": "Price List Approval_DG_DNL",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 16307, PROD 15734 chars",
+      "solutions": "DNL_Production_Deployment_Patch_06b7c194"
+    },
+    {
+      "type": "Form",
+      "id": "839ab194-0a90-4737-ade0-14e4c2169812",
+      "name": "Account_DG_DNL",
+      "table": "account",
+      "status": "Different",
+      "detail": "handlers only in UAT: ParentAccount, ParentAccountId; size UAT 179828, PROD 174861 chars",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_556d165d; DNL_Production_Deployment_Patch_7fb05e4f"
+    },
+    {
+      "type": "Form",
+      "id": "8448b78f-8f42-454e-8e2a-f8196b0419af",
+      "name": "Account",
+      "table": "account",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 74801, PROD 74601 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "848d4586-b7d1-4a86-8589-c9ac25394be9",
+      "name": "Account_DG",
+      "table": "account",
+      "status": "Different",
+      "detail": "handlers only in UAT: CustOutStandTAB, CustomFilteronCORTAB, ParentAccountId; libraries only in UAT: dg_ShowandHideCustOutStandingTAB; size UAT 121327, PROD 117799 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_6c50eadd"
+    },
+    {
+      "type": "Form",
+      "id": "8ae5ced5-510e-45a4-8e5a-761a9b1753ac",
+      "name": "Service Calls_DG_DNL",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 93462, PROD 92824 chars",
+      "solutions": "DNL_Production_Deployment_Patch_2e7499a6; DNL_Production_Deployment_Patch_e6b73950"
+    },
+    {
+      "type": "Form",
+      "id": "8dfdff8d-3a3c-446d-a1a0-cc9c129b327d",
+      "name": "Invoice_DG_DNL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "fields only in PROD: dg_olddonumberlookup, dg_oldinvoiceidlookup; handlers only in UAT: hideFormForRoles; libraries only in UAT: dg_DataRestrictiononForm; size UAT 50265, PROD 50323 chars",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_556d165d"
+    },
+    {
+      "type": "Form",
+      "id": "905aff8c-7d6a-4ceb-909c-8c0ef4ac98dc",
+      "name": "Information",
+      "table": "dg_historyofpricelistitem",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 4952, PROD 4264 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "944c01dc-36ba-f011-bbd3-000d3aca01fc",
+      "name": "Quote product_DG_DCTL",
+      "table": "quotedetail",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 308747, PROD 308737 chars",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "Form",
+      "id": "9483096b-e58d-ee11-8179-000d3a0a6cc7",
+      "name": "Customer product Details quick create form",
+      "table": "dg_customerproductdetails",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 4577, PROD 2905 chars",
+      "solutions": "DNL_Production_Deployment_Patch_39b29893; HotFixCommissionMasterTable"
+    },
+    {
+      "type": "Form",
+      "id": "95359c11-a177-4ee8-b611-24720f98b7f4",
+      "name": "Import Data_DG_DNL",
+      "table": "dg_importdata",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 21391, PROD 20640 chars",
+      "solutions": "DNL_Production_Deployment_Patch_9007ab4e"
+    },
+    {
+      "type": "Form",
+      "id": "98b8a6e0-e7b4-479d-8dde-45357de124fc",
+      "name": "Master Approval_DG",
+      "table": "dg_masterersapprovals",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 9505, PROD 8662 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_95a66bca"
+    },
+    {
+      "type": "Form",
+      "id": "99642afb-e7b2-4e7e-a44b-3b4f00be95c2",
+      "name": "Information",
+      "table": "dg_orderapproval",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 19195, PROD 18776 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "9c690ad7-dc95-43c7-ba89-287fec833886",
+      "name": "Sales Contract_DG_DNL",
+      "table": "dg_salescontract",
+      "status": "Different",
+      "detail": "fields only in UAT: dg_roundoffadjustment; size UAT 93234, PROD 92001 chars",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_2e38712a"
+    },
+    {
+      "type": "Form",
+      "id": "9d14b25e-d23c-ee11-bdf4-000d3a0a6cc7",
+      "name": "Sales Contract Approval_DG",
+      "table": "dg_salescontractapproval",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 9968, PROD 8979 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "9e7152bd-7db6-4037-b3df-5a6ae660b047",
+      "name": "Order Schedule_DG_DNL",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 51502, PROD 50945 chars",
+      "solutions": "DNL_Production_Deployment; DNL_Production_Deployment_Patch_2eafd67f; DNL_Production_Deployment_Patch_39b29893; DNL_Production_Deployment_Patch_3d818cd7; DNL_Production_Deployment_Patch_4374b78e; DNL_Production_Deployment_Patch_6e0698bc; DNL_Production_Deployment_Patch_7b1509d1; DNL_Production_Deployment_Patch_9007ab4e ..."
+    },
+    {
+      "type": "Form",
+      "id": "9eb9d39d-634e-4e20-ad88-742e31fbc5e7",
+      "name": "Credit Limit Approval_DG_DNL",
+      "table": "dg_creditlimitapproval",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 13248, PROD 12668 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "9fadca34-8380-46a6-bd88-a9644950da09",
+      "name": "Information",
+      "table": "dg_regionimportparitycalculations",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 16530, PROD 16111 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "a13320ff-1474-4235-91d9-852410ffa8b5",
+      "name": "Information",
+      "table": "dg_customeraddress",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 40300, PROD 39876 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "a457d6ae-8853-4691-93e1-e6eac322ca38",
+      "name": "Customer Product details_DNL",
+      "table": "dg_customerproductdetails",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 5190, PROD 4798 chars",
+      "solutions": "DNL_Production_Deployment_Patch_39b29893; HotFixCommissionMasterTable"
+    },
+    {
+      "type": "Form",
+      "id": "a640be62-63f6-4027-90d7-48c014a7c6f3",
+      "name": "Product",
+      "table": "product",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 48452, PROD 48231 chars",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "a6d145c4-8fd5-437b-9db7-aa3efb6eceec",
+      "name": "Information",
+      "table": "dg_samplerequest",
+      "status": "Different",
+      "detail": "fields only in PROD: dg_ordertype, dg_qcemail; handlers only in UAT: FetchIncoterms, HideSalesArea, Makequotepaymenttermmandatory, UpdateSalesArea, salesareaSRDNL1; size UAT 49576, PROD 46890 chars",
+      "solutions": "DNL_Base_Entities; DNL_Production"
+    },
+    {
+      "type": "Form",
+      "id": "a7c132d3-c3f6-4f99-bf0a-8c19993700d8",
+      "name": "Invoice Product_DG_DNL",
+      "table": "invoicedetail",
+      "status": "Different",
+      "detail": "fields only in UAT: dg_glclassdnl, dg_oldinvoiceproductquantity; handlers only in UAT: hideFormForRoles; libraries only in UAT: dg_DataRestrictiononForm; size UAT 42563, PROD 40113 chars",
+      "solutions": "DNL_Production_Deployment_Patch_2600f0b0"
+    },
+    {
+      "type": "Form",
+      "id": "a802bbb0-34a9-41b8-84be-272c28ec07c4",
+      "name": "Information",
+      "table": "dg_customervisit",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 12472, PROD 12053 chars",
+      "solutions": "ENT_SchemaBaseSolution; HotFixCommissionMasterTable"
+    },
+    {
+      "type": "Form",
+      "id": "ace8e59a-73d3-4ea4-b57b-fd9f6f3f44f7",
+      "name": "Information",
+      "table": "dg_meansoftransport",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 3086, PROD 2248 chars",
+      "solutions": "DNL_Production_Deployment_Patch_259689d6"
+    },
+    {
+      "type": "Form",
+      "id": "b16a131c-fbad-445d-9b50-36e2b98e8a71",
+      "name": "Quote product DG",
+      "table": "quotedetail",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 179500, PROD 178690 chars",
+      "solutions": "Crca6de; DCTL_Production; DNL_Production_Deployment_Patch_b6e2882c; DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution_Patch_aaf85fee; ProductionDeployment_Patch_9f3275ef"
+    },
+    {
+      "type": "Form",
+      "id": "b513b965-fe6c-40aa-b605-f9a5b0f3cb60",
+      "name": "Information",
+      "table": "dg_batchnumber",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 4079, PROD 3241 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "b5e95b20-5f6f-4ebe-a93a-1a93395eb3ca",
+      "name": "Sales Contract_DG",
+      "table": "dg_salescontract",
+      "status": "Different",
+      "detail": "fields only in UAT: dg_alpha, dg_conversionnorms, dg_conversionnorms2, dg_freightcharges1, dg_interestrate, dg_interestrate90days; handlers only in UAT: AMSFeilds; size UAT 40326, PROD 35937 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "b9edf6dd-755c-4319-b4e0-9833fe3558df",
+      "name": "Order Schedule-DG",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "handlers only in PROD: LockUnlockFormOS; size UAT 52839, PROD 53002 chars",
+      "solutions": "Crca6de; DNL_FEB_2025; DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3; ENT_SchemaBaseSolution_Patch_30372c1a; HotFixCommissionMasterTable; ProductionDeployment_JUNE ..."
+    },
+    {
+      "type": "Form",
+      "id": "bbc6f5be-6b53-4fb0-8731-4ca4d0290a8d",
+      "name": "User Form",
+      "table": "systemuser",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 47348, PROD 46922 chars",
+      "solutions": "DCTL_Entities_Solution; DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "c11cef21-a038-4700-bd40-6b22fe5d530f",
+      "name": "Information",
+      "table": "dg_salesarea",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 22919, PROD 22488 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "c45051b2-451d-48ce-9889-fc78f546aab7",
+      "name": "Lead_DG",
+      "table": "lead",
+      "status": "Different",
+      "detail": "handlers only in UAT: LockUnlockFormlead; size UAT 60588, PROD 59439 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "c6fdead7-92f6-4a6e-ac84-667c7fc3064b",
+      "name": "Price List Approval_DG",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 12055, PROD 11636 chars",
+      "solutions": "DNL_Production_Deployment_Patch_4011749a; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "c87361fc-36ba-f011-bbd3-000d3aca01fc",
+      "name": "Order_DG_DCTL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 211949, PROD 212147 chars",
+      "solutions": "Crca6de; DCTL_Entities_Solution"
+    },
+    {
+      "type": "Form",
+      "id": "ca26b00e-982c-4e21-8d05-17af57ccba52",
+      "name": "Sales Contract Approval_DG_DNL",
+      "table": "dg_salescontractapproval",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 10519, PROD 9946 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "cb430327-bcc1-416d-959d-db7592e685af",
+      "name": "Sales Insights",
+      "table": "account",
+      "status": "Different",
+      "detail": "handlers only in UAT: LinkedInExtensions.Account.Instance.handleOrgChartModifiedNotification; libraries only in UAT: $webresource:LinkedInExtensions/Account/LinkedInExtensions_Account.js; size UAT 61167, PROD 60727 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "cdfc371c-4f28-489c-9e47-2f46acbfb271",
+      "name": "Order Product_DG",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "fields only in UAT: dg_productdescriptionchangelog; handlers only in UAT: productdescriptionchange; size UAT 98399, PROD 97073 chars",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "cf873396-c4fc-4087-b885-e57ee03485a1",
+      "name": "Opportunity_DG_DNL",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 91818, PROD 92028 chars",
+      "solutions": "Crca6de; DNL_ProductionDeployment_SIT; DNL_Production_Deployment_Patch_2e38712a; DNL_Production_Deployment_Patch_39b29893; DNL_Production_Deployment_Patch_3fb6fa9d"
+    },
+    {
+      "type": "Form",
+      "id": "d0f2b4d3-e872-4ce7-aae0-5d6158f032de",
+      "name": "DNL Order schedule",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "fields only in PROD: dg_creditexposure, dg_unadjustedreceipts; size UAT 6730, PROD 7674 chars",
+      "solutions": "ProductionDeployment_JUNE; ProductionDeployment_Patch_5601784a; Production_Deployment_JUNE2026"
+    },
+    {
+      "type": "Form",
+      "id": "d3ca3f59-f008-4cb1-88ea-90c7a36c4adb",
+      "name": "Order Schedule QC DNL",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 31625, PROD 32256 chars",
+      "solutions": "Crca6de; DCTL_Entities_Solution; DNL_Production_Deployment; DNL_Production_Deployment_Patch_2eafd67f; DNL_Production_Deployment_Patch_39b29893; DNL_Production_Deployment_Patch_4374b78e; DNL_Production_Deployment_Patch_6e0698bc; DNL_Production_Deployment_Patch_a72ebf00 ..."
+    },
+    {
+      "type": "Form",
+      "id": "d4589970-1cfb-4047-a57e-c7c1ffd2d84d",
+      "name": "Invoice_DG",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 48731, PROD 47921 chars",
+      "solutions": "DNL_Production_Deployment_Patch_2018088a; DNL_Production_Deployment_Patch_2600f0b0; ENT_SchemaBaseSolution; ProductionDeployment_Patch_23c258e6"
+    },
+    {
+      "type": "Form",
+      "id": "d7af8b28-4edd-4173-a8a0-169687844f38",
+      "name": "Information",
+      "table": "dg_competitoranalysis",
+      "status": "Different",
+      "detail": "fields only in UAT: dg_quote; size UAT 10399, PROD 9970 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "db07285c-7e55-ee11-be6f-000d3a0a6cc7",
+      "name": "SAP Customer ID quick view",
+      "table": "account",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 2445, PROD 1125 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "e3a506da-e656-41d2-8788-232c04329978",
+      "name": "Information",
+      "table": "dg_orderscheduleapprovals",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 9598, PROD 8760 chars",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "e3a54242-36ba-f011-bbd3-002248d6064f",
+      "name": "Opportunity_DG_DCTL",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 90617, PROD 90617 chars",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "Form",
+      "id": "e5e77356-b3d4-4f6c-b4db-2f6182013f6d",
+      "name": "Discount",
+      "table": "dg_discountmaster",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 14421, PROD 14002 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "e96f2300-2568-ee11-9ae7-000d3a0a6cc7",
+      "name": "Sales Contract quick view form 2",
+      "table": "dg_salescontract",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 4504, PROD 3166 chars",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_2e38712a"
+    },
+    {
+      "type": "Form",
+      "id": "e994c8cd-2f61-4017-be73-6656b76181e7",
+      "name": "Quantity Discount_DGNew",
+      "table": "dg_quantitydiscountmaster",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 27959, PROD 27388 chars",
+      "solutions": "DNL_Production_Deployment_Patch_91aadd4e; DNL_Production_Deployment_Patch_aaa7cc06; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_30372c1a"
+    },
+    {
+      "type": "Form",
+      "id": "ec726376-37ba-f011-bbd3-000d3ac9c4d1",
+      "name": "Order Schedule_DG_DCTL",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 52060, PROD 51503 chars",
+      "solutions": "DCTL_Entities_Solution; ProductionDeployment_JUNE; Production_Deployment_JUNE2026"
+    },
+    {
+      "type": "Form",
+      "id": "f002d93a-4dfc-4343-99e4-d029a549071c",
+      "name": "Information",
+      "table": "dg_commissionmasters",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 1615, PROD 1601 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "f0c00f82-732b-ee11-bdf4-000d3a0a6cc7",
+      "name": "Account web quick view form ",
+      "table": "account",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 2466, PROD 2238 chars",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "Form",
+      "id": "f5174765-07c4-4e9e-9707-477d40796c27",
+      "name": "Information",
+      "table": "dg_salescontractapproval",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 2508, PROD 1660 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "f5f9a07e-0f28-ed11-9db1-000d3a8d107a",
+      "name": "Account form for Customer Card",
+      "table": "account",
+      "status": "Different",
+      "detail": "fields only in UAT: address1_city, address1_composite; size UAT 13888, PROD 7592 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "f8d09ef1-d356-ee11-be6f-002248d668b9",
+      "name": "Route Master_DG",
+      "table": "dg_routemaster",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 7522, PROD 6373 chars",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_d42e8e47"
+    },
+    {
+      "type": "Form",
+      "id": "f8d75ba8-7d65-4b09-88ee-1d297b53e0f2",
+      "name": "Contact_DG_DNL",
+      "table": "contact",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 50042, PROD 48595 chars",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "Form",
+      "id": "fb9f3707-5831-ee11-bdf4-002248d5d779",
+      "name": "Quantity Discount_DG",
+      "table": "dg_quantitydiscountmaster",
+      "status": "Different",
+      "detail": "layout, labels or controls differ (no field or handler change); size UAT 13388, PROD 12822 chars",
+      "solutions": "DNL_Production_Deployment_Patch_91aadd4e"
+    },
+    {
+      "type": "View",
+      "id": "00000000-0000-0000-00aa-000010001001",
+      "name": "My Active Accounts",
+      "table": "account",
+      "status": "Different",
+      "detail": "columns only in UAT: dg_dctl, dg_dnl, dg_dpl; only in PROD: -",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "00000000-0000-0000-00aa-000010013100",
+      "name": "All Quotes",
+      "table": "quote",
+      "status": "Different",
+      "detail": "columns only in UAT: dg_salesoragnizationsingle; only in PROD: dg_salesorganization",
+      "solutions": "DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "0220e5db-e6d4-f011-8544-000d3ac9c4d1",
+      "name": "Inactive Price Lists - DCTL",
+      "table": "pricelevel",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "036e004b-8e58-458e-8e50-5ae211fb9a27",
+      "name": "Active Batch Number",
+      "table": "dg_batchnumber",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_556d165d"
+    },
+    {
+      "type": "View",
+      "id": "037cb0dc-19c1-f011-bbd3-002248d6064f",
+      "name": "All Orders - DCTL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "05160e38-9087-ef11-ac21-000d3ac9ab0c",
+      "name": "Non Cancelled Orders - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "071c92c9-f830-ee11-bdf5-002248d5de64",
+      "name": "My Location Discounts",
+      "table": "dg_locationdiscount",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "0722e04f-7cdd-407e-ac49-89faf86f6a2b",
+      "name": "Quick Find Active Location Discounts",
+      "table": "dg_locationdiscount",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "09b06bb0-8134-ee11-bdf4-002248d668b9",
+      "name": "Price List Approval - Rejected",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_556d165d; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "0e4f2b7e-2fd4-f011-8544-002248d6064f",
+      "name": "Active Invoices - DCTL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "0e685a6c-e75f-4580-a4a4-86d497235c0c",
+      "name": "My Connections",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "0eddf0b9-2fd4-f011-8544-002248d6064f",
+      "name": "Inactive Invoices - DCTL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "12ce27fe-cded-ef11-be21-000d3a0a5df2",
+      "name": "Order Bill to Address",
+      "table": "dg_customeraddress",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment"
+    },
+    {
+      "type": "View",
+      "id": "147cc631-15cf-ef11-a72e-002248d61038",
+      "name": "Active Import Datas - DNL",
+      "table": "dg_importdata",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_39b29893; DNL_Production_Deployment_Patch_9007ab4e"
+    },
+    {
+      "type": "View",
+      "id": "179595c1-c9d4-f011-8544-000d3ac9c4d1",
+      "name": "Active Quotes - DCTL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "185e29de-5c32-42ef-a637-3605e445faf5",
+      "name": "My Invoices",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "1a49aa95-9188-ef11-8a6a-000d3ac9ab0c",
+      "name": "Price List Approval - Rejected - DNL",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "1b89cdc0-e2be-f011-bbd3-002248d5e935",
+      "name": "Active Material Groups - DCTL",
+      "table": "dg_materialgroup",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DevOps_Production"
+    },
+    {
+      "type": "View",
+      "id": "1c3429b7-e5ea-f011-8406-6045bdce1a27",
+      "name": "Inactive Credit Limit Approval - DCTL",
+      "table": "dg_creditlimitapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "1dc5158e-67cf-f011-8544-000d3aca01fc",
+      "name": "All Order Products - DCTL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "1e5c37e7-69d5-4f73-b363-d9fae16bdcf9",
+      "name": "Active Location Discounts",
+      "table": "dg_locationdiscount",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "1ebaac8e-8134-ee11-bdf4-002248d668b9",
+      "name": "Price List Approval - Approved",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_556d165d; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "1edb1531-1641-ee11-be6e-000d3a0a6cc7",
+      "name": "Service calls - Pending for Approval",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "1f8c763d-8f87-ef11-ac21-000d3ac9ab0c",
+      "name": "All Short Close Orders - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "2084d7ca-d4fc-f011-8406-6045bdce1a17",
+      "name": "Active Customer Outstanding - DCTL",
+      "table": "dg_customeroutstanding",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Production"
+    },
+    {
+      "type": "View",
+      "id": "23d3faeb-5c98-ef11-8a68-000d3af25947",
+      "name": "Inactive Invoices - DNL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025; DNL_Production_Deployment_Patch_3d818cd7"
+    },
+    {
+      "type": "View",
+      "id": "26c3849c-af02-4ee1-845d-e19729cf4c99",
+      "name": "Location Discount Lookup View",
+      "table": "dg_locationdiscount",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "286322d9-7d99-ee11-be37-000d3a0a6cc7",
+      "name": "All Short Close Orders",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "28ec5e72-24da-ef11-a731-002248d63dd0",
+      "name": "All Cancelled Orders - DNL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "297210d7-2fd4-f011-8544-002248d6064f",
+      "name": "Invoices-DCTL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_SecurityRoles_Solution"
+    },
+    {
+      "type": "View",
+      "id": "2b0d568f-8455-ef11-bfe3-002248d614f0",
+      "name": "Trader Accounts",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "2b22a1bc-a04b-4502-b2e5-a36bcc0ba3d5",
+      "name": "Bank Master Lookup View",
+      "table": "dg_bankmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_2eafd67f"
+    },
+    {
+      "type": "View",
+      "id": "2d5c673b-568f-ee11-8179-000d3a0a6cc7",
+      "name": "All Active Orders",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DCTL_Prod_Deployment_Patch_ca3c9983; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "2f92f2b5-e2e8-48db-9fd4-0912cdb2112e",
+      "name": "Inactive Commission Master Approvals",
+      "table": "dg_commissionmasterapproval",
+      "status": "Different",
+      "detail": "filter conditions UAT 2, PROD 1",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "2fdae832-6b5f-ee11-8df0-002248d668b9",
+      "name": "Export",
+      "table": "quotedetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_2e38712a"
+    },
+    {
+      "type": "View",
+      "id": "3028392f-0f73-48ea-99c2-3dd097fe4f10",
+      "name": "Quick Find Active Sales Contracts",
+      "table": "dg_salescontract",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_2e38712a"
+    },
+    {
+      "type": "View",
+      "id": "312ebcb6-e6d4-f011-8544-000d3ac9c4d1",
+      "name": "Active Price Lists - DCTL",
+      "table": "pricelevel",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "313e191c-99b7-ef11-a72f-000d3ac9ecfa",
+      "name": "Order Approval Product view",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "31d3d1a5-42f8-f011-8406-6045bdce1a17",
+      "name": "Inactive Special Discount Masters - DCTL",
+      "table": "dg_specialdiscountmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DCTL_Production"
+    },
+    {
+      "type": "View",
+      "id": "32ae4534-3461-44ae-ac62-85f1a5c9656c",
+      "name": "Active Transportation Zones",
+      "table": "dg_dnltransportationzone",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Production"
+    },
+    {
+      "type": "View",
+      "id": "34137109-820f-41df-a780-60a2856efd55",
+      "name": "Quick Find Active Service calls",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "344d1185-a122-4cc3-b64b-869f938efb17",
+      "name": "Active Invoices - DNL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025; DNL_Production_Deployment_Patch_3d818cd7; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "34aa3b49-8e87-ef11-ac20-000d3ac9b389",
+      "name": "My Orders - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DCTL_Production; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "353ea25e-e0be-f011-bbd3-002248d5e935",
+      "name": "Accepted Opportunities - DCTL",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "35aee161-6c08-44f1-b016-85db0d2d4db7",
+      "name": "Location Discount Advanced Find View",
+      "table": "dg_locationdiscount",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "36481330-bb95-ee11-be37-002248d5d779",
+      "name": "All Invoices For Customer",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "3691ae96-6300-4c28-8906-d818fb1cf34c",
+      "name": "Pallet Type Lookup View",
+      "table": "dg_pallettype",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "372e660a-e7d4-f011-8544-000d3ac9c4d1",
+      "name": "Price List Items - Update - DCTL",
+      "table": "productpricelevel",
+      "status": "Different",
+      "detail": "filter conditions UAT 1, PROD 0",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "39a6cf95-cd53-ee11-be6f-002248d668b9",
+      "name": "Scheduled Order",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "ENT_HotFixes; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "3b3f38d5-66cf-f011-8544-002248d6064f",
+      "name": "All Active Orders - DCTL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "3cd8e84c-cabe-f011-bbd3-002248d6064f",
+      "name": "Active Approval Matrixs - DCTL",
+      "table": "dg_approvalmatrix",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_SecurityRoles_Solution"
+    },
+    {
+      "type": "View",
+      "id": "3ce378ea-4b8f-ee11-8179-000d3a0a6cc7",
+      "name": "Auto Closed Orders",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "3d362aa1-82d4-ee11-904c-002248d665ed",
+      "name": "Child Account View",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "3f3152af-fb61-ef11-a671-000d3af251ad",
+      "name": "Rebooked orders on Quote Product",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "400cfb4f-9188-ef11-8a69-000d3ac9b389",
+      "name": "Price List Approval - Approved - DNL",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "40660698-8e87-ef11-ac20-000d3ac9b389",
+      "name": "All Active Orders - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "41058990-e6d4-f011-8544-000d3ac9c4d1",
+      "name": "All Quote Products - DCTL",
+      "table": "quotedetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "44051d49-568f-ee11-8179-000d3a0a6cc7",
+      "name": "All Cancelled Orders",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "443ec2ef-25da-ef11-a731-002248d61038",
+      "name": "All Rebooked Orders - DNL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "46a0061b-8f87-ef11-ac20-000d3ac9b389",
+      "name": "All Rebooked Orders - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "46d6f378-b911-4d76-8c7d-bc4996286cc2",
+      "name": "Active Bank Masters",
+      "table": "dg_bankmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "489cce74-6bb8-ef11-a72f-000d3ac9ecfa",
+      "name": "Active Credit Limit Pending",
+      "table": "dg_creditlimitapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "48d07602-5d98-ef11-8a68-000d3ac9b389",
+      "name": "All Invoices - DNL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "columns only in UAT: a_e711c42ca02cf0118c4d000d3af266e0.dg_donumber, dg_sampleorderschedule, dg_samplerequest, dg_samplingorder; only in PROD: -",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025; DNL_Production_Deployment_Patch_3d818cd7"
+    },
+    {
+      "type": "View",
+      "id": "598fa57c-4c29-ef11-840a-000d3af2b719",
+      "name": "Invoices of Business Unit",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "5a091531-a087-ef11-ac20-000d3af25947",
+      "name": "Closed Quotes - DNL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "5a767f5e-8f87-ef11-ac20-000d3af25947",
+      "name": "Auto Closed Orders - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "5a818547-e9be-f011-bbd3-002248d6064f",
+      "name": "Material Group_DG (View) - DCTL",
+      "table": "dg_materialgroup",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "5b22f841-25da-ef11-a731-000d3a0a5df2",
+      "name": "All Order Products - DNL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "5b35a611-1fe2-f011-8406-6045bdce1612",
+      "name": "Import Data View - DCTL",
+      "table": "dg_importdata",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "5b369a48-67cf-f011-8544-000d3ac9c4d1",
+      "name": "All Cancelled Orders - DCTL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "5b3dc560-08f9-f011-8406-6045bdce1a27",
+      "name": "Active Commission Master Approvals - DCTL",
+      "table": "dg_commissionmasterapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "5b407d48-1ada-ef11-a731-002248d62bd4",
+      "name": "Active Customer Visits - DNL",
+      "table": "dg_customervisit",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "5d2facd7-0ca4-ef11-a72d-000d3ac9a1a2",
+      "name": "Pending Approval Credit Limit - DNL",
+      "table": "dg_creditlimitapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "5e00b298-0144-ee11-be6f-000d3a0a6cc7",
+      "name": "SCA_View",
+      "table": "dg_salescontractapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "5e77d776-9188-ef11-8a69-002248d6350e",
+      "name": "Price List Approval - Pending - DNL",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "5eda7d0e-7193-ee11-be37-000d3a0a6cc7",
+      "name": "Expired Quotes web view",
+      "table": "quote",
+      "status": "Different",
+      "detail": "filter conditions UAT 5, PROD 4",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "5f808141-ad9a-ee11-be37-002248d668b9",
+      "name": "All Service calls",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "5fb2cbbf-8cfc-f011-8406-6045bdce1ac7",
+      "name": "Active Packaging Cost and Services Master - DCTL",
+      "table": "dg_packagingcostandservicesmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Prod_Deployment"
+    },
+    {
+      "type": "View",
+      "id": "61b53cc9-0118-ef11-840a-002248d5e153",
+      "name": "Quotes of Business unit",
+      "table": "quote",
+      "status": "Different",
+      "detail": "filter conditions UAT 1, PROD 0",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "634739a8-d8e5-41bb-b7df-c121bd18e4b4",
+      "name": "My Connections",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "6361671f-e7d4-f011-8544-000d3ac9c4d1",
+      "name": "Price List Items - Approved - DCTL",
+      "table": "productpricelevel",
+      "status": "Different",
+      "detail": "filter conditions UAT 2, PROD 1",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "63c10b24-a8d1-f011-8544-002248d6064f",
+      "name": "DOs On Hold - DCTL",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "642095db-91dd-4813-bb31-665a3a2bae61",
+      "name": "Quote Associated View",
+      "table": "quote",
+      "status": "Different",
+      "detail": "filter conditions UAT 1, PROD 0",
+      "solutions": "DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "656fe9d3-1541-ee11-be6e-000d3a0a6cc7",
+      "name": "Closed Service calls",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "668dc61b-e1be-f011-bbd3-002248d5e935",
+      "name": "Active Credit Management - DCTL",
+      "table": "dg_creditmanagement",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "67178976-578f-ee11-8179-000d3a0a6cc7",
+      "name": "All Rebooked Orders",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "67f7fa3e-578f-ee11-8179-000d3a0a6cc7",
+      "name": "All Amended Orders",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "68972f8a-3a2a-42ea-b5dd-40b56f497618",
+      "name": "All Order Products",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "68a0abc7-09f9-f011-8406-6045bdce1a27",
+      "name": "Inactive Commission Master Approvals- DCTL",
+      "table": "dg_commissionmasterapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "68aacab8-19c1-f011-bbd3-002248d6064f",
+      "name": "All Cancelled Orders - DCTL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "6b1ee529-0262-f011-bec1-000d3af266e0",
+      "name": "By Products Price List Approval - Pending",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "6bfad4b9-8e87-ef11-ac20-000d3af25947",
+      "name": "All Amended Orders - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "6cd0b7bb-bd40-ee11-be6e-002248d668b9",
+      "name": "Active Invoices Portal",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "6d8fdef3-d1d1-f011-8544-000d3ac9c4d1",
+      "name": "Pending Order Schedule Approvals - DCTL",
+      "table": "dg_orderscheduleapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "6db5db94-dfd4-f011-8544-000d3ac9c4d1",
+      "name": "All Quotes_DG (View) - DCTL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "6e85b930-ba4c-ee11-be6f-000d3a0a6cc7",
+      "name": "My Bank Masters",
+      "table": "dg_bankmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "6ea53bd1-3ff8-f011-8406-6045bdce1a17",
+      "name": "Active Discount Masters - DCTL",
+      "table": "dg_discountmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "6fa51746-30d4-f011-8544-002248d6064f",
+      "name": "All Invoice Products- DCTL",
+      "table": "invoicedetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "7290dbcb-8785-4d97-9c99-850993d19c17",
+      "name": "Active Commission Masters",
+      "table": "dg_commissionmasters",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "76371234-e6d4-f011-8544-000d3ac9c4d1",
+      "name": "Quote_DG (View) - DCTL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "7824343e-4ad7-f011-8544-000d3ac9c4d1",
+      "name": "DCTL Inactive Commission Masters",
+      "table": "dg_commissionmasters",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_SecurityRoles_Solution"
+    },
+    {
+      "type": "View",
+      "id": "7839b1f4-1ecf-ef11-a72e-000d3ac9a59d",
+      "name": "Import Data View - DNL",
+      "table": "dg_importdata",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_39b29893; DNL_Production_Deployment_Patch_9007ab4e"
+    },
+    {
+      "type": "View",
+      "id": "787e2459-19c1-f011-bbd3-002248d6064f",
+      "name": "All Amended Orders - DCTL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "7898e312-f741-f011-8779-002248d63fd6",
+      "name": "Sample Invoices - DNL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_556d165d"
+    },
+    {
+      "type": "View",
+      "id": "7a07bfed-ac87-ef11-ac21-000d3ac9ab0c",
+      "name": "Inactive Quantity Discount Masters - DNL",
+      "table": "dg_quantitydiscountmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "7a0f4037-9e2b-ee11-bdf4-002248d5d779",
+      "name": "Account Web View",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "7aa33d87-5d55-47a6-9795-93ebeebb470d",
+      "name": "Quick Find Active Bank Masters",
+      "table": "dg_bankmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "7d22dfcc-8294-f011-b4cc-000d3ac9dae0",
+      "name": "Sales Contract DNL",
+      "table": "quotedetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_2e38712a"
+    },
+    {
+      "type": "View",
+      "id": "7d68697c-e0be-f011-bbd3-002248d5e935",
+      "name": "Lost Opportunities - DCTL",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "7d8981e5-06c5-f011-bbd3-002248d6064f",
+      "name": "Inactive Order Approvals - DCTL",
+      "table": "dg_orderapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "7d920cf8-abf2-f011-8406-6045bdce1a17",
+      "name": "Active Warehouse Premium Masters - DCTL",
+      "table": "dg_warehousepremiummaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "7f2bf3a0-9c95-ee11-be37-002248d668b9",
+      "name": "My Active Service calls",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "812c3a80-3f34-405b-b807-516173149340",
+      "name": "Closed Invoices",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "81f69212-cb8a-42bb-bb5f-ab4cf22ed1f4",
+      "name": "Location Discount Associated View",
+      "table": "dg_locationdiscount",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "84280b67-90d8-ef11-a731-000d3a0a5df2",
+      "name": "PP-CO Completed",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "8440446b-e1be-f011-bbd3-002248d5e935",
+      "name": "My Active Credit Management - DCTL",
+      "table": "dg_creditmanagement",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "8559f0e3-17c1-f011-bbd3-002248d6064f",
+      "name": "All Active Orders - DCTL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "856c36fc-66cf-f011-8544-002248d6064f",
+      "name": "All Amended Orders - DCTL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "856c4e5f-e327-ee11-9965-000d3a0a6cc7",
+      "name": "Accounts Pending SAP Integration",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "86263a26-4ad7-f011-8544-002248d5e935",
+      "name": "DCTL Active Commission Masters",
+      "table": "dg_commissionmasters",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_SecurityRoles_Solution"
+    },
+    {
+      "type": "View",
+      "id": "8682341c-e3be-f011-bbd3-000d3ac9c4d1",
+      "name": "Inactive Material Groups - DCTL",
+      "table": "dg_materialgroup",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "87e5b4f6-1ee2-f011-8406-6045bdce1612",
+      "name": "Active Import Datas - DCTL",
+      "table": "dg_importdata",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "89f11eec-5579-ee11-8179-000d3a0a6cc7",
+      "name": "Active Order Schedule Approvals1",
+      "table": "dg_orderscheduleapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "ENT_SchemaBaseSolution_Patch_d42e8e47"
+    },
+    {
+      "type": "View",
+      "id": "89f9bcb6-9b95-ee11-be37-002248d668b9",
+      "name": "My Teams Active Service calls",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "8bb57b90-754c-ee11-be6f-000d3a0a6cc7",
+      "name": "Service Call Report",
+      "table": "report",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "8f399059-d046-4c6d-9cc9-33bcca35f97c",
+      "name": "Inactive Transportation Zones",
+      "table": "dg_dnltransportationzone",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Production"
+    },
+    {
+      "type": "View",
+      "id": "901d9864-26da-ef11-a731-002248d63dd0",
+      "name": "All Short Close Orders - DNL ",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "9032f2e1-a087-ef11-ac21-000d3ac9ab0c",
+      "name": "My Quotes - DNL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "90bb58f4-8e87-ef11-ac20-002248d6350e",
+      "name": "All Orders - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "90e7117a-23da-ef11-a731-002248d62bd4",
+      "name": "Pending Order Schedule Approvals - DNL",
+      "table": "dg_orderscheduleapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "915162dd-2ba0-ee11-a569-002248d668b9",
+      "name": "Active Invoices [Service]",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "93a6f220-2b66-4bbf-afff-80abedff6f12",
+      "name": "Inactive Sales Contract Approvals",
+      "table": "dg_salescontractapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "93cc76f2-dd31-ee11-bdf4-002248d5d779",
+      "name": "Address Web view",
+      "table": "dg_customeraddress",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_2e7499a6; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "9407b6a2-2fd4-f011-8544-002248d6064f",
+      "name": "All Invoices - DCTL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "9483f44e-6e47-43a2-b4ab-0aa8f4e569f6",
+      "name": "Service call Associated View",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "956ff0ec-9374-42d7-a520-3a43d4f50b8f",
+      "name": "Active Order Schedule Approvals",
+      "table": "dg_orderscheduleapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_d42e8e47"
+    },
+    {
+      "type": "View",
+      "id": "95cb6350-e1be-f011-bbd3-002248d5e935",
+      "name": "Inactive Credit Management - DCTL",
+      "table": "dg_creditmanagement",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "96147fdc-8e87-ef11-ac21-000d3ac9ab0c",
+      "name": "All Cancelled Orders - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "96e1905c-e773-ee11-8179-002248d5d779",
+      "name": "My Accounts - Under Revision",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "97151d19-d262-f011-bec1-000d3a0ab060",
+      "name": "Testing_Opp_charts",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_556d165d"
+    },
+    {
+      "type": "View",
+      "id": "989eebdc-d1d1-f011-8544-002248d6064f",
+      "name": "Active Order Schedule Approvals - DCTL",
+      "table": "dg_orderscheduleapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "9b509686-dfd4-f011-8544-000d3ac9c4d1",
+      "name": "All Quotes - DCTL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "9c702e81-6888-4a37-bf1a-bed6a746dcad",
+      "name": "Active ImportorExportData",
+      "table": "dg_importorexportdata",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_39b29893"
+    },
+    {
+      "type": "View",
+      "id": "9d0cabb5-5b82-4d33-b58c-c43480fc378e",
+      "name": "Inactive Location Discounts",
+      "table": "dg_locationdiscount",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "9d5807b9-e0be-f011-bbd3-002248d5e935",
+      "name": "Won Opportunities - DCTL",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "9dcd3a2e-45bd-4ab8-9f3e-f195c02c674f",
+      "name": "Sales Contract Lookup View",
+      "table": "dg_salescontract",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_2e38712a; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "9fe7733b-38d0-4f66-bb59-62638fb0b832",
+      "name": "Service call Lookup View",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "a0c382b0-fa17-ef11-840a-002248d6566b",
+      "name": "Order of Business Unit",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "a136dc6b-a8d1-f011-8544-000d3aca01fc",
+      "name": "Scheduled Order - DCTL",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "a33424ef-2fd4-f011-8544-002248d6064f",
+      "name": "Re Export Invoices - DCTL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "a4e3f0f9-a42b-ee11-bdf4-002248d5d779",
+      "name": "Open Opportunities- Web",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "a6a9b5c4-e6d4-f011-8544-000d3ac9c4d1",
+      "name": "All Price Lists - DCTL",
+      "table": "pricelevel",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "a8eaeb96-f6fc-f011-8406-6045bdce1a17",
+      "name": "Active Letter of Credits - DCTL",
+      "table": "dg_letterofcredit",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Production"
+    },
+    {
+      "type": "View",
+      "id": "a934c979-6cd5-ef11-a731-002248d61038",
+      "name": "Contact Filter Opportunity",
+      "table": "contact",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "a9af0ab8-861d-4cfa-92a5-c6281fed7fab",
+      "name": "Account Lookup View",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "a9ba6f69-e6d4-f011-8544-000d3ac9c4d1",
+      "name": "Closed Quotes - DCTL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "abddfe3c-4342-ee11-be6e-000d3a0a6cc7",
+      "name": "Resolved Service Calls - Pending for Closer",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "ac9d2a00-e6d4-f011-8544-000d3ac9c4d1",
+      "name": "Recent Quotes - DCTL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "acb607fa-014f-4d82-bced-08100969fde1",
+      "name": "Inactive Commission Masters",
+      "table": "dg_commissionmasters",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "adb14156-36d9-470a-b66c-fd6f6ec07d72",
+      "name": "Service call Advanced Find View",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "adb5da54-23da-ef11-a731-002248d61038",
+      "name": "All Amended Orders - DNL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "ae51c1fe-9300-f011-bae3-000d3af266e0",
+      "name": "Preventive Action DNL",
+      "table": "task",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_91aadd4e"
+    },
+    {
+      "type": "View",
+      "id": "af6c833c-fecc-ef11-a72e-000d3ac9a59d",
+      "name": "Order Product Inline Edit View: Bundle Products DNL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_Production_Deployment; DNL_Production_Deployment_Patch_39b29893"
+    },
+    {
+      "type": "View",
+      "id": "b0765ab0-75ce-ef11-a72e-000d3ac9a59d",
+      "name": "Account Customer Visit_Commissioning Agent",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "b07cfa1b-051f-ee11-9966-000d3a0a6cc7",
+      "name": "My Service calls",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "b2e6773d-cabe-f011-bbd3-002248d5e935",
+      "name": "My Open Leads DCTL",
+      "table": "lead",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "b2e6a6f1-19da-ef11-a731-000d3a0a5df2",
+      "name": "Inactive Customer Visits-DNL",
+      "table": "dg_customervisit",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "b45139e3-26da-ef11-a731-002248d64f78",
+      "name": "All Active Orders - DNL",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_Production_Deployment_Patch_5631470e"
+    },
+    {
+      "type": "View",
+      "id": "b5bf090e-1ac1-f011-bbd3-002248d5e935",
+      "name": "All Rebooked Orders - DCTL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "b6465536-aefb-ee11-9f89-002248d6566b",
+      "name": "Portal Invoice view",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "b750bca6-9300-f011-bae3-000d3af266e0",
+      "name": "Corrective Action DNL",
+      "table": "task",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_91aadd4e"
+    },
+    {
+      "type": "View",
+      "id": "b916547e-8134-ee11-bdf4-002248d668b9",
+      "name": "Price List Approval - Pending",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_556d165d; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "b9d403d7-04a0-4489-8462-d311c856472f",
+      "name": "Active Sales Contract Approvals",
+      "table": "dg_salescontractapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "ba4ea5d7-1d40-ee11-be6e-002248d5d779",
+      "name": "Portal Order Details",
+      "table": "salesorderdetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "bbb42f4a-4821-4ead-ada4-e4697e4f9109",
+      "name": "Active Price List Approvals",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "bbe01097-42f8-f011-8406-6045bdce1ac7",
+      "name": "Active Special Discount Masters - DCTL",
+      "table": "dg_specialdiscountmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DCTL_Production"
+    },
+    {
+      "type": "View",
+      "id": "bd09ea21-c48d-ee11-8179-002248d5d779",
+      "name": "Customer Visit View",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "becef9de-c884-44a8-a803-ee324dc0b90c",
+      "name": "Inactive Order Schedule Approvals",
+      "table": "dg_orderscheduleapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "ENT_SchemaBaseSolution_Patch_d42e8e47"
+    },
+    {
+      "type": "View",
+      "id": "bf9fb02e-1ac1-f011-bbd3-002248d6064f",
+      "name": "All Short Close Orders - DCTL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "c140c557-b287-ef11-ac21-000d3ac9ab0c",
+      "name": "Inactive Credit Limit Approval - DNL",
+      "table": "dg_creditlimitapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "c181edf7-a2b7-4502-a575-edd5801b19f5",
+      "name": "Active Service calls",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "c3977d54-90d8-ef11-a731-000d3a0a5df2",
+      "name": "PP-CO Pending",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "c430bf47-c48e-ee11-8179-000d3a0a6cc7",
+      "name": "All Invoices New",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "c5f6504c-ea97-ee11-be37-000d3a0a6cc7",
+      "name": "Price List Approval -Material Group",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_556d165d; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "c681a40a-9787-ef11-ac20-000d3af25947",
+      "name": "Active Quotes - DNL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "c6beadd9-df70-4277-b193-64569a6831fb",
+      "name": "Inactive Customer Outstanding",
+      "table": "dg_customeroutstanding",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Production"
+    },
+    {
+      "type": "View",
+      "id": "c72157d9-bc76-f011-b4cb-000d3af266e0",
+      "name": "Re Export Invoice View",
+      "table": "invoicedetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_e6b73950"
+    },
+    {
+      "type": "View",
+      "id": "c815dba7-e0be-f011-bbd3-002248d5e935",
+      "name": "Open Opportunities - DCTL",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "cb261d0f-e773-ee11-8179-002248d5d779",
+      "name": "My Accounts - Under Approval",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "cb2e8947-e6d4-f011-8544-000d3ac9c4d1",
+      "name": "Opportunity Quotes - DCTL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "cb64f4bb-53be-4464-8570-56b4c74c7491",
+      "name": "Sales Contract Associated View",
+      "table": "dg_salescontract",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_2e38712a"
+    },
+    {
+      "type": "View",
+      "id": "cdf25fac-3bf8-f011-8406-6045bdce1a17",
+      "name": "Active Quantity Discount Masters - DCTL",
+      "table": "dg_quantitydiscountmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "cfbdacfa-9196-408b-8bef-c086e29869ee",
+      "name": "Inactive Bank Masters",
+      "table": "dg_bankmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "d09b50e2-9f87-ef11-ac21-000d3ac9ab0c",
+      "name": "All Quotes - DNL",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "d0e06a0a-4b8d-ee11-8179-002248d5d779",
+      "name": "Customer Visit View",
+      "table": "task",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "d1176bbe-72ef-ef11-be20-000d3af29dca",
+      "name": "Customer Visit_Old Reference-DNL",
+      "table": "dg_customervisit",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_7fb05e4f"
+    },
+    {
+      "type": "View",
+      "id": "d1af4a68-8e87-ef11-ac21-000d3ac9ab0c",
+      "name": "Active Orders - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "d1b75b53-ecbe-f011-bbd3-002248d6064f",
+      "name": "Products - DCTL",
+      "table": "product",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "d1ec6ef7-c9be-f011-bbd3-002248d5e935",
+      "name": "All Leads DCTL",
+      "table": "lead",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "d26e6749-e832-426b-b4cb-222ab902ce7c",
+      "name": "Quick Find All Orders",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "columns only in UAT: -; only in PROD: dg_salesorgan",
+      "solutions": "DCTL_Entities_Solution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "d3b96a19-8808-4d24-a43a-20ac193ca710",
+      "name": "Sales Contract Advanced Find View",
+      "table": "dg_salescontract",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_Production_Deployment_Patch_2e38712a"
+    },
+    {
+      "type": "View",
+      "id": "d3bedd47-a8d1-f011-8544-000d3aca01fc",
+      "name": "Inactive Order Scheduling - DCTL",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "d55cc5fd-06c5-f011-bbd3-000d3ac9c4d1",
+      "name": "My Pending Order Approvals - DCTL",
+      "table": "dg_orderapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "d704b81a-e9d4-f011-8544-002248d5e935",
+      "name": "Price List Approval - Rejected - DCTL",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "d705efe5-8cfc-f011-8406-6045bdce1a27",
+      "name": "Inactive Packaging Cost and Services Master - DCTL",
+      "table": "dg_packagingcostandservicesmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Prod_Deployment"
+    },
+    {
+      "type": "View",
+      "id": "d7a9ec04-e9d4-f011-8544-002248d6064f",
+      "name": "Price List Approval - Pending - DCTL",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "d7ff78ed-e8d4-f011-8544-002248d5e935",
+      "name": "Price List Approval - Approved - DCTL",
+      "table": "dg_pricelistapprovals",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "d94e6f16-3cf8-f011-8406-6045bdce1a27",
+      "name": "Inactive Quantity Discount Masters - DCTL",
+      "table": "dg_quantitydiscountmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "d95c9071-43b0-4f57-978e-ffcabfba6b46",
+      "name": "Bank Master Advanced Find View",
+      "table": "dg_bankmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "d9fbe28a-7193-ee11-be37-002248d5d779",
+      "name": "Accepted Rejected Quotes web view",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "da4b038c-b994-ee11-be37-002248d5d779",
+      "name": "Account GST lookup view",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "daf1313a-f1be-f011-bbd3-002248d5e935",
+      "name": "My Open Opportunities - DCTL",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "dccef254-c1d7-ef11-a731-000d3a0a5df2",
+      "name": "Order view on Quote",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "de20fd54-cabe-f011-bbd3-000d3ac9c4d1",
+      "name": "Inactive Approval Matrixs - DCTL",
+      "table": "dg_approvalmatrix",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_SecurityRoles_Solution"
+    },
+    {
+      "type": "View",
+      "id": "de234976-0432-ee11-bdf4-002248d5d779",
+      "name": "Orders with SAP OrderID",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025; ENT_SchemaBaseSolution; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "de26cc21-e593-4d54-8525-f81b4a1b2eed",
+      "name": "Customer Visit Lookup View",
+      "table": "dg_customervisit",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "dee7cc58-ab95-ef11-8a69-000d3ac9ab0c",
+      "name": "Invoices-DNL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025; DNL_Production_Deployment_Patch_3d818cd7"
+    },
+    {
+      "type": "View",
+      "id": "e186e469-aabb-e611-80d6-00155db0be3a",
+      "name": "Recent Invoices",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "e4d2ad29-41a9-ee11-a569-002248d668b9",
+      "name": "Customer PO view Portal (withLC)",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025; ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "e628f358-ceed-ef11-be21-002248d61038",
+      "name": "Order Ship to Address",
+      "table": "dg_customeraddress",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment"
+    },
+    {
+      "type": "View",
+      "id": "e76085c5-3dfe-ef11-bae3-000d3a0ab060",
+      "name": "Order View- Previous Order DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_Production_Deployment_Patch_563c3ed4; DNL_Production_Deployment_Patch_6c5076f6; DNL_Production_Deployment_Patch_900351fe"
+    },
+    {
+      "type": "View",
+      "id": "e8ee1fcb-9887-ef11-ac20-000d3ac9b389",
+      "name": "Active Material Groups - DNL",
+      "table": "dg_materialgroup",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DevOps_Production"
+    },
+    {
+      "type": "View",
+      "id": "e945bc36-7150-ee11-be6f-002248d668b9",
+      "name": "Domestic",
+      "table": "quotedetail",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_2e38712a"
+    },
+    {
+      "type": "View",
+      "id": "e9c1bf64-54bc-ef11-a72e-002248d60018",
+      "name": "Active Commission Master Approvals",
+      "table": "dg_commissionmasterapproval",
+      "status": "Different",
+      "detail": "filter conditions UAT 2, PROD 1",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "eb0f6f9d-1641-ee11-be6e-000d3a0a6cc7",
+      "name": "Service calls - Approved",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "ee2f31d0-a7d1-f011-8544-000d3aca01fc",
+      "name": "Active Order Scheduling - DCTL",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "ee4c689e-8f87-ef11-ac20-002248d6350e",
+      "name": "Closed PO view Portal - DNL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution; DNL_FEB_2025"
+    },
+    {
+      "type": "View",
+      "id": "ee8868f4-4329-4ab7-be79-688ef296d2ac",
+      "name": "Bank Master Associated View",
+      "table": "dg_bankmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "ef418b52-9ed6-40df-a66a-2482a41f1021",
+      "name": "Active Credit Limit Approval",
+      "table": "dg_creditlimitapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "f00cb589-3df8-f011-8406-6045bdce1612",
+      "name": "Active Freight Masters - DCTL",
+      "table": "dg_freightmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "f08704af-75ce-ef11-a72e-002248d60018",
+      "name": "Account Customer Visit_Commissioning Agent",
+      "table": "account",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "f12924c3-b695-ef11-8a69-000d3ac9ab0c",
+      "name": "Order Schedule DNL",
+      "table": "dg_orderschedule",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_3d818cd7; DNL_Production_Deployment_Patch_809ab56d"
+    },
+    {
+      "type": "View",
+      "id": "f1641853-f4b9-4e94-9561-9c02327d60d4",
+      "name": "Inactive Service calls",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "f1fca54c-5a50-ee11-be6f-002248d668b9",
+      "name": "Quote_DG (View)",
+      "table": "quote",
+      "status": "Different",
+      "detail": "columns only in UAT: totalamount; only in PROD: dg_totalamountdnl",
+      "solutions": "DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "f3b904f0-e5ea-f011-8406-6045bdce1a17",
+      "name": "Pending Approval Credit Limit - DCTL",
+      "table": "dg_creditlimitapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "f4d803cd-2a3c-ee11-bdf4-002248d5d779",
+      "name": "Quotes web view",
+      "table": "quote",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_FEB_2025; ENT_SchemaBaseSolution"
+    },
+    {
+      "type": "View",
+      "id": "f58bb5be-f6fc-f011-8406-6045bdce1612",
+      "name": "Approved Letter of Credits - DCTL",
+      "table": "dg_letterofcredit",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Production"
+    },
+    {
+      "type": "View",
+      "id": "f5af95c3-06c5-f011-bbd3-002248d6064f",
+      "name": "Active Order Approvals - DCTL",
+      "table": "dg_orderapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "f62ced30-7e13-f011-998a-000d3af269fb",
+      "name": "Active Customer Outstanding DPL",
+      "table": "dg_customeroutstanding",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_556d165d"
+    },
+    {
+      "type": "View",
+      "id": "f62f0692-e0be-f011-bbd3-002248d5e935",
+      "name": "My Connections - DCTL",
+      "table": "opportunity",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "f6e38d35-d73c-ee11-bdf4-002248d5d779",
+      "name": "Service Call - Web",
+      "table": "dg_servicecall",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_f671f3f1"
+    },
+    {
+      "type": "View",
+      "id": "f7dc3bf7-3ff8-f011-8406-6045bdce1a17",
+      "name": "Inactive Discount Masters - DCTL",
+      "table": "dg_discountmaster",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "f9d3aab6-e3ea-f011-8406-6045bdce1a27",
+      "name": "Active Credit Limit Approval - DCTL",
+      "table": "dg_creditlimitapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "f9f1ffd5-f8a8-f011-bbd3-002248d6064f",
+      "name": "Re Export Invoices - DNL",
+      "table": "invoice",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Production_Deployment_Patch_e6b73950"
+    },
+    {
+      "type": "View",
+      "id": "fc5f3d2c-53c0-f011-bbd3-000d3ac9c4d1",
+      "name": "Active Orders - DCTL",
+      "table": "salesorder",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "View",
+      "id": "fc6ad42f-b287-ef11-ac20-000d3ac9b389",
+      "name": "Active Credit Limit Approval - DNL",
+      "table": "dg_creditlimitapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DNL_Base_Entities"
+    },
+    {
+      "type": "View",
+      "id": "fcb92e30-07c5-f011-bbd3-002248d6064f",
+      "name": "Pending Order Approvals - DCTL",
+      "table": "dg_orderapproval",
+      "status": "Different",
+      "detail": "other layout or filter text differs",
+      "solutions": "DCTL_Entities_Solution"
+    },
+    {
+      "type": "Form",
+      "id": "c56e369e-3aa0-40b4-a886-fb4b4b6ca222",
+      "name": "Contact Us Personal Web Form",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "0c179ae9-ca30-4020-8a4a-09a53f81614a",
+      "name": "Contact Us Personal Web Form - Japanese",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "2794a0f3-e79e-49df-9e9b-54e834d34f3a",
+      "name": "Information",
+      "table": "dg_orderscheduleapprovals",
+      "status": "Only in PROD",
+      "detail": "form type 11",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "3b0e9033-80a9-4999-ad5d-79a20a35269e",
+      "name": "Information",
+      "table": "dg_creditlimitapproval",
+      "status": "Only in PROD",
+      "detail": "form type 11",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "ead46360-77ca-4ff6-a6ab-4739827cb809",
+      "name": "Information",
+      "table": "dg_creditlimitapproval",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "3a342bae-c3cf-450a-b145-8a7a8bd1b6a2",
+      "name": "Join Web Form",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "e3b6ddb7-8df0-4410-ac7b-fd32e5053d38",
+      "name": "Lead",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "37e130d6-c024-ef11-840a-000d3af2df2b",
+      "name": "Lead Dashboard",
+      "table": "none",
+      "status": "Only in PROD",
+      "detail": "form type 0",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "aa7c154f-e2f8-45db-b780-a9a8a96332fe",
+      "name": "Lead Quick Create",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 7",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "9a14ebb4-143e-e711-80e1-00155d871bb4",
+      "name": "Leads Dashboard",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 10",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "4ede8c73-4629-ef11-840a-000d3af2df2b",
+      "name": "Leads Dashboard 1",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 10",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "cb7f1c93-4629-ef11-840a-000d3af2df2b",
+      "name": "Leads Dashboard 2",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 10",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "1bd33ef9-1415-426a-9e44-6eb525210210",
+      "name": "New Form",
+      "table": "quotedetail",
+      "status": "Only in PROD",
+      "detail": "form type 6",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "d598792c-3ff0-43f3-b3e3-bbd70b99e1a5",
+      "name": "Order",
+      "table": "salesorder",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "0f297ca6-8c9f-45e1-8a11-7c96ceff910f",
+      "name": "Original Order Details",
+      "table": "salesorder",
+      "status": "Only in PROD",
+      "detail": "form type 6",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "efe28064-af76-41c3-8e4a-c1b1f04c5710",
+      "name": "PriceLevel_1_DG_DNL",
+      "table": "pricelevel",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "Crca6de"
+    },
+    {
+      "type": "Form",
+      "id": "e1ec2c0c-1744-42fa-a346-fb8237357d0f",
+      "name": "Sales Insights",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "021ebf90-a424-ef11-840a-000d3af2df2b",
+      "name": "Test Dashboard",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 10",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "a4b9a944-d016-4525-af77-08aa84308307",
+      "name": "Web Form",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "936747d7-deb8-40ab-a462-6473293d1c71",
+      "name": "Web Form - Japanese",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "Form",
+      "id": "b6507f80-04f8-4880-ba0f-700362f3d4ee",
+      "name": "pricelistitem_DG_DNL",
+      "table": "productpricelevel",
+      "status": "Only in PROD",
+      "detail": "form type 2",
+      "solutions": "Crca6de"
+    },
+    {
+      "type": "View",
+      "id": "f87b28b5-76a5-484d-ae70-84b7a6d57075",
+      "name": "Active Customer Addresses",
+      "table": "dg_customeraddress",
+      "status": "Only in PROD",
+      "detail": "query type 0",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "3ce5e599-b7df-ef11-a730-002248d64f78",
+      "name": "Active Customer Product Details - DNL",
+      "table": "dg_customerproductdetails",
+      "status": "Only in PROD",
+      "detail": "query type 0",
+      "solutions": "HotFixCommissionMasterTable"
+    },
+    {
+      "type": "View",
+      "id": "5a926b99-3a5f-df11-ae90-00155d2e3002",
+      "name": "All Leads",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "query type 0",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "b72ecd58-4629-ef11-840a-000d3af2b719",
+      "name": "Lead of Business Unit",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "query type 0",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "eeadd03e-65d2-4371-9eb9-ea046312994e",
+      "name": "Material Group Advanced Find View",
+      "table": "dg_materialgroup",
+      "status": "Only in PROD",
+      "detail": "query type 1",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "e30b36e9-7b34-49c4-aada-929256dc0a99",
+      "name": "Material Group Associated View",
+      "table": "dg_materialgroup",
+      "status": "Only in PROD",
+      "detail": "query type 2",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "b04fcb9d-34c7-4990-9949-263a25abf070",
+      "name": "Material Group Lookup View",
+      "table": "dg_materialgroup",
+      "status": "Only in PROD",
+      "detail": "query type 64",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "055bd51d-3951-ee11-be6f-002248d668b9",
+      "name": "Material Group_DG (View)",
+      "table": "dg_materialgroup",
+      "status": "Only in PROD",
+      "detail": "query type 0",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "00000000-0000-0000-00aa-000010001005",
+      "name": "My Open Leads",
+      "table": "lead",
+      "status": "Only in PROD",
+      "detail": "query type 0",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "eea8f412-f626-ef11-840a-000d3af2df2b",
+      "name": "Open Lead View-Phenolix",
+      "table": "queueitem",
+      "status": "Only in PROD",
+      "detail": "query type 0",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "ebd33735-9c2c-ef11-8e4f-000d3af2b719",
+      "name": "Open Lead View-Solvent",
+      "table": "queueitem",
+      "status": "Only in PROD",
+      "detail": "query type 0",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    },
+    {
+      "type": "View",
+      "id": "8532aa8e-8c2a-4222-b0df-eceb89e543b3",
+      "name": "Quick Find Active Material Groups",
+      "table": "dg_materialgroup",
+      "status": "Only in PROD",
+      "detail": "query type 4",
+      "solutions": "ENT_SchemaBaseSolution_Patch_0d602da3"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "_comment": "Plugin steps that exist only in production (Gaps sheet). Read-only download of their definition in the sources pipeline. The F3 stage registers only ids listed in approved-plugin-steps.json.",
+  "items": [
+    {
+      "id": "559f27eb-7a21-ee11-9966-000d3a0a6cc7",
+      "name": "Credit_Limit_Request_statusupdate.Credit_Limit_Request_statusupdate: Update of dg_creditlimitapproval",
+      "detail": "stage 40, mode 0, state 0, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution"
+    },
+    {
+      "id": "794a2961-9942-ef11-a316-000d3af2df2b",
+      "name": "CustomerCreationIntegration_CRM_to_SAP.Program: Update of dg_accountapproval",
+      "detail": "stage 40, mode 0, state 0, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "afcce395-47d1-ee11-904c-000d3af235fb",
+      "name": "DG_Websitre_CRM_Integration.Website_Integration: dg_crm_website_integration of any Entity",
+      "detail": "stage 40, mode 0, state 0, filter attributes 0",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "04fbfbe1-e96b-ee11-8179-002248d5d779",
+      "name": "DN.SourceCodePluginAssemply.QuantityDiscountAPISyncSAP: Create of dg_quantitydiscountmaster",
+      "detail": "stage 40, mode 0, state 1, filter attributes 2",
+      "solutions": "ENT_ConfigBaseSolution"
+    },
+    {
+      "id": "938e501b-9b42-ef11-a316-002248d6171f",
+      "name": "Masters_Approvals.CashDiscount_Approval: Update of dg_masterersapprovals team",
+      "detail": "stage 40, mode 0, state 0, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "f56f8101-9b42-ef11-a316-000d3af2df2b",
+      "name": "Masters_Approvals.LocationDiscount_ApprovalCreation: Update of dg_masterersapprovals team",
+      "detail": "stage 40, mode 0, state 0, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "7b38e80e-9a42-ef11-a316-000d3af23ad2",
+      "name": "Masters_Approvals.PackagingMaster_Approval: Update of dg_masterersapprovals team",
+      "detail": "stage 40, mode 0, state 0, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "37ebbf47-9a42-ef11-a316-000d3af23ad2",
+      "name": "Masters_Approvals.QuantityDiscount_Approval: Update of dg_masterersapprovals team",
+      "detail": "stage 40, mode 0, state 0, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "c32215eb-f4b8-ee11-9079-000d3a0a6cc7",
+      "name": "Masters_Approvals.Route_Master_Integration_SAPtoCRM: dg_Route_Master_API_SAPtoCRM of any Entity",
+      "detail": "stage 40, mode 0, state 0, filter attributes 0",
+      "solutions": "ENT_ConfigBaseSolution_Patch_621d4865"
+    },
+    {
+      "id": "ca50029e-9a42-ef11-a316-000d3af2df2b",
+      "name": "Masters_Approvals.SpecialDiscount_Approval: Update of dg_masterersapprovals team",
+      "detail": "stage 40, mode 0, state 0, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "8ede21cf-9a42-ef11-a316-000d3af2df2b",
+      "name": "Masters_Approvals.WarehousePremium_Approval: Update of dg_masterersapprovals team",
+      "detail": "stage 40, mode 0, state 0, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "d4c5cfa8-9c42-ef11-a316-000d3af2df2b",
+      "name": "OrderScheduleApproval.OrderSchedule: Update of dg_orderscheduleapprovals team",
+      "detail": "stage 40, mode 0, state 1, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "dcbeecb8-0027-ee11-9965-000d3a0a6cc7",
+      "name": "Price_List_SAP_API.PriceList_Retrieval: Update of productpricelevel",
+      "detail": "stage 40, mode 0, state 1, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution"
+    },
+    {
+      "id": "ec84f962-9e42-ef11-a316-000d3af2df2b",
+      "name": "SC_Approval.OnChangeOfStatus: Update of dg_salescontractapproval team",
+      "detail": "stage 40, mode 0, state 0, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "1efede28-01ec-ee11-a1fd-000d3af24131",
+      "name": "UpdateFields_Opp_Quote.ImportDataReport: dg_ImportDataRunAction of any Entity",
+      "detail": "stage 40, mode 0, state 0, filter attributes 0",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "526312de-281c-ef11-840a-000d3aca40ca",
+      "name": "UpdateFields_Opp_Quote.OpportunityProductEndDateValidation: Update of opportunityproduct",
+      "detail": "stage 20, mode 0, state 0, filter attributes 2",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "d2b3a7ca-c078-ee11-8179-000d3a0a6cc7",
+      "name": "UpdateFields_Opp_Quote.SendEmailToPrimaryContact: Update of quotedetail",
+      "detail": "stage 40, mode 1, state 0, filter attributes 1",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    },
+    {
+      "id": "6d69c1b6-93be-ee11-9079-000d3a0a6cc7",
+      "name": "UpdateFields_Opp_Quote.SetHSCodeName: Create of dg_hscode",
+      "detail": "stage 40, mode 0, state 0, filter attributes 0",
+      "solutions": "ENT_ConfigBaseSolution_Patch_75265258"
+    }
+  ]
+}

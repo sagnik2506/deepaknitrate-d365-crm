@@ -6,12 +6,15 @@ $script:RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
 $script:Tokens = @{}
 
 function Get-PipelineConfig([string]$Name) {
-    $p = Join-Path $script:RepoRoot "pipelines\config\$Name"
+    $dir = if ($env:PP_CONFIG_DIR) { $env:PP_CONFIG_DIR } else { Join-Path $script:RepoRoot 'pipelines\config' }   # PP_CONFIG_DIR is a test hook
+    $p = Join-Path $dir $Name
     if (-not (Test-Path $p)) { throw "Config file not found: $p" }
     return (Get-Content $p -Raw -Encoding UTF8 | ConvertFrom-Json)
 }
 
 function Get-EnvUrl([string]$Key) {
+    $override = [Environment]::GetEnvironmentVariable("PP_URL_$Key")   # test hook: point a key at a local mock server
+    if ($override) { return $override.TrimEnd('/') }
     $cfg = Get-PipelineConfig 'environments.json'
     $u = $cfg.$Key
     if (-not $u -or $u -match '<') { throw "The URL for environment '$Key' is not set in pipelines/config/environments.json" }
@@ -33,14 +36,15 @@ function Get-DvToken([string]$Key) {
     foreach ($v in 'PP_TENANT_ID', 'PP_APP_ID', 'PP_CLIENT_SECRET') { if (-not (Test-Path "Env:$v")) { throw "Environment variable $v is not set" } }
     $url = Get-EnvUrl $Key
     $body = @{ client_id = $env:PP_APP_ID; client_secret = $env:PP_CLIENT_SECRET; scope = "$url/.default"; grant_type = 'client_credentials' }
-    $r = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PP_TENANT_ID)/oauth2/v2.0/token" -Body $body -ContentType 'application/x-www-form-urlencoded'
+    $loginBase = if ($env:PP_LOGIN_BASE) { $env:PP_LOGIN_BASE } else { 'https://login.microsoftonline.com' }   # PP_LOGIN_BASE is a test hook
+    $r = Invoke-RestMethod -Method Post -Uri "$loginBase/$($env:PP_TENANT_ID)/oauth2/v2.0/token" -Body $body -ContentType 'application/x-www-form-urlencoded'
     $script:Tokens[$Key] = @{ Token = $r.access_token; Expires = $now.AddSeconds([int]$r.expires_in) }
     return $r.access_token
 }
 
 # One Dataverse Web API call with pacing, retry on 429 and 5xx, token renewal on 401. Non-GET calls are only allowed on writable environments.
 function Invoke-Dv {
-    param([Parameter(Mandatory)][string]$Key, [Parameter(Mandatory)][string]$Path, [ValidateSet('GET', 'POST', 'PATCH', 'DELETE')][string]$Method = 'GET',
+    param([Parameter(Mandatory)][string]$Key, [Parameter(Mandatory)][string]$Path, [ValidateSet('GET', 'POST', 'PATCH', 'PUT', 'DELETE')][string]$Method = 'GET',
           $Body = $null, [int]$DelayMs = 500, [hashtable]$ExtraHeaders = @{})
     if ($Method -ne 'GET') { Assert-Writable $Key }
     $uri = if ($Path -like 'http*') { $Path } else { (Get-EnvUrl $Key) + '/api/data/v9.2/' + $Path }
@@ -104,4 +108,24 @@ function Get-FileSha256([string]$Path) { return (Get-FileHash -Algorithm SHA256 
 function Get-CustomerSolutionList([string]$Key) {
     $rows = Invoke-DvAll -Key $Key -Path 'solutions?$select=uniquename,friendlyname,version,ismanaged,installedon,modifiedon,isvisible&$expand=publisherid($select=uniquename)&$filter=isvisible eq true'
     return @($rows | Where-Object { $_.uniquename -notin 'Default', 'Active', 'Basic' -and ([string]$_.publisherid.uniquename) -notmatch '^(microsoft|adxstudio|mbs$)' })
+}
+
+# Text of a form, view or flow with the values that always differ between environments removed (role ids and order in forms, object type codes in views, all GUIDs),
+# so two versions can be compared. Same rules as -Normalise in tools/scripts/parity/Get-ComponentContentHashes.ps1.
+function Get-EnvNormText([string]$Type, [string]$Text) {
+    if ($null -eq $Text) { return '' }
+    $t = $Text
+    if ($Type -eq 'Forms') { $t = $t -replace '<Role Id="[^"]*"\s*/>', '' -replace '(DisplayConditions[^>]*?) Order="\d+"', '$1' }
+    elseif ($Type -eq 'Views') { $t = $t -replace 'object="\d+"', 'object=""' }
+    $t = [regex]::Replace($t, '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}', 'GUID')
+    return ($t -replace '\s+', ' ').Trim()
+}
+
+# Publish the given tables (forms, views and columns of those tables).
+function Publish-Entities([string]$Key, [string[]]$Entities) {
+    $e = @($Entities | Where-Object { $_ } | Sort-Object -Unique)
+    if ($e.Count -eq 0) { return }
+    $xml = '<importexportxml><entities>' + (($e | ForEach-Object { "<entity>$_</entity>" }) -join '') + '</entities></importexportxml>'
+    Invoke-Dv -Key $Key -Path 'PublishXml' -Method POST -Body @{ ParameterXml = $xml } | Out-Null
+    Write-Log "published $($e.Count) tables"
 }

@@ -1,0 +1,70 @@
+# One stage of pipeline 04 (align content). It runs one script on UAT-ALIGN inside the Azure DevOps Environment uat-align-write (approvals), after the previous stage.
+# A stage that is switched off (enabled: false) is skipped and the chain continues. The script is started with -DryRun when dryRun is true.
+parameters:
+- name: name                # stage name, letters and digits only
+  type: string
+- name: displayName
+  type: string
+- name: dependsOn           # name of the previous stage
+  type: string
+- name: enabled
+  type: boolean
+- name: dryRun
+  type: boolean
+- name: command             # script file name and its parameters, for example: Update-Forms.ps1 -SourceDir "$(Pipeline.Workspace)\prod-components" -ReportFile "$(Build.ArtifactStagingDirectory)\f4.csv"
+  type: string
+- name: report              # file name of the report the script writes into $(Build.ArtifactStagingDirectory)
+  type: string
+- name: downloadArtifact    # '' or the artifact of pipeline 02 to download (sources, prod-components)
+  type: string
+  default: ''
+- name: collectPipelineId
+  type: number
+- name: collectRunId
+  type: number
+- name: timeout
+  type: number
+  default: 120
+
+stages:
+- stage: ${{ parameters.name }}
+  displayName: ${{ parameters.displayName }}
+  dependsOn: ${{ parameters.dependsOn }}
+  condition: and(in(dependencies.${{ parameters.dependsOn }}.result, 'Succeeded', 'SucceededWithIssues', 'Skipped'), eq('${{ parameters.enabled }}', 'True'))
+  jobs:
+  - deployment: run
+    displayName: ${{ parameters.displayName }} (needs approval)
+    environment: uat-align-write
+    timeoutInMinutes: ${{ parameters.timeout }}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: setup.yml
+          - ${{ if ne(parameters.downloadArtifact, '') }}:
+            - task: DownloadPipelineArtifact@2
+              displayName: Download ${{ parameters.downloadArtifact }}
+              inputs:
+                buildType: specific
+                project: $(System.TeamProjectId)
+                definition: ${{ parameters.collectPipelineId }}
+                buildVersionToDownload: specific
+                pipelineId: ${{ parameters.collectRunId }}
+                artifactName: ${{ parameters.downloadArtifact }}
+                targetPath: $(Pipeline.Workspace)\${{ parameters.downloadArtifact }}
+          - template: pwsh.yml
+            parameters:
+              displayName: Run ${{ parameters.displayName }}
+              script: |
+                $d = if ('${{ parameters.dryRun }}' -eq 'True') { '-DryRun' } else { '' }
+                $cmd = @'
+                ${{ parameters.command }}
+                '@
+                Invoke-Expression ("& pwsh -NoProfile -File .\tools\scripts\pipeline\" + $cmd.Trim() + " " + $d)
+                exit $LASTEXITCODE
+          - task: PublishPipelineArtifact@1
+            displayName: Publish the report
+            condition: always()
+            inputs:
+              targetPath: $(Build.ArtifactStagingDirectory)\${{ parameters.report }}
+              artifact: ${{ parameters.name }}-report

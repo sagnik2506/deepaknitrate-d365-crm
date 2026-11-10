@@ -76,3 +76,29 @@ dump('acceptance.json', {'_comment': 'Acceptance criteria of step I4, applied to
     'onlyInProductionMustBeZero': ['Table', 'Column', 'Form', 'View', 'WebResource', 'PluginAssembly', 'PluginStep', 'Workflow', 'Role'],
     'differentContentMustBeZero': ['Forms', 'Views', 'WebResources', 'PluginAssemblies', 'Workflows'],
     'approvedExtrasOnlyInAlign': {'Table': 0, 'Column': 0, 'Form': 0, 'View': 0, 'WebResource': 0, 'PluginAssembly': 0, 'PluginStep': 0, 'Workflow': 0, 'Role': 0}})
+
+# ---------------------------------------------------------------- forms, views, plugin steps, column properties (steps F3, F4, F5, F7)
+fv = []
+for r in rows('Forms-Views-Flows'):
+    if r['Type'] in ('Form', 'View'):
+        fv.append({'type': r['Type'], 'id': (r['Id'] or '').lower(), 'name': r['Name'], 'table': r['Table'] or '', 'status': 'Different', 'detail': r['Difference detail'], 'solutions': r['Carried by solutions'] or ''})
+for r in rows('Gaps'):
+    if r['Type'] in ('Form', 'View') and r['Side'] == 'Only in PROD':
+        fv.append({'type': r['Type'], 'id': (r['Id'] or '').lower(), 'name': r['Component'], 'table': r['Table'] or '', 'status': 'Only in PROD', 'detail': r['Detail'] or '', 'solutions': r['Carried by solutions'] or ''})
+dump('forms-views-candidates.json', {'_comment': 'Forms and views that differ (real differences) or exist only in production. The F4 and F5 stages change only ids listed in approved-forms.json and approved-views.json, and only update forms and views that already exist in UAT-ALIGN; ones that exist only in production must come with their solution or be created by hand.', 'items': fv})
+dump('approved-forms.json', {'_comment': 'Form ids approved for the F4 stage (after the triage, step C2). Empty means nothing changes. Start with the Quote Product and Order Product forms.', 'approved': []})
+dump('approved-views.json', {'_comment': 'View ids approved for the F5 stage. Empty means nothing changes.', 'approved': []})
+ps_steps = []
+for r in rows('Gaps'):
+    if r['Type'] == 'PluginStep' and r['Side'] == 'Only in PROD':
+        ps_steps.append({'id': (r['Id'] or '').lower(), 'name': r['Component'], 'detail': r['Detail'] or '', 'solutions': r['Carried by solutions'] or ''})
+dump('plugin-steps.json', {'_comment': 'Plugin steps that exist only in production (Gaps sheet). Read-only download of their definition in the sources pipeline. The F3 stage registers only ids listed in approved-plugin-steps.json.', 'items': ps_steps})
+dump('approved-plugin-assemblies.json', {'_comment': 'Plugin assembly names approved for the F3 stage (update the assembly content with the production DLL). Empty means nothing changes.', 'approved': []})
+dump('approved-plugin-steps.json', {'_comment': 'Plugin step ids approved for registration in the F3 stage. Secure configuration cannot be read from production: ask the owner. Empty means nothing changes.', 'approved': []})
+cp = []
+for r in rows('Columns'):
+    if r['Kind'] == 'Property differs':
+        t, c = r['Column'].split('.', 1)
+        cp.append({'table': t, 'column': c, 'property': r['Type or property'], 'uatValue': r['UAT value'], 'prodValue': r['PROD value']})
+dump('column-properties.json', {'_comment': 'Column properties that differ (Columns sheet): the F7 stage sets the production value. MaxLength can usually only be increased; a decrease may be refused by the platform and is reported.', 'items': cp})
+dump('approved-column-properties.json', {'_comment': 'Columns approved for the F7 stage, as "table.column". Empty means nothing changes.', 'approved': []})

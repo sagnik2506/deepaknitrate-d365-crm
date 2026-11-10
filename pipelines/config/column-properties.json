@@ -1,0 +1,173 @@
+{
+  "_comment": "Column properties that differ (Columns sheet): the F7 stage sets the production value. MaxLength can usually only be increased; a decrease may be refused by the platform and is reported.",
+  "items": [
+    {
+      "table": "dg_competitoranalysis",
+      "column": "dg_quoteproductname",
+      "property": "MaxLength",
+      "uatValue": "1000",
+      "prodValue": "850"
+    },
+    {
+      "table": "dg_customeraddress",
+      "column": "dg_address1street2",
+      "property": "MaxLength",
+      "uatValue": "40",
+      "prodValue": "54"
+    },
+    {
+      "table": "dg_importdata",
+      "column": "dg_consigneeadd1",
+      "property": "MaxLength",
+      "uatValue": "100",
+      "prodValue": "126"
+    },
+    {
+      "table": "dg_importorexportdata",
+      "column": "dg_quoteproductname",
+      "property": "MaxLength",
+      "uatValue": "1000",
+      "prodValue": "850"
+    },
+    {
+      "table": "dg_orderapproval",
+      "column": "dg_quotelineproductname",
+      "property": "MaxLength",
+      "uatValue": "1000",
+      "prodValue": "850"
+    },
+    {
+      "table": "dg_orderapproval",
+      "column": "dg_quoteproductname",
+      "property": "MaxLength",
+      "uatValue": "1000",
+      "prodValue": "850"
+    },
+    {
+      "table": "dg_quantitydiscountmaster",
+      "column": "dg_division",
+      "property": "Required",
+      "uatValue": "ApplicationRequired",
+      "prodValue": "None"
+    },
+    {
+      "table": "dg_routemaster",
+      "column": "dg_departurezone",
+      "property": "MaxLength",
+      "uatValue": "10",
+      "prodValue": "11"
+    },
+    {
+      "table": "dg_routemaster",
+      "column": "dg_transportationzone",
+      "property": "MaxLength",
+      "uatValue": "10",
+      "prodValue": "11"
+    },
+    {
+      "table": "dg_servicecall",
+      "column": "dg_servicecallname",
+      "property": "MaxLength",
+      "uatValue": "400",
+      "prodValue": "250"
+    },
+    {
+      "table": "dg_servicecallapproval",
+      "column": "dg_servicecallname",
+      "property": "MaxLength",
+      "uatValue": "400",
+      "prodValue": "250"
+    },
+    {
+      "table": "dg_servicecallworkhour",
+      "column": "dg_servicecallname",
+      "property": "MaxLength",
+      "uatValue": "400",
+      "prodValue": "250"
+    },
+    {
+      "table": "dg_toolhistory",
+      "column": "dg_servicecallname",
+      "property": "MaxLength",
+      "uatValue": "400",
+      "prodValue": "250"
+    },
+    {
+      "table": "productpricelevel",
+      "column": "dg_name",
+      "property": "Required",
+      "uatValue": "None",
+      "prodValue": "ApplicationRequired"
+    },
+    {
+      "table": "quote",
+      "column": "dg_contact",
+      "property": "Required",
+      "uatValue": "None",
+      "prodValue": "ApplicationRequired"
+    },
+    {
+      "table": "quotedetail",
+      "column": "dg_oldquoteproductname",
+      "property": "MaxLength",
+      "uatValue": "1000",
+      "prodValue": "850"
+    },
+    {
+      "table": "quotedetail",
+      "column": "dg_productdescriptionname",
+      "property": "MaxLength",
+      "uatValue": "200",
+      "prodValue": "150"
+    },
+    {
+      "table": "salesorder",
+      "column": "dg_productdescriptiondnlname",
+      "property": "MaxLength",
+      "uatValue": "200",
+      "prodValue": "150"
+    },
+    {
+      "table": "salesorderdetail",
+      "column": "dg_commissioncurrency",
+      "property": "Precision",
+      "uatValue": "4",
+      "prodValue": "2"
+    },
+    {
+      "table": "salesorderdetail",
+      "column": "dg_commissioncurrency",
+      "property": "PrecisionSource",
+      "uatValue": "2",
+      "prodValue": "0"
+    },
+    {
+      "table": "salesorderdetail",
+      "column": "dg_commissioncurrency_base",
+      "property": "Precision",
+      "uatValue": "4",
+      "prodValue": "2"
+    },
+    {
+      "table": "salesorderdetail",
+      "column": "dg_commissioncurrency_base",
+      "property": "PrecisionSource",
+      "uatValue": "2",
+      "prodValue": "0"
+    },
+    {
+      "table": "salesorderdetail",
+      "column": "dg_productdescriptiondnlname",
+      "property": "MaxLength",
+      "uatValue": "200",
+      "prodValue": "150"
+    },
+    {
+      "table": "salesorderdetail",
+      "column": "dg_remarksforshortclose",
+      "property": "MaxLength",
+      "uatValue": "10000",
+      "prodValue": "100000"
+    }
+  ]
+}
