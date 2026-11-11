@@ -29,6 +29,7 @@ param(
     [string] $ClientSecret,
     [string] $Token,
     [switch] $UseAzCli,
+    [int] $DelayMs = 0,   # pause after every request (milliseconds); use 500 to 1000 against production
     [string[]] $Table = @('quotedetail', 'salesorderdetail'),
     [string] $OutDir = '.\money-usage'
 )
@@ -65,7 +66,7 @@ $script:headers = @{ Authorization = "Bearer $Token"; Accept = 'application/json
 function Invoke-Get([string] $url) {
     for ($try = 1; $try -le 6; $try++) {
         Update-Token
-        try { return Invoke-RestMethod -Uri $url -Headers $script:headers -Method Get }
+        try { $resp0 = Invoke-RestMethod -Uri $url -Headers $script:headers -Method Get; if ($DelayMs -gt 0) { Start-Sleep -Milliseconds $DelayMs }; return $resp0 }
         catch {
             $code = $null; $resp = $_.Exception.Response
             if ($resp) { try { $code = [int]$resp.StatusCode } catch { } }
