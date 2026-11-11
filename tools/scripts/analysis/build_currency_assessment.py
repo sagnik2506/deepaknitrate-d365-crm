@@ -27,8 +27,8 @@ COLS = [('table', 'Table', 16, 'id'), ('name', 'Logical name', 34, 'id'), ('disp
         ('o_flows', 'Flows', 7, 'earlier'), ('o_scripts', 'Scripts', 8, 'earlier'), ('o_maps', 'Mappings', 8, 'earlier'), ('o_twin', 'Base twin used (4 Nov)', 10, 'earlier'), ('o_conv', 'Conversion seen (dev sample)', 14, 'earlier'),
         ('p_forms', 'Forms', 7, 'prod'), ('p_views', 'Views', 7, 'prod'), ('p_charts', 'Charts', 7, 'prod'), ('p_rules', 'Rules and workflows', 9, 'prod'), ('p_stepdeps', 'Plugin step dependencies', 10, 'prod'),
         ('p_reports', 'Reports', 8, 'prod'), ('p_maps', 'Mappings', 8, 'prod'), ('p_steps', 'Plugin steps by filter', 9, 'prod'), ('p_flows', 'Flows', 7, 'prod'), ('p_scripts', 'Scripts', 8, 'prod'), ('p_pviews', 'Personal views', 8, 'prod'),
-        ('t_total', 'Twin dependencies', 9, 'prod'), ('t_steps', 'Twin plugin steps', 9, 'prod'), ('t_reports', 'Twin reports', 8, 'prod'), ('t_flows', 'Twin flows', 8, 'prod'), ('t_other', 'Twin scripts and personal views', 10, 'prod'),
-        ('p_twin', 'Base twin used in production', 11, 'calc'),
+        ('t_total', 'Twin dependencies', 9, 'prod'), ('t_steps', 'Twin plugin steps', 9, 'prod'), ('t_reports', 'Twin reports', 8, 'prod'), ('t_flows', 'Twin flows', 8, 'prod'), ('t_scripts', 'Twin scripts', 8, 'prod'), ('t_pviews', 'Twin in personal views (information only)', 11, 'prod'),
+        ('p_twin', 'Base twin used in production (excluding personal views)', 13, 'calc'), ('p_twinpv', 'Twin only in personal views', 10, 'calc'),
         ('s_n', 'Sample records with a value', 10, 'prod'), ('s_eq', 'Base equals amount', 9, 'prod'), ('s_div', 'Base = amount / rate', 9, 'prod'), ('s_mul', 'Base = amount x rate', 9, 'prod'), ('s_oth', 'Base differs (other)', 9, 'prod'),
         ('p_conv', 'Conversion seen in production sample', 16, 'calc'),
         ('chg', 'Changed since 4 Nov', 14, 'calc'), ('ans', 'Check 3: does anyone read the _base column?', 18, 'input'),
@@ -69,7 +69,8 @@ def build(out, candidates, dev_dir):
                     'o_flows': row[14], 'o_scripts': row[15], 'o_maps': row[16], 'o_twin': row[18], 'o_conv': row[17]}
             for k, v in vals.items(): wsF.cell(row=r, column=CI[k], value=v)
             g = lambda k: f'{LET[k]}{r}'
-            wsF.cell(row=r, column=CI['p_twin'], value=f'=IF({g("p_forms")}="","",IF({g("t_total")}+{g("t_steps")}+{g("t_reports")}+{g("t_flows")}+{g("t_other")}>0,"Yes","No"))')
+            wsF.cell(row=r, column=CI['p_twin'], value=f'=IF({g("p_forms")}="","",IF({g("t_total")}+{g("t_steps")}+{g("t_reports")}+{g("t_flows")}+{g("t_scripts")}>0,"Yes","No"))')
+            wsF.cell(row=r, column=CI['p_twinpv'], value=f'=IF({g("p_forms")}="","",IF(AND({g("p_twin")}="No",{g("t_pviews")}>0),"Yes","No"))')
             wsF.cell(row=r, column=CI['p_conv'], value=f'=IF({g("s_n")}="","",IF({g("s_n")}=0,"No sample data",IF({g("s_eq")}={g("s_n")},"No conversion",IF({g("s_oth")}>0,"Unexplained","Conversion active"))))')
             wsF.cell(row=r, column=CI['chg'], value=f'=IF({g("p_twin")}="","",IF({g("p_twin")}<>IF({g("o_twin")}="Yes","Yes","No"),"Twin use changed",IF(ABS({g("p_steps")}-{g("o_steps")})+ABS({g("p_flows")}-{g("o_flows")})+ABS({g("p_reports")}-{g("o_reports")})>0,"Counts changed","")))')
             wsF.cell(row=r, column=CI['score'], value=f'=IF({g("p_forms")}="","",3*(({g("p_stepdeps")}+{g("p_steps")})>0)+2*({g("p_reports")}>0)+2*({g("p_flows")}>0)+2*({g("p_maps")}>0)+({g("p_rules")}>0)+IF({g("p_scripts")}>=10,2,IF({g("p_scripts")}>=1,1,0))+2*({g("p_conv")}="Conversion active"))')
@@ -134,6 +135,7 @@ def build(out, candidates, dev_dir):
              ('How to use', f_h2),
              ('1. Run the production reads (Production-Run-Log sheet lists them), then fill the production columns with: python tools/scripts/analysis/build_currency_assessment.py fill ...', f_n),
              ('2. Fields sheet: teal columns come from production. "Changed since 4 Nov" flags fields whose twin use or dependency counts moved. Risk score and level are calculated.', f_n),
+             ('   A base twin counts as used when a platform dependency, plugin step filter, report, flow or script mentions it. Appearing in a personal view is shown separately: a single personal view that lists many columns would otherwise make every twin look used.', f_n),
              ('3. Questions sheet: send the questions to finance, reporting and integration owners. Put each answer into "Check 3" on the Fields sheet (or per group of fields).', f_n),
              ('4. Rule used for the suggested class: a field stays "Keep as currency" until check 3 is answered "Does not read _base" and its twin is not used in production. Not answered means yes, somebody reads it.', f_n),
              ('5. Choose the Final class and a Decision (yellow cells). Summary counts update.', f_n), ('', f_n),
@@ -261,7 +263,7 @@ def fill(path, usage, gate_fields, gate_summary):
         if not r: continue
         m = {'p_forms': u['FieldForms'], 'p_views': u['FieldViews'], 'p_charts': u['FieldCharts'], 'p_rules': u['FieldWorkflowsOrRules'], 'p_stepdeps': u['FieldPluginStepDeps'], 'p_reports': u['FieldReports'], 'p_maps': u['FieldMappings'],
              'p_steps': u['FieldPluginSteps'], 'p_flows': u['FieldFlows'], 'p_scripts': u['FieldScripts'], 'p_pviews': u['FieldPersonalViews'], 't_total': u['TwinDepsTotal'], 't_steps': u['TwinPluginSteps'], 't_reports': u['TwinReports'] if 'TwinReports' in u else 0,
-             't_flows': u['TwinFlows'], 't_other': num(u['TwinScripts'] or 0) + num(u['TwinPersonalViews'] or 0)}
+             't_flows': u['TwinFlows'], 't_scripts': u['TwinScripts'], 't_pviews': u['TwinPersonalViews']}
         for k, v in m.items(): wsF.cell(row=r, column=CI[k], value=num(v or 0)); loaded += 1
     new = [u for u in U if (u['Table'], u['LogicalName']) not in rows]
     # usage detail
