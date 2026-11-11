@@ -43,7 +43,7 @@ def style_header(ws, row, ncols, fill=NAVY):
         x = ws.cell(row=row, column=c); x.font = f_h; x.fill = fill; x.alignment = Alignment(wrap_text=True, vertical='center'); x.border = BOR
 
 
-def build(out, candidates, dev_dir):
+def build(out, candidates, dev_dir, usage_csv=None):
     src = load_workbook(candidates, data_only=False)
     wb = Workbook(); wb.remove(wb.active)
     # ------------------------------------------------------------------ Fields
@@ -61,10 +61,19 @@ def build(out, candidates, dev_dir):
         wsF.cell(row=4, column=i, value=h); wsF.column_dimensions[L(i)].width = w
     style_header(wsF, 4, len(COLS)); wsF.row_dimensions[4].height = 58
     r = 5; n_before = r
+    entries = []
     for sheet, table in TABLES.items():
         ws = src[sheet]
         for row in ws.iter_rows(min_row=5, values_only=True):
             if not row[1]: continue
+            entries.append((table, row))
+    if usage_csv:   # money fields that exist in production but were not in the 4 Nov list are added at the end
+        known = {(t, row[1]) for t, row in entries}
+        for u in csv.DictReader(open(usage_csv, encoding='utf-8-sig')):
+            if (u['Table'], u['LogicalName']) not in known:
+                entries.append((u['Table'], [None, u['LogicalName'], u['DisplayName'], '(new in production)', '(not assessed on 4 Nov)', '', None, None, None, None, None, None, None, None, None, None, None, None, None]))
+    for table, row in entries:
+        if True:
             vals = {'table': table, 'name': row[1], 'disp': row[2], 'cat': row[3], 'oldclass': row[4], 'oldwave': row[5], 'o_forms': row[9], 'o_views': row[10], 'o_rules': row[11], 'o_steps': row[12], 'o_reports': row[13],
                     'o_flows': row[14], 'o_scripts': row[15], 'o_maps': row[16], 'o_twin': row[18], 'o_conv': row[17]}
             for k, v in vals.items(): wsF.cell(row=r, column=CI[k], value=v)
@@ -283,8 +292,8 @@ def fill(path, usage, gate_fields, gate_summary):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); sub = ap.add_subparsers(dest='cmd', required=True)
-    b = sub.add_parser('build'); b.add_argument('--out', required=True); b.add_argument('--candidates', default='analysis/columns-and-money/Money-Fields-Decimal-Candidates-2026-11-04.xlsx'); b.add_argument('--dev-dir', default='C:/DeepakNitrate/currency-gate')
+    b = sub.add_parser('build'); b.add_argument('--out', required=True); b.add_argument('--candidates', default='analysis/columns-and-money/Money-Fields-Decimal-Candidates-2026-11-04.xlsx'); b.add_argument('--dev-dir', default='C:/DeepakNitrate/currency-gate'); b.add_argument('--usage', default=None, help='money-usage-full.csv of production: adds money fields that are not in the 4 Nov list')
     f = sub.add_parser('fill'); f.add_argument('--workbook', required=True); f.add_argument('--usage', required=True); f.add_argument('--gate-fields', required=True); f.add_argument('--gate-summary', required=True)
     a = ap.parse_args()
-    if a.cmd == 'build': build(a.out, a.candidates, a.dev_dir)
+    if a.cmd == 'build': build(a.out, a.candidates, a.dev_dir, a.usage)
     else: fill(a.workbook, a.usage, a.gate_fields, a.gate_summary)
